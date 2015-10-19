@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>A list &mdash; Spack 0.8 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spack 0.8 documentation" href="../../../../index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="../../../../index.html" class="icon icon-home"> Spack
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../features.html">Feature overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#listing-available-packages">Listing available packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-list"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">list</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-info"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">info</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-versions"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">versions</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-install"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#building-a-specific-version">Building a specific version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-uninstall"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#seeing-installed-packages">Seeing installed packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-find"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#compiler-configuration">Compiler configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-compilers"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compilers</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-compiler-add"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">add</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-compiler-info"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">info</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#manual-compiler-configuration">Manual compiler configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#specs-dependencies">Specs &amp; dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#version-specifier">Version specifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#compiler-specifier">Compiler specifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#variants">Variants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#architecture-specifier">Architecture specifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#virtual-dependencies">Virtual dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#constraining-virtual-packages">Constraining virtual packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-providers"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">providers</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#environment-modules">Environment modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#using-modules-dotkits">Using Modules &amp; Dotkits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#ambiguous-module-names">Ambiguous module names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#regenerating-module-files">Regenerating Module files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../basic_usage.html#spack-module-refresh"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">module</span> <span class="pre">refresh</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#extensions-python-support">Extensions &amp; Python support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-extensions"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">extensions</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#extensions-environment-modules">Extensions &amp; Environment Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#activating-extensions">Activating Extensions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../basic_usage.html#spack-activate"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">activate</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../basic_usage.html#spack-activate-f"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">activate</span> <span class="pre">-f</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../basic_usage.html#spack-deactivate"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">deactivate</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../basic_usage.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../basic_usage.html#spack-help"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">help</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#creating-editing-packages">Creating &amp; editing packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-create"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">create</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-edit"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">edit</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-edit-f"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">edit</span> <span class="pre">-f</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#naming-directory-structure">Naming &amp; directory structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#var-spack-packages"><tt class="docutils literal"><span class="pre">var/spack/packages</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#package-names">Package Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#package-class-names">Package class names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#adding-new-versions">Adding new versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#version-urls">Version URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#checksums">Checksums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../packaging_guide.html#spack-md5"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">md5</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../packaging_guide.html#spack-checksum"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">checksum</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#fetching-from-vcs-repositories">Fetching from VCS repositories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#repositories-and-versions">Repositories and versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#git">Git</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../packaging_guide.html#installing">Installing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#mercurial">Mercurial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#subversion">Subversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#patches">Patches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#patch"><tt class="docutils literal"><span class="pre">patch</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#patch-functions"><tt class="docutils literal"><span class="pre">patch()</span></tt> functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#handling-rpaths">Handling RPATHs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#finding-new-versions">Finding new versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#list-url"><tt class="docutils literal"><span class="pre">list_url</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#list-depth"><tt class="docutils literal"><span class="pre">list_depth</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#parallel-builds">Parallel builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#depends-on"><tt class="docutils literal"><span class="pre">depends_on()</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#dependency-specs">Dependency specs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#setup-dependent-environment"><tt class="docutils literal"><span class="pre">setup_dependent_environment()</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#extensions">Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#activation-deactivation">Activation &amp; deactivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#activation-arguments">Activation arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#virtual-dependencies">Virtual dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#provides"><tt class="docutils literal"><span class="pre">provides</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#versioned-interfaces">Versioned Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#provides-when"><tt class="docutils literal"><span class="pre">provides</span> <span class="pre">when</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#concretization">Concretization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-spec"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">spec</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#the-install-environment">The install environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#compiler-interceptors">Compiler interceptors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#forking-install">Forking <tt class="docutils literal"><span class="pre">install()</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#spec-objects">Spec objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#testing-spec-constraints">Testing spec constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#accessing-dependencies">Accessing Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#multimethods-and-when">Multimethods and <tt class="docutils literal"><span class="pre">&#64;when</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#shell-command-functions">Shell command functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#file-manipulation-functions">File manipulation functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#filtering-functions">Filtering functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#file-functions">File functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#packaging-workflow-commands">Packaging workflow commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-fetch"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">fetch</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-stage"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">stage</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-patch"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">patch</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-restage"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">restage</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-clean"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">clean</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-purge"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">purge</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#keeping-the-stage-directory-on-success">Keeping the stage directory on success</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#keeping-the-install-prefix-on-failure">Keeping the install prefix on failure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#graphing-dependencies">Graphing dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-graph"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">graph</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../packaging_guide.html#interactive-shell-support">Interactive shell support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-cd"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">cd</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-env"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">env</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../packaging_guide.html#spack-location"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">location</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mirrors.html">Mirrors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../mirrors.html#spack-mirror"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../mirrors.html#spack-mirror-create"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">create</span></tt></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../mirrors.html#custom-package-sets">Custom package sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../mirrors.html#mirror-files">Mirror files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../mirrors.html#spack-mirror-add"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">add</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../mirrors.html#spack-mirror-list"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">list</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../mirrors.html#spack-mirror-remove"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">remove</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../mirrors.html#mirror-precedence">Mirror precedence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../site_configuration.html">Site configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../site_configuration.html#concretization-policies">Concretization policies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../site_configuration.html#writing-a-custom-concretizer">Writing a custom concretizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../site_configuration.html#profiling">Profiling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../site_configuration.html#spack-p"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">-p</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#code-structure">Code Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#package-related-modules">Package-related modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#spec-related-modules">Spec-related modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#build-environment">Build environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#spack-subcommands">Spack Subcommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#other-modules">Other Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../developer_guide.html#developer-commands">Developer commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#spack-doc"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">doc</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../developer_guide.html#spack-test"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">test</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../command_index.html">Command index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#atk">atk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#autoconf">autoconf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#automake">automake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#bib2xhtml">bib2xhtml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#binutils">binutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#bison">bison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#bzip2">bzip2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#cairo">cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#cloog">cloog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#coreutils">coreutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#cppcheck">cppcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#cram">cram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#dbus">dbus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#dri2proto">dri2proto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#flex">flex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#fontconfig">fontconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#freetype">freetype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gasnet">gasnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gcc">gcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gdk-pixbuf">gdk-pixbuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#geos">geos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#git">git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#glib">glib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gmp">gmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gnutls">gnutls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gperf">gperf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gperftools">gperftools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#gtkplus">gtkplus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#harfbuzz">harfbuzz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#icu">icu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#icu4c">icu4c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#imagemagick">ImageMagick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#isl">isl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#jdk">jdk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#jpeg">jpeg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#lcms">lcms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libdrm">libdrm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libffi">libffi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libgcrypt">libgcrypt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libgpg-error">libgpg-error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libjpeg-turbo">libjpeg-turbo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libmng">libmng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libpng">libpng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libtiff">libtiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libtool">libtool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libxcb">libxcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libxml2">libxml2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libxshmfence">libxshmfence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#libxslt">libxslt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#lwm2">lwm2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#memaxes">memaxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mesa">mesa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#metis">metis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mitos">Mitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mpc">mpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mpe2">mpe2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mpfr">mpfr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mpibash">mpibash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#muster">muster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#nasm">nasm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#netcdf">netcdf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#nettle">nettle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#otf">otf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#pango">pango</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#pcre">pcre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#pixman">pixman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#ppl">ppl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-basemap">py-basemap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-biopython">py-biopython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-cython">py-cython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-dateutil">py-dateutil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-epydoc">py-epydoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-gnuplot">py-gnuplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-h5py">py-h5py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-ipython">py-ipython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-libxml2">py-libxml2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-mako">py-mako</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-matplotlib">py-matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-mpi4py">py-mpi4py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-mx">py-mx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-nose">py-nose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-numpy">py-numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pexpect">py-pexpect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pil">py-pil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pmw">py-pmw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pychecker">py-pychecker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pygments">py-pygments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pylint">py-pylint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pyparsing">py-pyparsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pyqt">py-pyqt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pyside">py-pyside</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-pytz">py-pytz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-rpy2">py-rpy2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-scientificpython">py-scientificpython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-scikit-learn">py-scikit-learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-scipy">py-scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-setuptools">py-setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-shiboken">py-shiboken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-sip">py-sip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-six">py-six</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-sympy">py-sympy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#py-virtualenv">py-virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#python">python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#qhull">qhull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#qt">qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#qthreads">qthreads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#r">R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#ravel">ravel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#readline">readline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#rose">rose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#ruby">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#scotch">scotch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#tcl">tcl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#tk">tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#uncrustify">uncrustify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#util-linux">util-linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#vtk">vtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#wget">wget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#xcb-proto">xcb-proto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#xz">xz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#yasm">yasm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../package_list.html#zlib">zlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../spack.html">API Docs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.cmd.html">spack.cmd package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.activate">spack.cmd.activate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.arch">spack.cmd.arch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.bootstrap">spack.cmd.bootstrap module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.cd">spack.cmd.cd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.checksum">spack.cmd.checksum module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.clean">spack.cmd.clean module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.compiler">spack.cmd.compiler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.compilers">spack.cmd.compilers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.config">spack.cmd.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.create">spack.cmd.create module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.deactivate">spack.cmd.deactivate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.dependents">spack.cmd.dependents module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.diy">spack.cmd.diy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.doc">spack.cmd.doc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.edit">spack.cmd.edit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.env">spack.cmd.env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.extensions">spack.cmd.extensions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.fetch">spack.cmd.fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.find">spack.cmd.find module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.graph">spack.cmd.graph module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.help">spack.cmd.help module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.info">spack.cmd.info module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.install">spack.cmd.install module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.list">spack.cmd.list module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.load">spack.cmd.load module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.location">spack.cmd.location module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.md5">spack.cmd.md5 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.mirror">spack.cmd.mirror module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.module">spack.cmd.module module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#spack-cmd-package-list-module">spack.cmd.package-list module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.patch">spack.cmd.patch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.pkg">spack.cmd.pkg module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.providers">spack.cmd.providers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.purge">spack.cmd.purge module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.python">spack.cmd.python module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.restage">spack.cmd.restage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.spec">spack.cmd.spec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.stage">spack.cmd.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.test">spack.cmd.test module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.uninstall">spack.cmd.uninstall module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.unload">spack.cmd.unload module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.unuse">spack.cmd.unuse module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.urls">spack.cmd.urls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.use">spack.cmd.use module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd.versions">spack.cmd.versions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.cmd.html#module-spack.cmd">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.compilers.html">spack.compilers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#module-spack.compilers.clang">spack.compilers.clang module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#module-spack.compilers.gcc">spack.compilers.gcc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#module-spack.compilers.intel">spack.compilers.intel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#module-spack.compilers.pgi">spack.compilers.pgi module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#module-spack.compilers.xl">spack.compilers.xl module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.compilers.html#module-spack.compilers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.hooks.html">spack.hooks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.hooks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.hooks.html#module-spack.hooks.dotkit">spack.hooks.dotkit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.hooks.html#module-spack.hooks.extensions">spack.hooks.extensions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.hooks.html#module-spack.hooks.tclmodule">spack.hooks.tclmodule module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.hooks.html#module-spack.hooks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.test.html">spack.test package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.cc">spack.test.cc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.concretize">spack.test.concretize module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.config">spack.test.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.directory_layout">spack.test.directory_layout module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.git_fetch">spack.test.git_fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.hg_fetch">spack.test.hg_fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.install">spack.test.install module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.link_tree">spack.test.link_tree module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.mirror">spack.test.mirror module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.mock_packages_test">spack.test.mock_packages_test module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.mock_repo">spack.test.mock_repo module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.multimethod">spack.test.multimethod module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.package_sanity">spack.test.package_sanity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.packages">spack.test.packages module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.python_version">spack.test.python_version module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.spec_dag">spack.test.spec_dag module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.spec_semantics">spack.test.spec_semantics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.spec_syntax">spack.test.spec_syntax module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.stage">spack.test.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.svn_fetch">spack.test.svn_fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.url_extrapolate">spack.test.url_extrapolate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.url_parse">spack.test.url_parse module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.url_substitution">spack.test.url_substitution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test.versions">spack.test.versions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.test.html#module-spack.test">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.util.html">spack.util package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.compression">spack.util.compression module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.crypto">spack.util.crypto module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.environment">spack.util.environment module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.executable">spack.util.executable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.multiproc">spack.util.multiproc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.naming">spack.util.naming module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.prefix">spack.util.prefix module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.string">spack.util.string module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util.web">spack.util.web module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../spack.util.html#module-spack.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.config">spack.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.html#configuration-file-scopes">Configuration file scopes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.html#configuration-file-format">Configuration file format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../spack.html#keys">Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.fetch_strategy">spack.fetch_strategy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.graph">spack.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.relations">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>A list</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/_themes/foo/demo_docs/source/list.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>wanna play a game?</p>
+<ul class="last">
+<li><p class="first">inside</p>
+</li>
+<li><p class="first">this</p>
+<ul>
+<li><p class="first">list</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">in</span> <span class="pre">the</span> <span class="pre">world</span></tt></p>
+<ul>
+<li><p class="first">hi</p>
+</li>
+<li><p class="first">his</p>
+<p>hi</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="a-list">
+<h1>A list<a class="headerlink" href="#a-list" title="Permalink to this headline">¶</a></h1>
+<ul>
+<li><p class="first">here
+- is
+- some</p>
+<blockquote>
+<div><ul class="simple">
+<li>list</li>
+<li>items</li>
+<li><a class="reference external" href="http://www.yahoo.com">yahoo</a></li>
+<li><tt class="docutils literal"><span class="pre">huh</span></tt></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">how</p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">inline</span> <span class="pre">literall</span></tt></p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">inline</span> <span class="pre">literall</span></tt></p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">inline</span> <span class="pre">literall</span></tt></p>
+</li>
+</ul>
+<div class="section" id="second-list-level">
+<h2>Second list level<a class="headerlink" href="#second-list-level" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">here is a list in a second-level section.</p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.yahoo.com">yahoo</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.yahoo.com">yahoo</a></p>
+<ul>
+<li><p class="first"><a class="reference external" href="http://www.yahoo.com">yahoo</a></p>
+</li>
+<li><p class="first">here is an inner bullet <tt class="docutils literal"><span class="pre">oh</span></tt></p>
+<ul>
+<li><p class="first">one more <tt class="docutils literal"><span class="pre">with</span> <span class="pre">an</span> <span class="pre">inline</span> <span class="pre">literally</span></tt>. <a class="reference external" href="http://www.yahoo.com">yahoo</a></p>
+<p>heh heh. child. try to beat this embed:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;Test Module for sphinx_rtd_theme.&quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">:</span>
+
+    <span class="s">r&quot;&quot;&quot;Docstring for class Foo.</span>
+
+<span class="s">    This text tests for the formatting of docstrings generated from output</span>
+<span class="s">    ``sphinx.ext.autodoc``. Which contain reST, but sphinx nests it in the</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+</ul>
+</li>
+<li><p class="first">and another. <a class="reference external" href="http://www.yahoo.com">yahoo</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.yahoo.com">yahoo</a></p>
+</li>
+<li><p class="first"><tt class="docutils literal"><span class="pre">hi</span></tt></p>
+</li>
+</ul>
+</li>
+<li><p class="first">and hehe</p>
+</li>
+</ul>
+<div class="section" id="but-deeper-down-the-rabbit-hole">
+<h3>But deeper down the rabbit hole<a class="headerlink" href="#but-deeper-down-the-rabbit-hole" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>I kept saying that, &#8220;deeper down the rabbit hole&#8221;. <a class="reference external" href="http://www.yahoo.com">yahoo</a><ul>
+<li>I cackle at night <a class="reference external" href="http://www.yahoo.com">yahoo</a>.</li>
+</ul>
+</li>
+<li>I&#8217;m so lonely here in GZ <tt class="docutils literal"><span class="pre">guangzhou</span></tt></li>
+<li>A man of python destiny, hopes and dreams. <a class="reference external" href="http://www.yahoo.com">yahoo</a><ul>
+<li><a class="reference external" href="http://www.yahoo.com">yahoo</a><ul>
+<li><a class="reference external" href="http://www.yahoo.com">yahoo</a> <tt class="docutils literal"><span class="pre">hi</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">destiny</span></tt></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2014, Lawrence Livermore National Laboratory.
+      Last updated on May 09, 2015.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

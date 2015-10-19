@@ -1,0 +1,2713 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>spack.test package &mdash; Spack 0.8 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spack 0.8 documentation" href="index.html"/>
+        <link rel="up" title="spack package" href="spack.html"/>
+        <link rel="next" title="spack.util package" href="spack.util.html"/>
+        <link rel="prev" title="spack.hooks package" href="spack.hooks.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html">
+        
+
+        
+          
+          <img src="_static/spack-logo-white-text-48.png" class="logo" />
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="features.html#simple-package-installation">Simple package installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#custom-versions-configurations">Custom versions &amp; configurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#customize-dependencies">Customize dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#non-destructive-installs">Non-destructive installs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#packages-can-peacefully-coexist">Packages can peacefully coexist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="features.html#creating-packages-is-easy">Creating packages is easy</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#installation">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Basic usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#listing-available-packages">Listing available packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-list"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">list</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-info"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">info</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-versions"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">versions</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#installing-and-uninstalling">Installing and uninstalling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-install"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">install</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#building-a-specific-version">Building a specific version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-uninstall"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">uninstall</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#seeing-installed-packages">Seeing installed packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-find"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">find</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#compiler-configuration">Compiler configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-compilers"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compilers</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-compiler-add"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">add</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-compiler-info"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">compiler</span> <span class="pre">info</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#manual-compiler-configuration">Manual compiler configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#specs-dependencies">Specs &amp; dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#version-specifier">Version specifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#compiler-specifier">Compiler specifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#variants">Variants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#architecture-specifier">Architecture specifier</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#virtual-dependencies">Virtual dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#constraining-virtual-packages">Constraining virtual packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-providers"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">providers</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#environment-modules">Environment modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#using-modules-dotkits">Using Modules &amp; Dotkits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#ambiguous-module-names">Ambiguous module names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#regenerating-module-files">Regenerating Module files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="basic_usage.html#spack-module-refresh"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">module</span> <span class="pre">refresh</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#extensions-python-support">Extensions &amp; Python support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-extensions"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">extensions</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#extensions-environment-modules">Extensions &amp; Environment Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#activating-extensions">Activating Extensions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="basic_usage.html#spack-activate"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">activate</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_usage.html#spack-activate-f"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">activate</span> <span class="pre">-f</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_usage.html#spack-deactivate"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">deactivate</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html#spack-help"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">help</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="packaging_guide.html">Packaging Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#creating-editing-packages">Creating &amp; editing packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-create"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">create</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-edit"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">edit</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-edit-f"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">edit</span> <span class="pre">-f</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#naming-directory-structure">Naming &amp; directory structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#var-spack-packages"><tt class="docutils literal"><span class="pre">var/spack/packages</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#package-names">Package Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#package-class-names">Package class names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#adding-new-versions">Adding new versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#version-urls">Version URLs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#checksums">Checksums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="packaging_guide.html#spack-md5"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">md5</span></tt></a></li>
+<li class="toctree-l4"><a class="reference internal" href="packaging_guide.html#spack-checksum"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">checksum</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#fetching-from-vcs-repositories">Fetching from VCS repositories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#repositories-and-versions">Repositories and versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#git">Git</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="packaging_guide.html#installing">Installing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#mercurial">Mercurial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#subversion">Subversion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#patches">Patches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#patch"><tt class="docutils literal"><span class="pre">patch</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#patch-functions"><tt class="docutils literal"><span class="pre">patch()</span></tt> functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#handling-rpaths">Handling RPATHs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#finding-new-versions">Finding new versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#list-url"><tt class="docutils literal"><span class="pre">list_url</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#list-depth"><tt class="docutils literal"><span class="pre">list_depth</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#parallel-builds">Parallel builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#depends-on"><tt class="docutils literal"><span class="pre">depends_on()</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#dependency-specs">Dependency specs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#setup-dependent-environment"><tt class="docutils literal"><span class="pre">setup_dependent_environment()</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#extensions">Extensions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#activation-deactivation">Activation &amp; deactivation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#activation-arguments">Activation arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#virtual-dependencies">Virtual dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#provides"><tt class="docutils literal"><span class="pre">provides</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#versioned-interfaces">Versioned Interfaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#provides-when"><tt class="docutils literal"><span class="pre">provides</span> <span class="pre">when</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#abstract-concrete-specs">Abstract &amp; concrete specs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#concretization">Concretization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-spec"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">spec</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#implementing-the-install-method">Implementing the <tt class="docutils literal"><span class="pre">install</span></tt> method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#the-install-environment">The install environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#environment-variables">Environment variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#compiler-interceptors">Compiler interceptors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#forking-install">Forking <tt class="docutils literal"><span class="pre">install()</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#prefix-objects">Prefix objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#spec-objects">Spec objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#testing-spec-constraints">Testing spec constraints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#accessing-dependencies">Accessing Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#multimethods-and-when">Multimethods and <tt class="docutils literal"><span class="pre">&#64;when</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#shell-command-functions">Shell command functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#file-manipulation-functions">File manipulation functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#filtering-functions">Filtering functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#file-functions">File functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#packaging-workflow-commands">Packaging workflow commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-fetch"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">fetch</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-stage"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">stage</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-patch"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">patch</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-restage"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">restage</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-clean"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">clean</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-purge"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">purge</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#keeping-the-stage-directory-on-success">Keeping the stage directory on success</a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#keeping-the-install-prefix-on-failure">Keeping the install prefix on failure</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#graphing-dependencies">Graphing dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-graph"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">graph</span></tt></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="packaging_guide.html#interactive-shell-support">Interactive shell support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-cd"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">cd</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-env"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">env</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="packaging_guide.html#spack-location"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">location</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mirrors.html">Mirrors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mirrors.html#spack-mirror"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mirrors.html#spack-mirror-create"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">create</span></tt></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mirrors.html#custom-package-sets">Custom package sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mirrors.html#mirror-files">Mirror files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mirrors.html#spack-mirror-add"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">add</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mirrors.html#spack-mirror-list"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">list</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mirrors.html#spack-mirror-remove"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">mirror</span> <span class="pre">remove</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="mirrors.html#mirror-precedence">Mirror precedence</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="site_configuration.html">Site configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#temporary-space">Temporary space</a></li>
+<li class="toctree-l2"><a class="reference internal" href="site_configuration.html#concretization-policies">Concretization policies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="site_configuration.html#writing-a-custom-concretizer">Writing a custom concretizer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="site_configuration.html#profiling">Profiling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="site_configuration.html#spack-p"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">-p</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#directory-structure">Directory Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#code-structure">Code Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#package-related-modules">Package-related modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#spec-related-modules">Spec-related modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#build-environment">Build environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#spack-subcommands">Spack Subcommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#unit-tests">Unit tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#other-modules">Other Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#spec-objects">Spec objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#package-objects">Package objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#stage-objects">Stage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#writing-commands">Writing commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#id3">Unit tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#unit-testing">Unit testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer_guide.html#developer-commands">Developer commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#spack-doc"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">doc</span></tt></a></li>
+<li class="toctree-l3"><a class="reference internal" href="developer_guide.html#spack-test"><tt class="docutils literal"><span class="pre">spack</span> <span class="pre">test</span></tt></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="command_index.html">Command index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_list.html">Package List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#adept-utils">adept-utils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#arpack">arpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#asciidoc">asciidoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#atk">atk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#atlas">atlas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#autoconf">autoconf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automaded">automaded</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#automake">automake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#bear">bear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#bib2xhtml">bib2xhtml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#binutils">binutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#bison">bison</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boost">boost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#bowtie2">bowtie2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#boxlib">boxlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#bzip2">bzip2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cairo">cairo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#callpath">callpath</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cblas">cblas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cgm">cgm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#clang">clang</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cloog">cloog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cmake">cmake</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#coreutils">coreutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cppcheck">cppcheck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cram">cram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cscope">cscope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#cube">cube</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#czmq">czmq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dbus">dbus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#docbook-xml">docbook-xml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#doxygen">doxygen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dri2proto">dri2proto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dtcmp">dtcmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#dyninst">dyninst</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#elfutils">elfutils</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#extrae">extrae</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#exuberant-ctags">exuberant-ctags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#fish">fish</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#flex">flex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#flux">flux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#fontconfig">fontconfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#freetype">freetype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gasnet">gasnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gcc">gcc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gdk-pixbuf">gdk-pixbuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#geos">geos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gflags">gflags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ghostscript">ghostscript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#git">git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#glib">glib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#global">global</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#glog">glog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gmp">gmp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gnutls">gnutls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gperf">gperf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gperftools">gperftools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphlib">graphlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#graphviz">graphviz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#gtkplus">gtkplus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#harfbuzz">harfbuzz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hdf5">hdf5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hwloc">hwloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#hypre">hypre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#icu">icu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#icu4c">icu4c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#imagemagick">ImageMagick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#isl">isl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#jdk">jdk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#jpeg">jpeg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#launchmon">launchmon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lcms">lcms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#leveldb">leveldb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libarchive">libarchive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libcircle">libcircle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdrm">libdrm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libdwarf">libdwarf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libelf">libelf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libevent">libevent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libffi">libffi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libgcrypt">libgcrypt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libgpg-error">libgpg-error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libjpeg-turbo">libjpeg-turbo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libjson-c">libjson-c</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmng">libmng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libmonitor">libmonitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libnbc">libNBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libpciaccess">libpciaccess</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libpng">libpng</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libsodium">libsodium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libtiff">libtiff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libtool">libtool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libunwind">libunwind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libuuid">libuuid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libxcb">libxcb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libxml2">libxml2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libxshmfence">libxshmfence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#libxslt">libxslt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm">llvm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#llvm-lld">llvm-lld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lmdb">lmdb</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lua">lua</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwgrp">lwgrp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#lwm2">lwm2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#memaxes">memaxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mesa">mesa</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#metis">metis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mitos">Mitos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpc">mpc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpe2">mpe2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpfr">mpfr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpibash">mpibash</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpich">mpich</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mpileaks">mpileaks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mrnet">mrnet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#munge">munge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#muster">muster</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#mvapich2">mvapich2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#nasm">nasm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ncurses">ncurses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netcdf">netcdf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netgauge">netgauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netlib-blas">netlib-blas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#netlib-lapack">netlib-lapack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#nettle">nettle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ompss">ompss</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#opari2">opari2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openmpi">openmpi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#openssl">openssl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf">otf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#otf2">otf2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pango">pango</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#papi">papi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#paraver">paraver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parmetis">parmetis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#parpack">parpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pcre">pcre</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#petsc">petsc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pidx">pidx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pixman">pixman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pkg-config">pkg-config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#pmgr-collective">pmgr_collective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#postgresql">postgresql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ppl">ppl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#protobuf">protobuf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-basemap">py-basemap</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-biopython">py-biopython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-cffi">py-cffi</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-cython">py-cython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-dateutil">py-dateutil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-epydoc">py-epydoc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-genders">py-genders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-gnuplot">py-gnuplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-h5py">py-h5py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-ipython">py-ipython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-libxml2">py-libxml2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-lockfile">py-lockfile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-mako">py-mako</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-matplotlib">py-matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-mock">py-mock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-mpi4py">py-mpi4py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-mx">py-mx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-nose">py-nose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-numpy">py-numpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pandas">py-pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pexpect">py-pexpect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pil">py-pil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pmw">py-pmw</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pychecker">py-pychecker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pycparser">py-pycparser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pyelftools">py-pyelftools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pygments">py-pygments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pylint">py-pylint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pypar">py-pypar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pyparsing">py-pyparsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pyqt">py-pyqt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pyside">py-pyside</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-python-daemon">py-python-daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-pytz">py-pytz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-rpy2">py-rpy2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-scientificpython">py-scientificpython</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-scikit-learn">py-scikit-learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-scipy">py-scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-setuptools">py-setuptools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-shiboken">py-shiboken</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-sip">py-sip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-six">py-six</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-sympy">py-sympy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-virtualenv">py-virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#py-yapf">py-yapf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#python">python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#qhull">qhull</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#qt">qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#qthreads">qthreads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#r">R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ravel">ravel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#readline">readline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#rose">rose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#ruby">ruby</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samrai">SAMRAI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#samtools">samtools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scalasca">scalasca</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scorep">scorep</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scotch">scotch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#scr">scr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#silo">silo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#snappy">snappy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#spindle">spindle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sqlite">sqlite</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#stat">stat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#sundials">sundials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#swig">swig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#task">task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#taskd">taskd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tau">tau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tcl">tcl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#the-silver-searcher">the_silver_searcher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#thrift">thrift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tk">tk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmux">tmux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#tmuxinator">tmuxinator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#uncrustify">uncrustify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#util-linux">util-linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vim">vim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#vtk">vtk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wget">wget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wx">wx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#wxpropgrid">wxpropgrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#xcb-proto">xcb-proto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#xz">xz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#yasm">yasm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zeromq">zeromq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zlib">zlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_list.html#zsh">zsh</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="spack.html">API Docs</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="spack.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="spack.cmd.html">spack.cmd package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.activate">spack.cmd.activate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.arch">spack.cmd.arch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.bootstrap">spack.cmd.bootstrap module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.cd">spack.cmd.cd module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.checksum">spack.cmd.checksum module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.clean">spack.cmd.clean module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.compiler">spack.cmd.compiler module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.compilers">spack.cmd.compilers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.config">spack.cmd.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.create">spack.cmd.create module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.deactivate">spack.cmd.deactivate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.dependents">spack.cmd.dependents module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.diy">spack.cmd.diy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.doc">spack.cmd.doc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.edit">spack.cmd.edit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.env">spack.cmd.env module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.extensions">spack.cmd.extensions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.fetch">spack.cmd.fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.find">spack.cmd.find module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.graph">spack.cmd.graph module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.help">spack.cmd.help module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.info">spack.cmd.info module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.install">spack.cmd.install module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.list">spack.cmd.list module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.load">spack.cmd.load module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.location">spack.cmd.location module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.md5">spack.cmd.md5 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.mirror">spack.cmd.mirror module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.module">spack.cmd.module module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#spack-cmd-package-list-module">spack.cmd.package-list module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.patch">spack.cmd.patch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.pkg">spack.cmd.pkg module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.providers">spack.cmd.providers module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.purge">spack.cmd.purge module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.python">spack.cmd.python module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.restage">spack.cmd.restage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.spec">spack.cmd.spec module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.stage">spack.cmd.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.test">spack.cmd.test module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.uninstall">spack.cmd.uninstall module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.unload">spack.cmd.unload module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.unuse">spack.cmd.unuse module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.urls">spack.cmd.urls module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.use">spack.cmd.use module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd.versions">spack.cmd.versions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.cmd.html#module-spack.cmd">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spack.compilers.html">spack.compilers package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#module-spack.compilers.clang">spack.compilers.clang module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#module-spack.compilers.gcc">spack.compilers.gcc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#module-spack.compilers.intel">spack.compilers.intel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#module-spack.compilers.pgi">spack.compilers.pgi module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#module-spack.compilers.xl">spack.compilers.xl module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.compilers.html#module-spack.compilers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spack.hooks.html">spack.hooks package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spack.hooks.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.hooks.html#module-spack.hooks.dotkit">spack.hooks.dotkit module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.hooks.html#module-spack.hooks.extensions">spack.hooks.extensions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.hooks.html#module-spack.hooks.tclmodule">spack.hooks.tclmodule module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.hooks.html#module-spack.hooks">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="">spack.test package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.cc">spack.test.cc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.concretize">spack.test.concretize module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.config">spack.test.config module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.directory_layout">spack.test.directory_layout module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.git_fetch">spack.test.git_fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.hg_fetch">spack.test.hg_fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.install">spack.test.install module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.link_tree">spack.test.link_tree module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.mirror">spack.test.mirror module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.mock_packages_test">spack.test.mock_packages_test module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.mock_repo">spack.test.mock_repo module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.multimethod">spack.test.multimethod module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.package_sanity">spack.test.package_sanity module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.packages">spack.test.packages module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.python_version">spack.test.python_version module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.spec_dag">spack.test.spec_dag module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.spec_semantics">spack.test.spec_semantics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.spec_syntax">spack.test.spec_syntax module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.stage">spack.test.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.svn_fetch">spack.test.svn_fetch module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.url_extrapolate">spack.test.url_extrapolate module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.url_parse">spack.test.url_parse module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.url_substitution">spack.test.url_substitution module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test.versions">spack.test.versions module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-spack.test">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="spack.util.html">spack.util package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.compression">spack.util.compression module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.crypto">spack.util.crypto module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.environment">spack.util.environment module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.executable">spack.util.executable module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.multiproc">spack.util.multiproc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.naming">spack.util.naming module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.prefix">spack.util.prefix module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.string">spack.util.string module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util.web">spack.util.web module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="spack.util.html#module-spack.util">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.architecture">spack.architecture module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.build_environment">spack.build_environment module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.compiler">spack.compiler module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.concretize">spack.concretize module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.config">spack.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="spack.html#configuration-file-scopes">Configuration file scopes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spack.html#configuration-file-format">Configuration file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.directory_layout">spack.directory_layout module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.error">spack.error module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.fetch_strategy">spack.fetch_strategy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.graph">spack.graph module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.mirror">spack.mirror module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.modules">spack.modules module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.multimethod">spack.multimethod module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.package">spack.package module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.packages">spack.packages module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.parse">spack.parse module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.patch">spack.patch module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#spack-relations-module">spack.relations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.spec">spack.spec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.stage">spack.stage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.url">spack.url module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.version">spack.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack.virtual">spack.virtual module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spack.html#module-spack">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Spack</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="spack.html">spack package</a> &raquo;</li>
+      
+    <li>spack.test package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/spack.test.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="spack-test-package">
+<h1>spack.test package<a class="headerlink" href="#spack-test-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-spack.test.cc">
+<span id="spack-test-cc-module"></span><h2>spack.test.cc module<a class="headerlink" href="#module-spack.test.cc" title="Permalink to this headline">¶</a></h2>
+<p>This test checks that the Spack cc compiler wrapper is parsing
+arguments correctly.</p>
+<dl class="class">
+<dt id="spack.test.cc.CompilerTest">
+<em class="property">class </em><tt class="descclassname">spack.test.cc.</tt><tt class="descname">CompilerTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.check_cc">
+<tt class="descname">check_cc</tt><big>(</big><em>command</em>, <em>args</em>, <em>expected</em><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.check_cc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.check_cpp">
+<tt class="descname">check_cpp</tt><big>(</big><em>command</em>, <em>args</em>, <em>expected</em><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.check_cpp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.check_ld">
+<tt class="descname">check_ld</tt><big>(</big><em>command</em>, <em>args</em>, <em>expected</em><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.check_ld" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_ccld_mode">
+<tt class="descname">test_ccld_mode</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_ccld_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_cpp_mode">
+<tt class="descname">test_cpp_mode</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_cpp_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_includes">
+<tt class="descname">test_includes</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_includes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_ld_mode">
+<tt class="descname">test_ld_mode</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_ld_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_libraries">
+<tt class="descname">test_libraries</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_libraries" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_libs">
+<tt class="descname">test_libs</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_libs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_other_args">
+<tt class="descname">test_other_args</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_other_args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_rpaths">
+<tt class="descname">test_rpaths</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_rpaths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.cc.CompilerTest.test_vcheck_mode">
+<tt class="descname">test_vcheck_mode</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.cc.CompilerTest.test_vcheck_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.concretize">
+<span id="spack-test-concretize-module"></span><h2>spack.test.concretize module<a class="headerlink" href="#module-spack.test.concretize" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.concretize.ConcretizeTest">
+<em class="property">class </em><tt class="descclassname">spack.test.concretize.</tt><tt class="descname">ConcretizeTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.check_concretize">
+<tt class="descname">check_concretize</tt><big>(</big><em>abstract_spec</em><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.check_concretize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.check_spec">
+<tt class="descname">check_spec</tt><big>(</big><em>abstract</em>, <em>concrete</em><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.check_spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_compiler_inheritance">
+<tt class="descname">test_compiler_inheritance</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_compiler_inheritance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_concretize_dag">
+<tt class="descname">test_concretize_dag</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_concretize_dag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_concretize_no_deps">
+<tt class="descname">test_concretize_no_deps</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_concretize_no_deps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_concretize_variant">
+<tt class="descname">test_concretize_variant</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_concretize_variant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_concretize_with_provides_when">
+<tt class="descname">test_concretize_with_provides_when</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_concretize_with_provides_when" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make sure insufficient versions of MPI are not in providers list when
+we ask for some advanced version.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_concretize_with_restricted_virtual">
+<tt class="descname">test_concretize_with_restricted_virtual</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_concretize_with_restricted_virtual" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_concretize_with_virtual">
+<tt class="descname">test_concretize_with_virtual</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_concretize_with_virtual" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_my_dep_depends_on_provider_of_my_virtual_dep">
+<tt class="descname">test_my_dep_depends_on_provider_of_my_virtual_dep</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_my_dep_depends_on_provider_of_my_virtual_dep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_virtual_is_fully_expanded_for_callpath">
+<tt class="descname">test_virtual_is_fully_expanded_for_callpath</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_virtual_is_fully_expanded_for_callpath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.concretize.ConcretizeTest.test_virtual_is_fully_expanded_for_mpileaks">
+<tt class="descname">test_virtual_is_fully_expanded_for_mpileaks</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.concretize.ConcretizeTest.test_virtual_is_fully_expanded_for_mpileaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.config">
+<span id="spack-test-config-module"></span><h2>spack.test.config module<a class="headerlink" href="#module-spack.test.config" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.config.ConfigTest">
+<em class="property">class </em><tt class="descclassname">spack.test.config.</tt><tt class="descname">ConfigTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.config.ConfigTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.config.ConfigTest.check_config">
+<tt class="descname">check_config</tt><big>(</big><em>comps</em><big>)</big><a class="headerlink" href="#spack.test.config.ConfigTest.check_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.config.ConfigTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.config.ConfigTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.config.ConfigTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.config.ConfigTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.config.ConfigTest.test_write_key">
+<tt class="descname">test_write_key</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.config.ConfigTest.test_write_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.directory_layout">
+<span id="spack-test-directory-layout-module"></span><h2>spack.test.directory_layout module<a class="headerlink" href="#module-spack.test.directory_layout" title="Permalink to this headline">¶</a></h2>
+<p>This test verifies that the Spack directory layout works properly.</p>
+<dl class="class">
+<dt id="spack.test.directory_layout.DirectoryLayoutTest">
+<em class="property">class </em><tt class="descclassname">spack.test.directory_layout.</tt><tt class="descname">DirectoryLayoutTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.directory_layout.DirectoryLayoutTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Tests that a directory layout works correctly and produces a
+consistent install path.</p>
+<dl class="method">
+<dt id="spack.test.directory_layout.DirectoryLayoutTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.directory_layout.DirectoryLayoutTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.directory_layout.DirectoryLayoutTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.directory_layout.DirectoryLayoutTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.directory_layout.DirectoryLayoutTest.test_find">
+<tt class="descname">test_find</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.directory_layout.DirectoryLayoutTest.test_find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test that finding specs within an install layout works.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.directory_layout.DirectoryLayoutTest.test_handle_unknown_package">
+<tt class="descname">test_handle_unknown_package</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.directory_layout.DirectoryLayoutTest.test_handle_unknown_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test ensures that spack can at least do <em>some</em>
+operations with packages that are installed but that it
+does not know about.  This is actually not such an uncommon
+scenario with spack; it can happen when you switch from a
+git branch where you&#8217;re working on a new package.</p>
+<p>This test ensures that the directory layout stores enough
+information about installed packages&#8217; specs to uninstall
+or query them again if the package goes away.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.directory_layout.DirectoryLayoutTest.test_read_and_write_spec">
+<tt class="descname">test_read_and_write_spec</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.directory_layout.DirectoryLayoutTest.test_read_and_write_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>This goes through each package in spack and creates a directory for
+it.  It then ensures that the spec for the directory&#8217;s
+installed package can be read back in consistently, and
+finally that the directory can be removed by the directory
+layout.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.git_fetch">
+<span id="spack-test-git-fetch-module"></span><h2>spack.test.git_fetch module<a class="headerlink" href="#module-spack.test.git_fetch" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.git_fetch.GitFetchTest">
+<em class="property">class </em><tt class="descclassname">spack.test.git_fetch.</tt><tt class="descname">GitFetchTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<p>Tests fetching from a dummy git repository.</p>
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.assert_rev">
+<tt class="descname">assert_rev</tt><big>(</big><em>rev</em><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.assert_rev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the current git revision is equal to the supplied rev.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a git repository with master and two other branches,
+and one tag, so that we can experiment on it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy the stage space used by this test.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.test_fetch_branch">
+<tt class="descname">test_fetch_branch</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.test_fetch_branch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching a branch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.test_fetch_commit">
+<tt class="descname">test_fetch_commit</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.test_fetch_commit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching a particular commit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.test_fetch_master">
+<tt class="descname">test_fetch_master</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.test_fetch_master" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test a default git checkout with no commit or tag specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.test_fetch_tag">
+<tt class="descname">test_fetch_tag</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.test_fetch_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching a tag.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.git_fetch.GitFetchTest.try_fetch">
+<tt class="descname">try_fetch</tt><big>(</big><em>rev</em>, <em>test_file</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.test.git_fetch.GitFetchTest.try_fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to:
+1. Fetch the repo using a fetch strategy constructed with</p>
+<blockquote>
+<div>supplied args.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Check if the test_file is in the checked out repository.</li>
+<li>Assert that the repository is at the revision supplied.</li>
+<li>Add and remove some files, then reset the repo, and
+ensure it&#8217;s all there again.</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.hg_fetch">
+<span id="spack-test-hg-fetch-module"></span><h2>spack.test.hg_fetch module<a class="headerlink" href="#module-spack.test.hg_fetch" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.hg_fetch.HgFetchTest">
+<em class="property">class </em><tt class="descclassname">spack.test.hg_fetch.</tt><tt class="descname">HgFetchTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.hg_fetch.HgFetchTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<p>Tests fetching from a dummy hg repository.</p>
+<dl class="method">
+<dt id="spack.test.hg_fetch.HgFetchTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.hg_fetch.HgFetchTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a hg repository with master and two other branches,
+and one tag, so that we can experiment on it.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.hg_fetch.HgFetchTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.hg_fetch.HgFetchTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy the stage space used by this test.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.hg_fetch.HgFetchTest.test_fetch_default">
+<tt class="descname">test_fetch_default</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.hg_fetch.HgFetchTest.test_fetch_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test a default hg checkout with no commit or tag specified.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.hg_fetch.HgFetchTest.test_fetch_rev0">
+<tt class="descname">test_fetch_rev0</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.hg_fetch.HgFetchTest.test_fetch_rev0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching a branch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.hg_fetch.HgFetchTest.try_fetch">
+<tt class="descname">try_fetch</tt><big>(</big><em>rev</em>, <em>test_file</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.test.hg_fetch.HgFetchTest.try_fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to:
+1. Fetch the repo using a fetch strategy constructed with</p>
+<blockquote>
+<div>supplied args.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Check if the test_file is in the checked out repository.</li>
+<li>Assert that the repository is at the revision supplied.</li>
+<li>Add and remove some files, then reset the repo, and
+ensure it&#8217;s all there again.</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.install">
+<span id="spack-test-install-module"></span><h2>spack.test.install module<a class="headerlink" href="#module-spack.test.install" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.install.InstallTest">
+<em class="property">class </em><tt class="descclassname">spack.test.install.</tt><tt class="descname">InstallTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.install.InstallTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<p>Tests install and uninstall on a trivial package.</p>
+<dl class="method">
+<dt id="spack.test.install.InstallTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.install.InstallTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.install.InstallTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.install.InstallTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.install.InstallTest.test_install_and_uninstall">
+<tt class="descname">test_install_and_uninstall</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.install.InstallTest.test_install_and_uninstall" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.link_tree">
+<span id="spack-test-link-tree-module"></span><h2>spack.test.link_tree module<a class="headerlink" href="#module-spack.test.link_tree" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.link_tree.LinkTreeTest">
+<em class="property">class </em><tt class="descclassname">spack.test.link_tree.</tt><tt class="descname">LinkTreeTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<p>Tests Spack&#8217;s LinkTree class.</p>
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.check_dir">
+<tt class="descname">check_dir</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.check_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.check_file_link">
+<tt class="descname">check_file_link</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.check_file_link" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.test_ignore">
+<tt class="descname">test_ignore</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.test_ignore" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.test_merge_to_existing_directory">
+<tt class="descname">test_merge_to_existing_directory</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.test_merge_to_existing_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.test_merge_to_new_directory">
+<tt class="descname">test_merge_to_new_directory</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.test_merge_to_new_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.link_tree.LinkTreeTest.test_merge_with_empty_directories">
+<tt class="descname">test_merge_with_empty_directories</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.link_tree.LinkTreeTest.test_merge_with_empty_directories" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.mirror">
+<span id="spack-test-mirror-module"></span><h2>spack.test.mirror module<a class="headerlink" href="#module-spack.test.mirror" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.mirror.MirrorTest">
+<em class="property">class </em><tt class="descclassname">spack.test.mirror.</tt><tt class="descname">MirrorTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.check_mirror">
+<tt class="descname">check_mirror</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.check_mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up a mock package and a mock repo for each fetch strategy, to
+ensure that the mirror can create archives for each of them.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.set_up_package">
+<tt class="descname">set_up_package</tt><big>(</big><em>name</em>, <em>MockRepoClass</em>, <em>url_attr</em><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.set_up_package" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use this to set up a mock package to be mirrored.
+Each package needs us to:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Set up a mock repo/archive to fetch from.</li>
+<li>Point the package&#8217;s version args at that repo.</li>
+</ol>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy all the stages created by the repos in setup.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.test_all_mirror">
+<tt class="descname">test_all_mirror</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.test_all_mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.test_git_mirror">
+<tt class="descname">test_git_mirror</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.test_git_mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.test_hg_mirror">
+<tt class="descname">test_hg_mirror</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.test_hg_mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.test_svn_mirror">
+<tt class="descname">test_svn_mirror</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.test_svn_mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mirror.MirrorTest.test_url_mirror">
+<tt class="descname">test_url_mirror</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mirror.MirrorTest.test_url_mirror" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.mock_packages_test">
+<span id="spack-test-mock-packages-test-module"></span><h2>spack.test.mock_packages_test module<a class="headerlink" href="#module-spack.test.mock_packages_test" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.mock_packages_test.MockPackagesTest">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_packages_test.</tt><tt class="descname">MockPackagesTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.mock_packages_test.MockPackagesTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.mock_packages_test.MockPackagesTest.cleanmock">
+<tt class="descname">cleanmock</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mock_packages_test.MockPackagesTest.cleanmock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore the real packages path after any test.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mock_packages_test.MockPackagesTest.initmock">
+<tt class="descname">initmock</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mock_packages_test.MockPackagesTest.initmock" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mock_packages_test.MockPackagesTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mock_packages_test.MockPackagesTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.mock_packages_test.MockPackagesTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mock_packages_test.MockPackagesTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.test.mock_packages_test.set_pkg_dep">
+<tt class="descclassname">spack.test.mock_packages_test.</tt><tt class="descname">set_pkg_dep</tt><big>(</big><em>pkg</em>, <em>spec</em><big>)</big><a class="headerlink" href="#spack.test.mock_packages_test.set_pkg_dep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alters dependence information for a package.
+Use this to mock up constraints.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.mock_repo">
+<span id="spack-test-mock-repo-module"></span><h2>spack.test.mock_repo module<a class="headerlink" href="#module-spack.test.mock_repo" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.mock_repo.MockArchive">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_repo.</tt><tt class="descname">MockArchive</tt><a class="headerlink" href="#spack.test.mock_repo.MockArchive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_repo.MockRepo" title="spack.test.mock_repo.MockRepo"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_repo.MockRepo</span></tt></a></p>
+<p>Creates a very simple archive directory with a configure script and a
+makefile that installs to a prefix.  Tars it up into an archive.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="spack.test.mock_repo.MockGitRepo">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_repo.</tt><tt class="descname">MockGitRepo</tt><a class="headerlink" href="#spack.test.mock_repo.MockGitRepo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_repo.MockVCSRepo" title="spack.test.mock_repo.MockVCSRepo"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_repo.MockVCSRepo</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.mock_repo.MockGitRepo.rev_hash">
+<tt class="descname">rev_hash</tt><big>(</big><em>rev</em><big>)</big><a class="headerlink" href="#spack.test.mock_repo.MockGitRepo.rev_hash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="spack.test.mock_repo.MockHgRepo">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_repo.</tt><tt class="descname">MockHgRepo</tt><a class="headerlink" href="#spack.test.mock_repo.MockHgRepo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_repo.MockVCSRepo" title="spack.test.mock_repo.MockVCSRepo"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_repo.MockVCSRepo</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.mock_repo.MockHgRepo.get_rev">
+<tt class="descname">get_rev</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.mock_repo.MockHgRepo.get_rev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get current mercurial revision.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="spack.test.mock_repo.MockRepo">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_repo.</tt><tt class="descname">MockRepo</tt><big>(</big><em>stage_name</em>, <em>repo_name</em><big>)</big><a class="headerlink" href="#spack.test.mock_repo.MockRepo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="spack.test.mock_repo.MockSvnRepo">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_repo.</tt><tt class="descname">MockSvnRepo</tt><a class="headerlink" href="#spack.test.mock_repo.MockSvnRepo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_repo.MockVCSRepo" title="spack.test.mock_repo.MockVCSRepo"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_repo.MockVCSRepo</span></tt></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="spack.test.mock_repo.MockVCSRepo">
+<em class="property">class </em><tt class="descclassname">spack.test.mock_repo.</tt><tt class="descname">MockVCSRepo</tt><big>(</big><em>stage_name</em>, <em>repo_name</em><big>)</big><a class="headerlink" href="#spack.test.mock_repo.MockVCSRepo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_repo.MockRepo" title="spack.test.mock_repo.MockRepo"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_repo.MockRepo</span></tt></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.multimethod">
+<span id="spack-test-multimethod-module"></span><h2>spack.test.multimethod module<a class="headerlink" href="#module-spack.test.multimethod" title="Permalink to this headline">¶</a></h2>
+<p>Test for multi_method dispatch.</p>
+<dl class="class">
+<dt id="spack.test.multimethod.MultiMethodTest">
+<em class="property">class </em><tt class="descclassname">spack.test.multimethod.</tt><tt class="descname">MultiMethodTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_architecture_match">
+<tt class="descname">test_architecture_match</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_architecture_match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_default_works">
+<tt class="descname">test_default_works</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_default_works" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_dependency_match">
+<tt class="descname">test_dependency_match</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_dependency_match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_mpi_version">
+<tt class="descname">test_mpi_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_mpi_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_no_version_match">
+<tt class="descname">test_no_version_match</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_no_version_match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_one_version_match">
+<tt class="descname">test_one_version_match</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_one_version_match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_undefined_mpi_version">
+<tt class="descname">test_undefined_mpi_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_undefined_mpi_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_version_overlap">
+<tt class="descname">test_version_overlap</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_version_overlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.multimethod.MultiMethodTest.test_virtual_dep_match">
+<tt class="descname">test_virtual_dep_match</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.multimethod.MultiMethodTest.test_virtual_dep_match" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.package_sanity">
+<span id="spack-test-package-sanity-module"></span><h2>spack.test.package_sanity module<a class="headerlink" href="#module-spack.test.package_sanity" title="Permalink to this headline">¶</a></h2>
+<p>This test does sanity checks on Spack&#8217;s builtin package database.</p>
+<dl class="class">
+<dt id="spack.test.package_sanity.PackageSanityTest">
+<em class="property">class </em><tt class="descclassname">spack.test.package_sanity.</tt><tt class="descname">PackageSanityTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.package_sanity.PackageSanityTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.package_sanity.PackageSanityTest.check_db">
+<tt class="descname">check_db</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.package_sanity.PackageSanityTest.check_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all packages in a DB to make sure they work.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.package_sanity.PackageSanityTest.test_get_all_mock_packages">
+<tt class="descname">test_get_all_mock_packages</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.package_sanity.PackageSanityTest.test_get_all_mock_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the mock packages once each too.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.package_sanity.PackageSanityTest.test_get_all_packages">
+<tt class="descname">test_get_all_packages</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.package_sanity.PackageSanityTest.test_get_all_packages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all packages once and make sure that works.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.package_sanity.PackageSanityTest.test_url_versions">
+<tt class="descname">test_url_versions</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.package_sanity.PackageSanityTest.test_url_versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check URLs for regular packages, if they are explicitly defined.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.packages">
+<span id="spack-test-packages-module"></span><h2>spack.test.packages module<a class="headerlink" href="#module-spack.test.packages" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.packages.PackagesTest">
+<em class="property">class </em><tt class="descclassname">spack.test.packages.</tt><tt class="descname">PackagesTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.packages.PackagesTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.packages.PackagesTest.test_load_package">
+<tt class="descname">test_load_package</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.packages.PackagesTest.test_load_package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.packages.PackagesTest.test_nonexisting_package_filename">
+<tt class="descname">test_nonexisting_package_filename</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.packages.PackagesTest.test_nonexisting_package_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.packages.PackagesTest.test_package_class_names">
+<tt class="descname">test_package_class_names</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.packages.PackagesTest.test_package_class_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.packages.PackagesTest.test_package_filename">
+<tt class="descname">test_package_filename</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.packages.PackagesTest.test_package_filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.packages.PackagesTest.test_package_name">
+<tt class="descname">test_package_name</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.packages.PackagesTest.test_package_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.python_version">
+<span id="spack-test-python-version-module"></span><h2>spack.test.python_version module<a class="headerlink" href="#module-spack.test.python_version" title="Permalink to this headline">¶</a></h2>
+<p>This test ensures that all Spack files are Python version 2.6 or less.</p>
+<p>Spack was originally 2.7, but enough systems in 2014 are still using
+2.6 on their frontend nodes that we need 2.6 to get adopted.</p>
+<dl class="class">
+<dt id="spack.test.python_version.PythonVersionTest">
+<em class="property">class </em><tt class="descclassname">spack.test.python_version.</tt><tt class="descname">PythonVersionTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.python_version.PythonVersionTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.python_version.PythonVersionTest.check_python_versions">
+<tt class="descname">check_python_versions</tt><big>(</big><em>*files</em><big>)</big><a class="headerlink" href="#spack.test.python_version.PythonVersionTest.check_python_versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.python_version.PythonVersionTest.package_py_files">
+<tt class="descname">package_py_files</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.python_version.PythonVersionTest.package_py_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.python_version.PythonVersionTest.pyfiles">
+<tt class="descname">pyfiles</tt><big>(</big><em>*search_paths</em><big>)</big><a class="headerlink" href="#spack.test.python_version.PythonVersionTest.pyfiles" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.python_version.PythonVersionTest.test_core_module_compatibility">
+<tt class="descname">test_core_module_compatibility</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.python_version.PythonVersionTest.test_core_module_compatibility" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.python_version.PythonVersionTest.test_package_module_compatibility">
+<tt class="descname">test_package_module_compatibility</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.python_version.PythonVersionTest.test_package_module_compatibility" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.spec_dag">
+<span id="spack-test-spec-dag-module"></span><h2>spack.test.spec_dag module<a class="headerlink" href="#module-spack.test.spec_dag" title="Permalink to this headline">¶</a></h2>
+<p>These tests check Spec DAG operations using dummy packages.
+You can find the dummy packages here:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spack</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">spack</span><span class="o">/</span><span class="n">spack</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">mock_packages</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="spack.test.spec_dag.SpecDagTest">
+<em class="property">class </em><tt class="descclassname">spack.test.spec_dag.</tt><tt class="descname">SpecDagTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.check_links">
+<tt class="descname">check_links</tt><big>(</big><em>spec_to_check</em><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.check_links" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_conflicting_package_constraints">
+<tt class="descname">test_conflicting_package_constraints</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_conflicting_package_constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_conflicting_spec_constraints">
+<tt class="descname">test_conflicting_spec_constraints</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_conflicting_spec_constraints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_contains">
+<tt class="descname">test_contains</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_contains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_copy_concretized">
+<tt class="descname">test_copy_concretized</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_copy_concretized" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_copy_normalized">
+<tt class="descname">test_copy_normalized</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_copy_normalized" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_copy_simple">
+<tt class="descname">test_copy_simple</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_copy_simple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_dependents_and_dependencies_are_correct">
+<tt class="descname">test_dependents_and_dependencies_are_correct</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_dependents_and_dependencies_are_correct" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_equal">
+<tt class="descname">test_equal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_equal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_invalid_dep">
+<tt class="descname">test_invalid_dep</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_invalid_dep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_normalize_a_lot">
+<tt class="descname">test_normalize_a_lot</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_normalize_a_lot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_normalize_mpileaks">
+<tt class="descname">test_normalize_mpileaks</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_normalize_mpileaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_normalize_twice">
+<tt class="descname">test_normalize_twice</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_normalize_twice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make sure normalize can be run twice on the same spec,
+and that it is idempotent.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_normalize_with_virtual_package">
+<tt class="descname">test_normalize_with_virtual_package</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_normalize_with_virtual_package" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_normalize_with_virtual_spec">
+<tt class="descname">test_normalize_with_virtual_spec</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_normalize_with_virtual_spec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_postorder_edge_traversal">
+<tt class="descname">test_postorder_edge_traversal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_postorder_edge_traversal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_postorder_node_traversal">
+<tt class="descname">test_postorder_node_traversal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_postorder_node_traversal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_postorder_path_traversal">
+<tt class="descname">test_postorder_path_traversal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_postorder_path_traversal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_preorder_edge_traversal">
+<tt class="descname">test_preorder_edge_traversal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_preorder_edge_traversal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_preorder_node_traversal">
+<tt class="descname">test_preorder_node_traversal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_preorder_node_traversal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_preorder_path_traversal">
+<tt class="descname">test_preorder_path_traversal</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_preorder_path_traversal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_unsatisfiable_architecture">
+<tt class="descname">test_unsatisfiable_architecture</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_unsatisfiable_architecture" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_unsatisfiable_compiler">
+<tt class="descname">test_unsatisfiable_compiler</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_unsatisfiable_compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_unsatisfiable_compiler_version">
+<tt class="descname">test_unsatisfiable_compiler_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_unsatisfiable_compiler_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_dag.SpecDagTest.test_unsatisfiable_version">
+<tt class="descname">test_unsatisfiable_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_dag.SpecDagTest.test_unsatisfiable_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.spec_semantics">
+<span id="spack-test-spec-semantics-module"></span><h2>spack.test.spec_semantics module<a class="headerlink" href="#module-spack.test.spec_semantics" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.spec_semantics.SpecSematicsTest">
+<em class="property">class </em><tt class="descclassname">spack.test.spec_semantics.</tt><tt class="descname">SpecSematicsTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<p>This tests satisfies(), constrain() and other semantic operations
+on specs.</p>
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.check_constrain">
+<tt class="descname">check_constrain</tt><big>(</big><em>expected</em>, <em>spec</em>, <em>constraint</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.check_constrain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.check_constrain_changed">
+<tt class="descname">check_constrain_changed</tt><big>(</big><em>spec</em>, <em>constraint</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.check_constrain_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.check_constrain_not_changed">
+<tt class="descname">check_constrain_not_changed</tt><big>(</big><em>spec</em>, <em>constraint</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.check_constrain_not_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.check_invalid_constraint">
+<tt class="descname">check_invalid_constraint</tt><big>(</big><em>spec</em>, <em>constraint</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.check_invalid_constraint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.check_satisfies">
+<tt class="descname">check_satisfies</tt><big>(</big><em>spec</em>, <em>anon_spec</em>, <em>concrete=False</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.check_satisfies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.check_unsatisfiable">
+<tt class="descname">check_unsatisfiable</tt><big>(</big><em>spec</em>, <em>anon_spec</em>, <em>concrete=False</em><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.check_unsatisfiable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_arch">
+<tt class="descname">test_constrain_arch</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_arch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_changed">
+<tt class="descname">test_constrain_changed</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_compiler">
+<tt class="descname">test_constrain_compiler</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_dependency_changed">
+<tt class="descname">test_constrain_dependency_changed</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_dependency_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_dependency_not_changed">
+<tt class="descname">test_constrain_dependency_not_changed</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_dependency_not_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_not_changed">
+<tt class="descname">test_constrain_not_changed</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_not_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_constrain_variants">
+<tt class="descname">test_constrain_variants</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_constrain_variants" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_dep_index">
+<tt class="descname">test_dep_index</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_dep_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_invalid_constraint">
+<tt class="descname">test_invalid_constraint</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_invalid_constraint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies">
+<tt class="descname">test_satisfies</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_architecture">
+<tt class="descname">test_satisfies_architecture</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_architecture" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_compiler">
+<tt class="descname">test_satisfies_compiler</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_compiler_version">
+<tt class="descname">test_satisfies_compiler_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_compiler_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_dependencies">
+<tt class="descname">test_satisfies_dependencies</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_dependency_versions">
+<tt class="descname">test_satisfies_dependency_versions</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_dependency_versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_matching_variant">
+<tt class="descname">test_satisfies_matching_variant</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_matching_variant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_unconstrained_variant">
+<tt class="descname">test_satisfies_unconstrained_variant</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_unconstrained_variant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_virtual">
+<tt class="descname">test_satisfies_virtual</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_virtual" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_virtual_dependencies">
+<tt class="descname">test_satisfies_virtual_dependencies</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_virtual_dependencies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_satisfies_virtual_dependency_versions">
+<tt class="descname">test_satisfies_virtual_dependency_versions</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_satisfies_virtual_dependency_versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_self_index">
+<tt class="descname">test_self_index</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_self_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_spec_contains_deps">
+<tt class="descname">test_spec_contains_deps</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_spec_contains_deps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_unsatisfiable_variant_mismatch">
+<tt class="descname">test_unsatisfiable_variant_mismatch</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_unsatisfiable_variant_mismatch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_unsatisfiable_variants">
+<tt class="descname">test_unsatisfiable_variants</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_unsatisfiable_variants" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_semantics.SpecSematicsTest.test_virtual_index">
+<tt class="descname">test_virtual_index</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_semantics.SpecSematicsTest.test_virtual_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.spec_syntax">
+<span id="spack-test-spec-syntax-module"></span><h2>spack.test.spec_syntax module<a class="headerlink" href="#module-spack.test.spec_syntax" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest">
+<em class="property">class </em><tt class="descclassname">spack.test.spec_syntax.</tt><tt class="descname">SpecSyntaxTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.check_lex">
+<tt class="descname">check_lex</tt><big>(</big><em>tokens</em>, <em>spec</em><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.check_lex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the provided spec parses to the provided list of tokens.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.check_parse">
+<tt class="descname">check_parse</tt><big>(</big><em>expected</em>, <em>spec=None</em><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.check_parse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Assert that the provided spec is able to be parsed.
+If this is called with one argument, it assumes that the string is
+canonical (i.e., no spaces and ~ instead of - for variants) and that it
+will convert back to the string it came from.</p>
+<p>If this is called with two arguments, the first argument is the expected
+canonical form and the second is a non-canonical input to be parsed.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_ambiguous">
+<tt class="descname">test_ambiguous</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_ambiguous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_canonicalize">
+<tt class="descname">test_canonicalize</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_canonicalize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_dependencies_with_versions">
+<tt class="descname">test_dependencies_with_versions</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_dependencies_with_versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_duplicate_compiler">
+<tt class="descname">test_duplicate_compiler</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_duplicate_compiler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_duplicate_depdendence">
+<tt class="descname">test_duplicate_depdendence</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_duplicate_depdendence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_duplicate_variant">
+<tt class="descname">test_duplicate_variant</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_duplicate_variant" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_full_specs">
+<tt class="descname">test_full_specs</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_full_specs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_minimal_spaces">
+<tt class="descname">test_minimal_spaces</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_minimal_spaces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_package_names">
+<tt class="descname">test_package_names</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_package_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_parse_errors">
+<tt class="descname">test_parse_errors</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_parse_errors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_simple_dependence">
+<tt class="descname">test_simple_dependence</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_simple_dependence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_spaces_between_dependences">
+<tt class="descname">test_spaces_between_dependences</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_spaces_between_dependences" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_spaces_between_options">
+<tt class="descname">test_spaces_between_options</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_spaces_between_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.spec_syntax.SpecSyntaxTest.test_way_too_many_spaces">
+<tt class="descname">test_way_too_many_spaces</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.spec_syntax.SpecSyntaxTest.test_way_too_many_spaces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.stage">
+<span id="spack-test-stage-module"></span><h2>spack.test.stage module<a class="headerlink" href="#module-spack.test.stage" title="Permalink to this headline">¶</a></h2>
+<p>Test that the Stage class works correctly.</p>
+<dl class="class">
+<dt id="spack.test.stage.StageTest">
+<em class="property">class </em><tt class="descclassname">spack.test.stage.</tt><tt class="descname">StageTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.stage.StageTest.check_chdir">
+<tt class="descname">check_chdir</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.check_chdir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.check_chdir_to_source">
+<tt class="descname">check_chdir_to_source</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.check_chdir_to_source" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.check_destroy">
+<tt class="descname">check_destroy</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.check_destroy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figure out whether a stage was destroyed correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.check_expand_archive">
+<tt class="descname">check_expand_archive</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.check_expand_archive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.check_fetch">
+<tt class="descname">check_fetch</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.check_fetch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.check_setup">
+<tt class="descname">check_setup</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.check_setup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figure out whether a stage was set up correctly.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.get_stage_path">
+<tt class="descname">get_stage_path</tt><big>(</big><em>stage</em>, <em>stage_name</em><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.get_stage_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figure out where a stage should be living.  This depends on
+whether it&#8217;s named.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>This sets up a mock archive to fetch, and a mock temp space for use
+by the Stage class.  It doesn&#8217;t actually create the Stage &#8211; that
+is done by individual tests.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blows away the test environment directory.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_chdir">
+<tt class="descname">test_chdir</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_chdir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_expand_archive">
+<tt class="descname">test_expand_archive</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_expand_archive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_fetch">
+<tt class="descname">test_fetch</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_fetch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_restage">
+<tt class="descname">test_restage</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_restage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_setup_and_destroy_name_with_tmp">
+<tt class="descname">test_setup_and_destroy_name_with_tmp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_setup_and_destroy_name_with_tmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_setup_and_destroy_name_without_tmp">
+<tt class="descname">test_setup_and_destroy_name_without_tmp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_setup_and_destroy_name_without_tmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_setup_and_destroy_no_name_with_tmp">
+<tt class="descname">test_setup_and_destroy_no_name_with_tmp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_setup_and_destroy_no_name_with_tmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.stage.StageTest.test_setup_and_destroy_no_name_without_tmp">
+<tt class="descname">test_setup_and_destroy_no_name_without_tmp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.stage.StageTest.test_setup_and_destroy_no_name_without_tmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.test.stage.use_tmp">
+<tt class="descclassname">spack.test.stage.</tt><tt class="descname">use_tmp</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#spack.test.stage.use_tmp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow some test code to be executed with spack.use_tmp_stage
+set to a certain value.  Context manager makes sure it&#8217;s reset
+on failure.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.svn_fetch">
+<span id="spack-test-svn-fetch-module"></span><h2>spack.test.svn_fetch module<a class="headerlink" href="#module-spack.test.svn_fetch" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="spack.test.svn_fetch.SvnFetchTest">
+<em class="property">class </em><tt class="descclassname">spack.test.svn_fetch.</tt><tt class="descname">SvnFetchTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#spack.test.mock_packages_test.MockPackagesTest" title="spack.test.mock_packages_test.MockPackagesTest"><tt class="xref py py-class docutils literal"><span class="pre">spack.test.mock_packages_test.MockPackagesTest</span></tt></a></p>
+<p>Tests fetching from a dummy git repository.</p>
+<dl class="method">
+<dt id="spack.test.svn_fetch.SvnFetchTest.assert_rev">
+<tt class="descname">assert_rev</tt><big>(</big><em>rev</em><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest.assert_rev" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check that the current revision is equal to the supplied rev.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.svn_fetch.SvnFetchTest.setUp">
+<tt class="descname">setUp</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an svn repository with two revisions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.svn_fetch.SvnFetchTest.tearDown">
+<tt class="descname">tearDown</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Destroy the stage space used by this test.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.svn_fetch.SvnFetchTest.test_fetch_default">
+<tt class="descname">test_fetch_default</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest.test_fetch_default" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test a default checkout and make sure it&#8217;s on rev 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.svn_fetch.SvnFetchTest.test_fetch_r1">
+<tt class="descname">test_fetch_r1</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest.test_fetch_r1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test fetching an older revision (0).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="spack.test.svn_fetch.SvnFetchTest.try_fetch">
+<tt class="descname">try_fetch</tt><big>(</big><em>rev</em>, <em>test_file</em>, <em>args</em><big>)</big><a class="headerlink" href="#spack.test.svn_fetch.SvnFetchTest.try_fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tries to:
+1. Fetch the repo using a fetch strategy constructed with</p>
+<blockquote>
+<div>supplied args.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Check if the test_file is in the checked out repository.</li>
+<li>Assert that the repository is at the revision supplied.</li>
+<li>Add and remove some files, then reset the repo, and
+ensure it&#8217;s all there again.</li>
+</ol>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.url_extrapolate">
+<span id="spack-test-url-extrapolate-module"></span><h2>spack.test.url_extrapolate module<a class="headerlink" href="#module-spack.test.url_extrapolate" title="Permalink to this headline">¶</a></h2>
+<p>Tests ability of spack to extrapolate URL versions from existing versions.</p>
+<dl class="class">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest">
+<em class="property">class </em><tt class="descclassname">spack.test.url_extrapolate.</tt><tt class="descname">UrlExtrapolateTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.check_url">
+<tt class="descname">check_url</tt><big>(</big><em>base</em>, <em>version</em>, <em>new_url</em><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.check_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_dyninst_version">
+<tt class="descname">test_dyninst_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_dyninst_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_gcc">
+<tt class="descname">test_gcc</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_gcc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_github_raw">
+<tt class="descname">test_github_raw</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_github_raw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_libdwarf_version">
+<tt class="descname">test_libdwarf_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_libdwarf_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_libelf_version">
+<tt class="descname">test_libelf_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_libelf_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_mpileaks_version">
+<tt class="descname">test_mpileaks_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_mpileaks_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_partial_version_prefix">
+<tt class="descname">test_partial_version_prefix</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_partial_version_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_extrapolate.UrlExtrapolateTest.test_scalasca_partial_version">
+<tt class="descname">test_scalasca_partial_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_extrapolate.UrlExtrapolateTest.test_scalasca_partial_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.url_parse">
+<span id="spack-test-url-parse-module"></span><h2>spack.test.url_parse module<a class="headerlink" href="#module-spack.test.url_parse" title="Permalink to this headline">¶</a></h2>
+<p>This file has a bunch of versions tests taken from the excellent version
+detection in Homebrew.</p>
+<dl class="class">
+<dt id="spack.test.url_parse.UrlParseTest">
+<em class="property">class </em><tt class="descclassname">spack.test.url_parse.</tt><tt class="descname">UrlParseTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.assert_not_detected">
+<tt class="descname">assert_not_detected</tt><big>(</big><em>string</em><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.assert_not_detected" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.check">
+<tt class="descname">check</tt><big>(</big><em>name</em>, <em>v</em>, <em>string</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.check" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_angband_version_style">
+<tt class="descname">test_angband_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_angband_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_another_erlang_version_style">
+<tt class="descname">test_another_erlang_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_another_erlang_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_apache_version_style">
+<tt class="descname">test_apache_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_apache_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_astyle_verson_style">
+<tt class="descname">test_astyle_verson_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_astyle_verson_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_boost_version_style">
+<tt class="descname">test_boost_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_boost_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_dash_rc_style">
+<tt class="descname">test_dash_rc_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_dash_rc_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_dash_version_dash_style">
+<tt class="descname">test_dash_version_dash_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_dash_version_dash_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_debian_style_1">
+<tt class="descname">test_debian_style_1</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_debian_style_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_debian_style_2">
+<tt class="descname">test_debian_style_2</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_debian_style_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_erlang_version_style">
+<tt class="descname">test_erlang_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_erlang_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_fann_version">
+<tt class="descname">test_fann_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_fann_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_gcc_version">
+<tt class="descname">test_gcc_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_gcc_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_gcc_version_precedence">
+<tt class="descname">test_gcc_version_precedence</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_gcc_version_precedence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_github_raw_url">
+<tt class="descname">test_github_raw_url</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_github_raw_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_gloox_beta_style">
+<tt class="descname">test_gloox_beta_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_gloox_beta_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_haxe_version">
+<tt class="descname">test_haxe_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_haxe_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_hdf5_version">
+<tt class="descname">test_hdf5_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_hdf5_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_iges_version">
+<tt class="descname">test_iges_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_iges_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_imagemagick_style">
+<tt class="descname">test_imagemagick_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_imagemagick_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_imap_version">
+<tt class="descname">test_imap_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_imap_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_jpeg_style">
+<tt class="descname">test_jpeg_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_jpeg_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_lame_version_style">
+<tt class="descname">test_lame_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_lame_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_mpileaks_version">
+<tt class="descname">test_mpileaks_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_mpileaks_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_mvapich2_19_version">
+<tt class="descname">test_mvapich2_19_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_mvapich2_19_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_new_github_style">
+<tt class="descname">test_new_github_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_new_github_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_no_version">
+<tt class="descname">test_no_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_no_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_noseparator_single_digit">
+<tt class="descname">test_noseparator_single_digit</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_noseparator_single_digit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_omega_version_style">
+<tt class="descname">test_omega_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_omega_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_openssl_version">
+<tt class="descname">test_openssl_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_openssl_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_p7zip_version_style">
+<tt class="descname">test_p7zip_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_p7zip_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_pypy_version">
+<tt class="descname">test_pypy_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_pypy_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_rc_style">
+<tt class="descname">test_rc_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_rc_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_ruby_version_style">
+<tt class="descname">test_ruby_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_ruby_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_scalasca_version">
+<tt class="descname">test_scalasca_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_scalasca_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_sphinx_beta_style">
+<tt class="descname">test_sphinx_beta_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_sphinx_beta_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_stable_suffix">
+<tt class="descname">test_stable_suffix</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_stable_suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_suite3270_version">
+<tt class="descname">test_suite3270_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_suite3270_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_synergy_version">
+<tt class="descname">test_synergy_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_synergy_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_all_dots">
+<tt class="descname">test_version_all_dots</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_all_dots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_developer_that_hates_us_format">
+<tt class="descname">test_version_developer_that_hates_us_format</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_developer_that_hates_us_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_dos2unix">
+<tt class="descname">test_version_dos2unix</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_dos2unix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_github">
+<tt class="descname">test_version_github</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_github" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_github_with_high_patch_number">
+<tt class="descname">test_version_github_with_high_patch_number</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_github_with_high_patch_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_internal_dash">
+<tt class="descname">test_version_internal_dash</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_internal_dash" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_regular">
+<tt class="descname">test_version_regular</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_regular" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_single_digit">
+<tt class="descname">test_version_single_digit</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_single_digit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_sourceforge_download">
+<tt class="descname">test_version_sourceforge_download</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_sourceforge_download" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_version_underscore_separator">
+<tt class="descname">test_version_underscore_separator</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_version_underscore_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_wwwoffle_version">
+<tt class="descname">test_wwwoffle_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_wwwoffle_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_xaw3d_version">
+<tt class="descname">test_xaw3d_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_xaw3d_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_yet_another_erlang_version_style">
+<tt class="descname">test_yet_another_erlang_version_style</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_yet_another_erlang_version_style" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_parse.UrlParseTest.test_yet_another_version">
+<tt class="descname">test_yet_another_version</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_parse.UrlParseTest.test_yet_another_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.url_substitution">
+<span id="spack-test-url-substitution-module"></span><h2>spack.test.url_substitution module<a class="headerlink" href="#module-spack.test.url_substitution" title="Permalink to this headline">¶</a></h2>
+<p>This test does sanity checks on substituting new versions into URLs</p>
+<dl class="class">
+<dt id="spack.test.url_substitution.PackageSanityTest">
+<em class="property">class </em><tt class="descclassname">spack.test.url_substitution.</tt><tt class="descname">PackageSanityTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.url_substitution.PackageSanityTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.url_substitution.PackageSanityTest.test_hypre_url_substitution">
+<tt class="descname">test_hypre_url_substitution</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_substitution.PackageSanityTest.test_hypre_url_substitution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.url_substitution.PackageSanityTest.test_otf2_url_substitution">
+<tt class="descname">test_otf2_url_substitution</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.url_substitution.PackageSanityTest.test_otf2_url_substitution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test.versions">
+<span id="spack-test-versions-module"></span><h2>spack.test.versions module<a class="headerlink" href="#module-spack.test.versions" title="Permalink to this headline">¶</a></h2>
+<p>These version tests were taken from the RPM source code.
+We try to maintain compatibility with RPM&#8217;s version semantics
+where it makes sense.</p>
+<dl class="class">
+<dt id="spack.test.versions.VersionsTest">
+<em class="property">class </em><tt class="descclassname">spack.test.versions.</tt><tt class="descname">VersionsTest</tt><big>(</big><em>methodName='runTest'</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></tt></p>
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_canonical">
+<tt class="descname">assert_canonical</tt><big>(</big><em>canonical_list</em>, <em>version_list</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_canonical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_does_not_satisfy">
+<tt class="descname">assert_does_not_satisfy</tt><big>(</big><em>v1</em>, <em>v2</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_does_not_satisfy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_in">
+<tt class="descname">assert_in</tt><big>(</big><em>needle</em>, <em>haystack</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_in" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_no_overlap">
+<tt class="descname">assert_no_overlap</tt><big>(</big><em>v1</em>, <em>v2</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_no_overlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_not_in">
+<tt class="descname">assert_not_in</tt><big>(</big><em>needle</em>, <em>haystack</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_not_in" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_overlaps">
+<tt class="descname">assert_overlaps</tt><big>(</big><em>v1</em>, <em>v2</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_overlaps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_satisfies">
+<tt class="descname">assert_satisfies</tt><big>(</big><em>v1</em>, <em>v2</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_satisfies" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_ver_eq">
+<tt class="descname">assert_ver_eq</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_ver_eq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_ver_gt">
+<tt class="descname">assert_ver_gt</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_ver_gt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.assert_ver_lt">
+<tt class="descname">assert_ver_lt</tt><big>(</big><em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.assert_ver_lt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.check_intersection">
+<tt class="descname">check_intersection</tt><big>(</big><em>expected</em>, <em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.check_intersection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.check_union">
+<tt class="descname">check_union</tt><big>(</big><em>expected</em>, <em>a</em>, <em>b</em><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.check_union" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_alpha">
+<tt class="descname">test_alpha</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_alpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_alpha_beta">
+<tt class="descname">test_alpha_beta</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_alpha_beta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_alpha_with_dots">
+<tt class="descname">test_alpha_with_dots</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_alpha_with_dots" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_basic_version_satisfaction">
+<tt class="descname">test_basic_version_satisfaction</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_basic_version_satisfaction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_basic_version_satisfaction_in_lists">
+<tt class="descname">test_basic_version_satisfaction_in_lists</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_basic_version_satisfaction_in_lists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_canonicalize_list">
+<tt class="descname">test_canonicalize_list</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_canonicalize_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_close_numbers">
+<tt class="descname">test_close_numbers</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_close_numbers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_contains">
+<tt class="descname">test_contains</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_contains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_date_stamps">
+<tt class="descname">test_date_stamps</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_date_stamps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_double_alpha">
+<tt class="descname">test_double_alpha</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_double_alpha" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_in_list">
+<tt class="descname">test_in_list</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_in_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_intersect_with_containment">
+<tt class="descname">test_intersect_with_containment</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_intersect_with_containment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_intersection">
+<tt class="descname">test_intersection</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_intersection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_lists_overlap">
+<tt class="descname">test_lists_overlap</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_lists_overlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_num_alpha_with_no_separator">
+<tt class="descname">test_num_alpha_with_no_separator</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_num_alpha_with_no_separator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_nums_and_patch">
+<tt class="descname">test_nums_and_patch</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_nums_and_patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_overlap_with_containment">
+<tt class="descname">test_overlap_with_containment</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_overlap_with_containment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_padded_numbers">
+<tt class="descname">test_padded_numbers</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_padded_numbers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_patch">
+<tt class="descname">test_patch</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_patch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_ranges_overlap">
+<tt class="descname">test_ranges_overlap</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_ranges_overlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_rc_versions">
+<tt class="descname">test_rc_versions</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_rc_versions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_rpm_oddities">
+<tt class="descname">test_rpm_oddities</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_rpm_oddities" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_satisfaction_with_lists">
+<tt class="descname">test_satisfaction_with_lists</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_satisfaction_with_lists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_three_segments">
+<tt class="descname">test_three_segments</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_three_segments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_two_segments">
+<tt class="descname">test_two_segments</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_two_segments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_underscores">
+<tt class="descname">test_underscores</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_underscores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_union_with_containment">
+<tt class="descname">test_union_with_containment</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_union_with_containment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_version_range_satisfaction">
+<tt class="descname">test_version_range_satisfaction</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_version_range_satisfaction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_version_range_satisfaction_in_lists">
+<tt class="descname">test_version_range_satisfaction_in_lists</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_version_range_satisfaction_in_lists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="spack.test.versions.VersionsTest.test_version_ranges">
+<tt class="descname">test_version_ranges</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.versions.VersionsTest.test_version_ranges" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-spack.test">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-spack.test" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="spack.test.list_tests">
+<tt class="descclassname">spack.test.</tt><tt class="descname">list_tests</tt><big>(</big><big>)</big><a class="headerlink" href="#spack.test.list_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return names of all tests that can be run for Spack.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="spack.test.run">
+<tt class="descclassname">spack.test.</tt><tt class="descname">run</tt><big>(</big><em>names</em>, <em>verbose=False</em><big>)</big><a class="headerlink" href="#spack.test.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run tests with the supplied names.  Names should be a list.  If
+it&#8217;s empty, run ALL of Spack&#8217;s tests.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="spack.util.html" class="btn btn-neutral float-right" title="spack.util package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="spack.hooks.html" class="btn btn-neutral" title="spack.hooks package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2013-2015, Lawrence Livermore National Laboratory..
+
+    <br/>
+    Written by Todd Gamblin (<a href="mailto:tgamblin@llnl.gov">tgamblin@llnl.gov</a>) and
+    many contributors. LLNL-CODE-647188.
+      <br/>
+      Last updated on Oct 18, 2015.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.8',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

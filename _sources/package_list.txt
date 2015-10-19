@@ -1,0 +1,4705 @@
+.. _package-list:
+
+Package List
+==================
+This is a list of things you can install using Spack.  It is
+automatically generated based on the packages in the latest Spack
+release.
+
+Spack currently has 234 mainline packages:
+
+=================== ================= =================== =====================
+`adept-utils`_      `gtkplus`_        `nasm`_             `py-python-daemon`_   
+`arpack`_           `harfbuzz`_       `ncurses`_          `py-pytz`_            
+`asciidoc`_         `hdf5`_           `netcdf`_           `py-rpy2`_            
+`atk`_              `hwloc`_          `netgauge`_         `py-scientificpython`_
+`atlas`_            `hypre`_          `netlib-blas`_      `py-scikit-learn`_    
+`autoconf`_         `icu`_            `netlib-lapack`_    `py-scipy`_           
+`automaded`_        `icu4c`_          `nettle`_           `py-setuptools`_      
+`automake`_         `ImageMagick`_    `ompss`_            `py-shiboken`_        
+`bear`_             `isl`_            `opari2`_           `py-sip`_             
+`bib2xhtml`_        `jdk`_            `openmpi`_          `py-six`_             
+`binutils`_         `jpeg`_           `openssl`_          `py-sympy`_           
+`bison`_            `launchmon`_      `otf`_              `py-virtualenv`_      
+`boost`_            `lcms`_           `otf2`_             `py-yapf`_            
+`bowtie2`_          `leveldb`_        `pango`_            `python`_             
+`boxlib`_           `libarchive`_     `papi`_             `qhull`_              
+`bzip2`_            `libcircle`_      `paraver`_          `qt`_                 
+`cairo`_            `libdrm`_         `parmetis`_         `qthreads`_           
+`callpath`_         `libdwarf`_       `parpack`_          `R`_                  
+`cblas`_            `libelf`_         `pcre`_             `ravel`_              
+`cgm`_              `libevent`_       `petsc`_            `readline`_           
+`clang`_            `libffi`_         `pidx`_             `rose`_               
+`cloog`_            `libgcrypt`_      `pixman`_           `ruby`_               
+`cmake`_            `libgpg-error`_   `pkg-config`_       `SAMRAI`_             
+`coreutils`_        `libjpeg-turbo`_  `pmgr_collective`_  `samtools`_           
+`cppcheck`_         `libjson-c`_      `postgresql`_       `scalasca`_           
+`cram`_             `libmng`_         `ppl`_              `scorep`_             
+`cscope`_           `libmonitor`_     `protobuf`_         `scotch`_             
+`cube`_             `libNBC`_         `py-basemap`_       `scr`_                
+`czmq`_             `libpciaccess`_   `py-biopython`_     `silo`_               
+`dbus`_             `libpng`_         `py-cffi`_          `snappy`_             
+`docbook-xml`_      `libsodium`_      `py-cython`_        `spindle`_            
+`doxygen`_          `libtiff`_        `py-dateutil`_      `sqlite`_             
+`dri2proto`_        `libtool`_        `py-epydoc`_        `stat`_               
+`dtcmp`_            `libunwind`_      `py-genders`_       `sundials`_           
+`dyninst`_          `libuuid`_        `py-gnuplot`_       `swig`_               
+`elfutils`_         `libxcb`_         `py-h5py`_          `task`_               
+`extrae`_           `libxml2`_        `py-ipython`_       `taskd`_              
+`exuberant-ctags`_  `libxshmfence`_   `py-libxml2`_       `tau`_                
+`fish`_             `libxslt`_        `py-lockfile`_      `tcl`_                
+`flex`_             `llvm`_           `py-mako`_          `the_silver_searcher`_
+`flux`_             `llvm-lld`_       `py-matplotlib`_    `thrift`_             
+`fontconfig`_       `lmdb`_           `py-mock`_          `tk`_                 
+`freetype`_         `lua`_            `py-mpi4py`_        `tmux`_               
+`gasnet`_           `lwgrp`_          `py-mx`_            `tmuxinator`_         
+`gcc`_              `lwm2`_           `py-nose`_          `uncrustify`_         
+`gdk-pixbuf`_       `memaxes`_        `py-numpy`_         `util-linux`_         
+`geos`_             `mesa`_           `py-pandas`_        `vim`_                
+`gflags`_           `metis`_          `py-pexpect`_       `vtk`_                
+`ghostscript`_      `Mitos`_          `py-pil`_           `wget`_               
+`git`_              `mpc`_            `py-pmw`_           `wx`_                 
+`glib`_             `mpe2`_           `py-pychecker`_     `wxpropgrid`_         
+`global`_           `mpfr`_           `py-pycparser`_     `xcb-proto`_          
+`glog`_             `mpibash`_        `py-pyelftools`_    `xz`_                 
+`gmp`_              `mpich`_          `py-pygments`_      `yasm`_               
+`gnutls`_           `mpileaks`_       `py-pylint`_        `zeromq`_             
+`gperf`_            `mrnet`_          `py-pypar`_         `zlib`_               
+`gperftools`_       `munge`_          `py-pyparsing`_     `zsh`_                
+`graphlib`_         `muster`_         `py-pyqt`_          
+`graphviz`_         `mvapich2`_       `py-pyside`_        
+=================== ================= =================== =====================
+
+-----
+
+.. _adept-utils:
+
+adept-utils
+-----------
+Links:
+  * `https://github.com/scalability-llnl/adept-utils <https://github.com/scalability-llnl/adept-utils>`__
+  * `adept-utils/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/adept-utils/package.py>`__
+
+Versions:
+  1.0.1, 1.0
+Dependencies
+  `boost`_, mpi
+
+Description:
+  Utility libraries for LLNL performance tools.
+
+
+-----
+
+.. _arpack:
+
+arpack
+------
+Links:
+  * `http://www.caam.rice.edu/software/ARPACK/ <http://www.caam.rice.edu/software/ARPACK/>`__
+  * `arpack/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/arpack/package.py>`__
+
+Versions:
+  96
+Dependencies
+  `lapack`_, `blas`_
+
+Description:
+  A collection of Fortran77 subroutines designed to solve large scale
+  eigenvalue problems.
+
+
+-----
+
+.. _asciidoc:
+
+asciidoc
+--------
+Links:
+  * `http://asciidoc.org <http://asciidoc.org>`__
+  * `asciidoc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/asciidoc/package.py>`__
+
+Versions:
+  8.6.9
+Dependencies
+  `libxml2`_, `libxslt`_
+
+Description:
+   A presentable text document format for writing articles, UNIX man pages
+  and other small to medium sized documents.
+
+
+-----
+
+.. _atk:
+
+atk
+---
+Links:
+  * `https://developer.gnome.org/atk/ <https://developer.gnome.org/atk/>`__
+  * `atk/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/atk/package.py>`__
+
+Versions:
+  2.14.0
+Dependencies
+  `glib`_
+
+Description:
+  ATK provides the set of accessibility interfaces that are implemented by
+  other toolkits and applications. Using the ATK interfaces, accessibility
+  tools have full access to view and control running applications.
+
+
+-----
+
+.. _atlas:
+
+atlas
+-----
+Links:
+  * `http://math-atlas.sourceforge.net/ <http://math-atlas.sourceforge.net/>`__
+  * `atlas/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/atlas/package.py>`__
+
+Versions:
+  3.11.34, 3.10.2
+Description:
+   Automatically Tuned Linear Algebra Software, generic shared ATLAS is an
+  approach for the automatic generation and optimization of numerical
+  software. Currently ATLAS supplies optimized versions for the complete
+  set of linear algebra kernels known as the Basic Linear Algebra
+  Subroutines (BLAS), and a subset of the linear algebra routines in the
+  LAPACK library.
+
+
+-----
+
+.. _autoconf:
+
+autoconf
+--------
+Links:
+  * `https://www.gnu.org/software/autoconf/ <https://www.gnu.org/software/autoconf/>`__
+  * `autoconf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/autoconf/package.py>`__
+
+Versions:
+  2.69
+Description:
+  Autoconf -- system configuration part of autotools
+
+
+-----
+
+.. _automaded:
+
+automaded
+---------
+Links:
+  * `https://github.com/scalability-llnl/AutomaDeD <https://github.com/scalability-llnl/AutomaDeD>`__
+  * `automaded/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/automaded/package.py>`__
+
+Versions:
+  1.0
+Dependencies
+  `boost`_, `callpath`_, mpi
+
+Description:
+  AutomaDeD (Automata-based Debugging for Dissimilar parallel tasks) is a
+  tool for automatic diagnosis of performance and correctness problems in
+  MPI applications. It creates control-flow models of each MPI process
+  and, when a failure occurs, these models are leveraged to find the
+  origin of problems automatically. MPI calls are intercepted (using
+  wrappers) to create the models. When an MPI application hangs, AutomaDeD
+  creates a progress-dependence graph that helps finding the process (or
+  group of processes) that caused the hang.
+
+
+-----
+
+.. _automake:
+
+automake
+--------
+Links:
+  * `http://www.gnu.org/software/automake/ <http://www.gnu.org/software/automake/>`__
+  * `automake/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/automake/package.py>`__
+
+Versions:
+  1.14.1
+Dependencies
+  `autoconf`_
+
+Description:
+  Automake -- make file builder part of autotools
+
+
+-----
+
+.. _bear:
+
+bear
+----
+Links:
+  * `https://github.com/rizsotto/Bear <https://github.com/rizsotto/Bear>`__
+  * `bear/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/bear/package.py>`__
+
+Versions:
+  2.0.4
+Dependencies
+  `python`_, `cmake`_
+
+Description:
+  Bear is a tool that generates a compilation database for clang tooling
+  from non-cmake build systems.
+
+
+-----
+
+.. _bib2xhtml:
+
+bib2xhtml
+---------
+Links:
+  * `http://www.spinellis.gr/sw/textproc/bib2xhtml/ <http://www.spinellis.gr/sw/textproc/bib2xhtml/>`__
+  * `bib2xhtml/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/bib2xhtml/package.py>`__
+
+Versions:
+  3.0-15-gf506
+Description:
+  bib2xhtml is a program that converts BibTeX files into HTML.
+
+
+-----
+
+.. _binutils:
+
+binutils
+--------
+Links:
+  * `http://www.gnu.org/software/binutils/ <http://www.gnu.org/software/binutils/>`__
+  * `binutils/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/binutils/package.py>`__
+
+Versions:
+  2.25, 2.24, 2.23.2, 2.20.1
+Description:
+  GNU binutils, which contain the linker, assembler, objdump and others
+
+
+-----
+
+.. _bison:
+
+bison
+-----
+Links:
+  * `http://www.gnu.org/software/bison/ <http://www.gnu.org/software/bison/>`__
+  * `bison/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/bison/package.py>`__
+
+Versions:
+  3.0.4
+Description:
+  Bison is a general-purpose parser generator that converts an annotated
+  context-free grammar into a deterministic LR or generalized LR (GLR)
+  parser employing LALR(1) parser tables.
+
+
+-----
+
+.. _boost:
+
+boost
+-----
+Links:
+  * `http://www.boost.org <http://www.boost.org>`__
+  * `boost/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/boost/package.py>`__
+
+Versions:
+  1.59.0, 1.58.0, 1.57.0, 1.56.0, 1.55.0, 1.54.0, 1.53.0, 1.52.0, 1.51.0, 1.50.0, 1.49.0, 1.48.0, 1.47.0, 1.46.1, 1.46.0, 1.45.0, 1.44.0, 1.43.0, 1.42.0, 1.41.0, 1.40.0, 1.39.0, 1.38.0, 1.37.0, 1.36.0, 1.35.0, 1.34.1, 1.34.0
+Description:
+  Boost provides free peer-reviewed portable C++ source libraries,
+  emphasizing libraries that work well with the C++ Standard Library.
+  Boost libraries are intended to be widely useful, and usable across a
+  broad spectrum of applications. The Boost license encourages both
+  commercial and non-commercial use.
+
+
+-----
+
+.. _bowtie2:
+
+bowtie2
+-------
+Links:
+  * `bowtie-bio.sourceforge.net/bowtie2/index.shtml <bowtie-bio.sourceforge.net/bowtie2/index.shtml>`__
+  * `bowtie2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/bowtie2/package.py>`__
+
+Versions:
+  2.2.5
+Description:
+  Description
+
+
+-----
+
+.. _boxlib:
+
+boxlib
+------
+Links:
+  * `https://ccse.lbl.gov/BoxLib/ <https://ccse.lbl.gov/BoxLib/>`__
+  * `boxlib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/boxlib/package.py>`__
+
+Versions:
+  master
+Dependencies
+  mpi
+
+Description:
+  BoxLib, a software framework for massively parallel block-structured
+  adaptive mesh refinement (AMR) codes.
+
+
+-----
+
+.. _bzip2:
+
+bzip2
+-----
+Links:
+  * `http://www.bzip.org <http://www.bzip.org>`__
+  * `bzip2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/bzip2/package.py>`__
+
+Versions:
+  1.0.6
+Description:
+  bzip2 is a freely available, patent free high-quality data compressor.
+  It typically compresses files to within 10% to 15% of the best available
+  techniques (the PPM family of statistical compressors), whilst being
+  around twice as fast at compression and six times faster at
+  decompression.
+
+
+-----
+
+.. _cairo:
+
+cairo
+-----
+Links:
+  * `http://cairographics.org <http://cairographics.org>`__
+  * `cairo/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cairo/package.py>`__
+
+Versions:
+  1.14.0
+Dependencies
+  `libpng`_, `glib`_, `fontconfig`_, `pixman`_
+
+Description:
+  Cairo is a 2D graphics library with support for multiple output devices.
+
+
+-----
+
+.. _callpath:
+
+callpath
+--------
+Links:
+  * `https://github.com/scalability-llnl/callpath <https://github.com/scalability-llnl/callpath>`__
+  * `callpath/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/callpath/package.py>`__
+
+Versions:
+  1.0.2, 1.0.1
+Dependencies
+  `dyninst`_, `adept-utils`_, mpi, `libelf`_, `libdwarf`_
+
+Description:
+  Library for representing callpaths consistently in distributed-memory
+  performance tools.
+
+
+-----
+
+.. _cblas:
+
+cblas
+-----
+Links:
+  * `http://www.netlib.org/blas/_cblas/ <http://www.netlib.org/blas/_cblas/>`__
+  * `cblas/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cblas/package.py>`__
+
+Versions:
+  2015-06-06
+Dependencies
+  `blas`_
+
+Description:
+  The BLAS (Basic Linear Algebra Subprograms) are routines that provide
+  standard building blocks for performing basic vector and matrix
+  operations.
+
+
+-----
+
+.. _cgm:
+
+cgm
+---
+Links:
+  * `http://trac.mcs.anl.gov/projects/ITAPS/wiki/CGM <http://trac.mcs.anl.gov/projects/ITAPS/wiki/CGM>`__
+  * `cgm/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cgm/package.py>`__
+
+Versions:
+  13.1.1, 13.1.0, 13.1
+Dependencies
+  mpi
+
+Description:
+  The Common Geometry Module, Argonne (CGMA) is a code library which
+  provides geometry functionality used for mesh generation and other
+  applications.
+
+
+-----
+
+.. _clang:
+
+clang
+-----
+Links:
+  * `http://clang.llvm.org <http://clang.llvm.org>`__
+  * `clang/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/clang/package.py>`__
+
+Versions:
+  3.4.2
+Dependencies
+  `llvm`_
+
+Description:
+  The goal of the Clang project is to create a new C, C++, Objective C and
+  Objective C++ front-end for the LLVM compiler.
+
+
+-----
+
+.. _cloog:
+
+cloog
+-----
+Links:
+  * `http://www.cloog.org <http://www.cloog.org>`__
+  * `cloog/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cloog/package.py>`__
+
+Versions:
+  0.18.1, 0.18.0, 0.17.0
+Dependencies
+  `gmp`_, `isl`_
+
+Description:
+  CLooG is a free software and library to generate code for scanning
+  Z-polyhedra. That is, it finds a code (e.g. in C, FORTRAN...) that
+  reaches each integral point of one or more parameterized polyhedra.
+
+
+-----
+
+.. _cmake:
+
+cmake
+-----
+Links:
+  * `https://www.cmake.org <https://www.cmake.org>`__
+  * `cmake/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cmake/package.py>`__
+
+Versions:
+  3.0.2, 2.8.10.2
+Description:
+  A cross-platform, open-source build system. CMake is a family of tools
+  designed to build, test and package software.
+
+
+-----
+
+.. _coreutils:
+
+coreutils
+---------
+Links:
+  * `http://www.gnu.org/software/coreutils/ <http://www.gnu.org/software/coreutils/>`__
+  * `coreutils/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/coreutils/package.py>`__
+
+Versions:
+  8.23
+Description:
+  The GNU Core Utilities are the basic file, shell and text manipulation
+  utilities of the GNU operating system. These are the core utilities
+  which are expected to exist on every operating system.
+
+
+-----
+
+.. _cppcheck:
+
+cppcheck
+--------
+Links:
+  * `http://cppcheck.sourceforge.net/ <http://cppcheck.sourceforge.net/>`__
+  * `cppcheck/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cppcheck/package.py>`__
+
+Versions:
+  1.68
+Description:
+  A tool for static C/C++ code analysis.
+
+
+-----
+
+.. _cram:
+
+cram
+----
+Links:
+  * `https://github.com/scalability-llnl/cram <https://github.com/scalability-llnl/cram>`__
+  * `cram/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cram/package.py>`__
+
+Versions:
+  1.0.1
+Dependencies
+  mpi
+
+Description:
+  Cram runs many small MPI jobs inside one large MPI job.
+
+
+-----
+
+.. _cscope:
+
+cscope
+------
+Links:
+  * `http://http://cscope.sourceforge.net/ <http://http://cscope.sourceforge.net/>`__
+  * `cscope/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cscope/package.py>`__
+
+Versions:
+  15.8b
+Description:
+  Cscope is a developer's tool for browsing source code.
+
+
+-----
+
+.. _cube:
+
+cube
+----
+Links:
+  * `http://www.scalasca.org/software/cube-4.x/download.html <http://www.scalasca.org/software/cube-4.x/download.html>`__
+  * `cube/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/cube/package.py>`__
+
+Versions:
+  4.3TP1, 4.2.3
+Description:
+  Cube the profile viewer for Score-P and Scalasca profiles. It displays a
+  multi-dimensional performance space consisting of the dimensions (i)
+  performance metric, (ii) call path, and (iii) system resource.
+
+
+-----
+
+.. _czmq:
+
+czmq
+----
+Links:
+  * `http://czmq.zeromq.org <http://czmq.zeromq.org>`__
+  * `czmq/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/czmq/package.py>`__
+
+Versions:
+  3.0.2
+Dependencies
+  `zeromq`_
+
+Description:
+   A C interface to the ZMQ library
+
+
+-----
+
+.. _dbus:
+
+dbus
+----
+Links:
+  * `http://dbus.freedesktop.org/ <http://dbus.freedesktop.org/>`__
+  * `dbus/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dbus/package.py>`__
+
+Versions:
+  1.9.0, 1.8.8, 1.8.6, 1.8.4, 1.8.2
+Description:
+  D-Bus is a message bus system, a simple way for applications to talk to
+  one another. D-Bus supplies both a system daemon (for events such new
+  hardware device printer queue ) and a per-user-login-session daemon (for
+  general IPC needs among user applications). Also, the message bus is
+  built on top of a general one-to-one message passing framework, which
+  can be used by any two applications to communicate directly (without
+  going through the message bus daemon).
+
+
+-----
+
+.. _docbook-xml:
+
+docbook-xml
+-----------
+Links:
+  * `http://www.oasis-open.org/docbook <http://www.oasis-open.org/docbook>`__
+  * `docbook-xml/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/docbook-xml/package.py>`__
+
+Versions:
+  4.5
+Description:
+  Docbook DTD XML files.
+
+
+-----
+
+.. _doxygen:
+
+doxygen
+-------
+Links:
+  * `http://www.stack.nl/~dimitri/doxygen/ <http://www.stack.nl/~dimitri/doxygen/>`__
+  * `doxygen/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/doxygen/package.py>`__
+
+Versions:
+  1.8.10
+Dependencies
+  `cmake`_
+
+Description:
+  Doxygen is the de facto standard tool for generating documentation from
+  annotated C++ sources, but it also supports other popular programming
+  languages such as C, Objective-C, C#, PHP, Java, Python, IDL (Corba,
+  Microsoft, and UNO/OpenOffice flavors), Fortran, VHDL, Tcl, and to some
+  extent D..
+
+
+-----
+
+.. _dri2proto:
+
+dri2proto
+---------
+Links:
+  * `http://http://cgit.freedesktop.org/xorg/proto/dri2proto/ <http://http://cgit.freedesktop.org/xorg/proto/dri2proto/>`__
+  * `dri2proto/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dri2proto/package.py>`__
+
+Versions:
+  2.8
+Description:
+  DRI2 Protocol Headers.
+
+
+-----
+
+.. _dtcmp:
+
+dtcmp
+-----
+Links:
+  * `https://github.com/hpc/dtcmp <https://github.com/hpc/dtcmp>`__
+  * `dtcmp/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dtcmp/package.py>`__
+
+Versions:
+  1.0.3
+Dependencies
+  `lwgrp`_, mpi
+
+Description:
+  The Datatype Comparison Library provides comparison operations and
+  parallel sort algorithms for MPI applications.
+
+
+-----
+
+.. _dyninst:
+
+dyninst
+-------
+Links:
+  * `https://paradyn.org <https://paradyn.org>`__
+  * `dyninst/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/dyninst/package.py>`__
+
+Versions:
+  8.2.1, 8.1.2, 8.1.1
+Dependencies
+  `boost`_, `libelf`_, `libdwarf`_
+
+Description:
+  API for dynamic binary instrumentation. Modify programs while they are
+  executing without recompiling, re-linking, or re-executing.
+
+
+-----
+
+.. _elfutils:
+
+elfutils
+--------
+Links:
+  * `https://fedorahosted.org/elfutils/ <https://fedorahosted.org/elfutils/>`__
+  * `elfutils/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/elfutils/package.py>`__
+
+Versions:
+  0.163
+Description:
+  elfutils is a collection of various binary tools such as eu-objdump, eu-
+  readelf, and other utilities that allow you to inspect and manipulate
+  ELF files. Refer to Table 5.Tools Included in elfutils for Red Hat
+  Developer for a complete list of binary tools that are distributed with
+  the Red Hat Developer Toolset version of elfutils.
+
+
+-----
+
+.. _extrae:
+
+extrae
+------
+Links:
+  * `http://www.bsc.es/computer-sciences/extrae <http://www.bsc.es/computer-sciences/extrae>`__
+  * `extrae/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/extrae/package.py>`__
+
+Versions:
+  3.0.1
+Dependencies
+  `papi`_, `dyninst`_, mpi, `libunwind`_, `boost`_, `libdwarf`_
+
+Description:
+  Extrae is the package devoted to generate tracefiles which can be
+  analyzed later by Paraver. Extrae is a tool that uses different
+  interposition mechanisms to inject probes into the target application so
+  as to gather information regarding the application performance. The
+  Extrae instrumentation package can instrument the MPI programin model,
+  and the following parallel programming models either alone or in
+  conjunction with MPI : OpenMP, CUDA, OpenCL, pthread, OmpSs
+
+
+-----
+
+.. _exuberant-ctags:
+
+exuberant-ctags
+---------------
+Links:
+  * `ctags.sourceforge.net <ctags.sourceforge.net>`__
+  * `exuberant-ctags/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/exuberant-ctags/package.py>`__
+
+Versions:
+  5.8
+Description:
+  The canonical ctags generator
+
+
+-----
+
+.. _fish:
+
+fish
+----
+Links:
+  * `http://fishshell.com/ <http://fishshell.com/>`__
+  * `fish/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/fish/package.py>`__
+
+Versions:
+  2.2.0
+Description:
+  fish is a smart and user-friendly command line shell for OS X, Linux,
+  and the rest of the family.
+
+
+-----
+
+.. _flex:
+
+flex
+----
+Links:
+  * `http://flex.sourceforge.net/ <http://flex.sourceforge.net/>`__
+  * `flex/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/flex/package.py>`__
+
+Versions:
+  2.5.39
+Description:
+  Flex is a tool for generating scanners.
+
+
+-----
+
+.. _flux:
+
+flux
+----
+Links:
+  * `https://github.com/flux-framework/flux-core <https://github.com/flux-framework/flux-core>`__
+  * `flux/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/flux/package.py>`__
+
+Versions:
+  master
+Dependencies
+  `docbook-xml`_, `python`_, `czmq`_, `munge`_, `asciidoc`_, `lua`_, `py-cffi`_, `libxslt`_, `zeromq`_, `libjson-c`_
+
+Description:
+   A next-generation resource manager (pre-alpha)
+
+
+-----
+
+.. _fontconfig:
+
+fontconfig
+----------
+Links:
+  * `http://www.freedesktop.org/wiki/Software/fontconfig/ <http://www.freedesktop.org/wiki/Software/fontconfig/>`__
+  * `fontconfig/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/fontconfig/package.py>`__
+
+Versions:
+  2.11.1
+Dependencies
+  `freetype`_
+
+Description:
+  Fontconfig customizing font access
+
+
+-----
+
+.. _freetype:
+
+freetype
+--------
+Links:
+  * `http://http://www.freetype.org <http://http://www.freetype.org>`__
+  * `freetype/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/freetype/package.py>`__
+
+Versions:
+  2.5.3
+Dependencies
+  `libpng`_
+
+Description:
+  Font package
+
+
+-----
+
+.. _gasnet:
+
+gasnet
+------
+Links:
+  * `http://gasnet.lbl.gov <http://gasnet.lbl.gov>`__
+  * `gasnet/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gasnet/package.py>`__
+
+Versions:
+  1.24.0
+Description:
+  GASNet is a language-independent, low-level networking layer that
+  provides network-independent, high-performance communication primitives
+  tailored for implementing parallel global address space SPMD languages
+  and libraries such as UPC, Co-Array Fortran, SHMEM, Cray Chapel, and
+  Titanium.
+
+
+-----
+
+.. _gcc:
+
+gcc
+---
+Links:
+  * `https://gcc.gnu.org <https://gcc.gnu.org>`__
+  * `gcc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gcc/package.py>`__
+
+Versions:
+  4.9.2, 4.9.1, 4.8.4, 4.7.4, 4.6.4, 4.5.4
+Dependencies
+  `binutils`_, `gmp`_, `mpc`_, `libelf`_, `mpfr`_
+
+Description:
+  The GNU Compiler Collection includes front ends for C, C++, Objective-C,
+  Fortran, and Java.
+
+
+-----
+
+.. _gdk-pixbuf:
+
+gdk-pixbuf
+----------
+Links:
+  * `https://developer.gnome.org/gdk-pixbuf/ <https://developer.gnome.org/gdk-pixbuf/>`__
+  * `gdk-pixbuf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gdk-pixbuf/package.py>`__
+
+Versions:
+  2.31.2
+Dependencies
+  `glib`_, `libpng`_, `libtiff`_, `jpeg`_
+
+Description:
+  The Gdk Pixbuf is a toolkit for image loading and pixel buffer
+  manipulation. It is used by GTK+ 2 and GTK+ 3 to load and manipulate
+  images. In the past it was distributed as part of GTK+ 2 but it was
+  split off into a separate package in preparation for the change to GTK+
+  3.
+
+
+-----
+
+.. _geos:
+
+geos
+----
+Links:
+  * `http://trac.osgeo.org/geos/ <http://trac.osgeo.org/geos/>`__
+  * `geos/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/geos/package.py>`__
+
+Versions:
+  3.4.2, 3.4.1, 3.4.0, 3.3.9, 3.3.8, 3.3.7, 3.3.6, 3.3.5, 3.3.4, 3.3.3
+Dependencies
+  `python`_, `swig`_
+
+Description:
+  GEOS (Geometry Engine - Open Source) is a C++ port of the Java Topology
+  Suite (JTS). As such, it aims to contain the complete functionality of
+  JTS in C++. This includes all the OpenGIS Simple Features for SQL
+  spatial predicate functions and spatial operators, as well as specific
+  JTS enhanced topology functions.
+
+
+-----
+
+.. _gflags:
+
+gflags
+------
+Links:
+  * `https://gflags.github.io/gflags <https://gflags.github.io/gflags>`__
+  * `gflags/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gflags/package.py>`__
+
+Versions:
+  2.1.2
+Description:
+  The gflags package contains a C++ library that implements commandline
+  flags processing. It includes built-in support for standard types such
+  as string and the ability to define flags in the source file in which
+  they are used. Online documentation available at:
+  https://gflags.github.io/gflags/
+
+
+-----
+
+.. _ghostscript:
+
+ghostscript
+-----------
+Links:
+  * `http://ghostscript.com/ <http://ghostscript.com/>`__
+  * `ghostscript/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ghostscript/package.py>`__
+
+Versions:
+  9.16
+Description:
+  an interpreter for the PostScript language and for PDF.
+
+
+-----
+
+.. _git:
+
+git
+---
+Links:
+  * `http://git-scm.com <http://git-scm.com>`__
+  * `git/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/git/package.py>`__
+
+Versions:
+  2.2.1
+Dependencies
+  `zlib`_
+
+Description:
+  Git is a free and open source distributed version control system
+  designed to handle everything from small to very large projects with
+  speed and efficiency.
+
+
+-----
+
+.. _glib:
+
+glib
+----
+Links:
+  * `https://developer.gnome.org/glib/ <https://developer.gnome.org/glib/>`__
+  * `glib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/glib/package.py>`__
+
+Versions:
+  2.42.1
+Dependencies
+  `libffi`_
+
+Description:
+  The GLib package contains a low-level libraries useful for providing
+  data structure handling for C, portability wrappers and interfaces for
+  such runtime functionality as an event loop, threads, dynamic loading
+  and an object system.
+
+
+-----
+
+.. _global:
+
+global
+------
+Links:
+  * `http://www.gnu.org/software/global <http://www.gnu.org/software/global>`__
+  * `global/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/global/package.py>`__
+
+Versions:
+  6.5
+Dependencies
+  `exuberant-ctags`_
+
+Description:
+   The Gnu Global tagging system
+
+
+-----
+
+.. _glog:
+
+glog
+----
+Links:
+  * `https://github.com/google/glog <https://github.com/google/glog>`__
+  * `glog/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/glog/package.py>`__
+
+Versions:
+  0.3.3
+Description:
+  C++ implementation of the Google logging module.
+
+
+-----
+
+.. _gmp:
+
+gmp
+---
+Links:
+  * `https://gmplib.org <https://gmplib.org>`__
+  * `gmp/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gmp/package.py>`__
+
+Versions:
+  6.0.0a, 6.0.0
+Description:
+  GMP is a free library for arbitrary precision arithmetic, operating on
+  signed integers, rational numbers, and floating-point numbers.
+
+
+-----
+
+.. _gnutls:
+
+gnutls
+------
+Links:
+  * `http://www.gnutls.org <http://www.gnutls.org>`__
+  * `gnutls/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gnutls/package.py>`__
+
+Versions:
+  3.3.9
+Dependencies
+  `nettle`_
+
+Description:
+  GnuTLS is a secure communications library implementing the SSL, TLS and
+  DTLS protocols and technologies around them. It provides a simple C
+  language application programming interface (API) to access the secure
+  communications protocols as well as APIs to parse and write X.509, PKCS
+  #12, OpenPGP and other required structures. It is aimed to be portable
+  and efficient with focus on security and interoperability.
+
+
+-----
+
+.. _gperf:
+
+gperf
+-----
+Links:
+  * `https://www.gnu.org/software/gperf/ <https://www.gnu.org/software/gperf/>`__
+  * `gperf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gperf/package.py>`__
+
+Versions:
+  3.0.4
+Description:
+  GNU gperf is a perfect hash function generator. For a given list of
+  strings, it produces a hash function and hash table, in form of C or C++
+  code, for looking up a value depending on the input string. The hash
+  function is perfect, which means that the hash table has no collisions,
+  and the hash table lookup needs a single string comparison only.
+
+
+-----
+
+.. _gperftools:
+
+gperftools
+----------
+Links:
+  * `https://code.google.com/p/gperftools <https://code.google.com/p/gperftools>`__
+  * `gperftools/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gperftools/package.py>`__
+
+Versions:
+  2.3
+Description:
+  Google's fast malloc/free implementation, especially for multi-threaded
+  applications. Contains tcmalloc, heap-checker, heap-profiler, and cpu-
+  profiler.
+
+
+-----
+
+.. _graphlib:
+
+graphlib
+--------
+Links:
+  * `http://https://github.com/lee218llnl/graphlib <http://https://github.com/lee218llnl/graphlib>`__
+  * `graphlib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/graphlib/package.py>`__
+
+Versions:
+  2.0.0
+Description:
+  Library to create, manipulate, and export graphs Graphlib.
+
+
+-----
+
+.. _graphviz:
+
+graphviz
+--------
+Links:
+  * `http://www.graphviz.org <http://www.graphviz.org>`__
+  * `graphviz/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/graphviz/package.py>`__
+
+Versions:
+  2.38.0
+Dependencies
+  `python`_, `swig`_, `ghostscript`_
+
+Description:
+  Graph Visualization Software
+
+
+-----
+
+.. _gtkplus:
+
+gtkplus
+-------
+Links:
+  * `http://www.gtk.org <http://www.gtk.org>`__
+  * `gtkplus/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/gtkplus/package.py>`__
+
+Versions:
+  2.24.25
+Dependencies
+  `gdk-pixbuf`_, `pango`_, `atk`_
+
+Description:
+  The GTK+ 2 package contains libraries used for creating graphical user
+  interfaces for applications.
+
+
+-----
+
+.. _harfbuzz:
+
+harfbuzz
+--------
+Links:
+  * `http://www.freedesktop.org/wiki/Software/HarfBuzz/ <http://www.freedesktop.org/wiki/Software/HarfBuzz/>`__
+  * `harfbuzz/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/harfbuzz/package.py>`__
+
+Versions:
+  0.9.37
+Dependencies
+  `glib`_, `freetype`_, `icu`_
+
+Description:
+  The Harfbuzz package contains an OpenType text shaping engine.
+
+
+-----
+
+.. _hdf5:
+
+hdf5
+----
+Links:
+  * `http://www.hdfgroup.org/HDF5/ <http://www.hdfgroup.org/HDF5/>`__
+  * `hdf5/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hdf5/package.py>`__
+
+Versions:
+  1.8.13
+Dependencies
+  `zlib`_, mpi
+
+Description:
+  HDF5 is a data model, library, and file format for storing and managing
+  data. It supports an unlimited variety of datatypes, and is designed for
+  flexible and efficient I/O and for high volume and complex data.
+
+
+-----
+
+.. _hwloc:
+
+hwloc
+-----
+Links:
+  * `http://www.open-mpi.org/projects/hwloc/ <http://www.open-mpi.org/projects/hwloc/>`__
+  * `hwloc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hwloc/package.py>`__
+
+Versions:
+  1.9
+Description:
+  The Portable Hardware Locality (hwloc) software package provides a
+  portable abstraction (across OS, versions, architectures, ...) of the
+  hierarchical topology of modern architectures, including NUMA memory
+  nodes, sockets, shared caches, cores and simultaneous multithreading. It
+  also gathers various system attributes such as cache and memory
+  information as well as the locality of I/O devices such as network
+  interfaces, InfiniBand HCAs or GPUs. It primarily aims at helping
+  applications with gathering information about modern computing hardware
+  so as to exploit it accordingly and efficiently.
+
+
+-----
+
+.. _hypre:
+
+hypre
+-----
+Links:
+  * `https://computation.llnl.gov/project/linear_solvers/software.php <https://computation.llnl.gov/project/linear_solvers/software.php>`__
+  * `hypre/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/hypre/package.py>`__
+
+Versions:
+  2.10.0b
+Dependencies
+  `lapack`_, `blas`_, mpi
+
+Description:
+  Hypre is a library of high performance preconditioners that features
+  parallel multigrid methods for both structured and unstructured grid
+  problems.
+
+
+-----
+
+.. _icu:
+
+icu
+---
+Links:
+  * `http://www.example.com <http://www.example.com>`__
+  * `icu/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/icu/package.py>`__
+
+Versions:
+  54.1
+Description:
+  The International Components for Unicode (ICU) package is a mature,
+  widely used set of C/C++ libraries providing Unicode and Globalization
+  support for software applications. ICU is widely portable and gives
+  applications the same results on all platforms.
+
+
+-----
+
+.. _icu4c:
+
+icu4c
+-----
+Links:
+  * `http://site.icu-project.org/ <http://site.icu-project.org/>`__
+  * `icu4c/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/icu4c/package.py>`__
+
+Versions:
+  54_1
+Description:
+  ICU is a mature, widely used set of C/C++ and Java libraries providing
+  Unicode and Globalization support for software applications.
+
+
+-----
+
+.. _ImageMagick:
+
+ImageMagick
+-----------
+Links:
+  * `http://www.imagemagic.org <http://www.imagemagic.org>`__
+  * `ImageMagick/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ImageMagick/package.py>`__
+
+Versions:
+  6.8.9-10
+Dependencies
+  `freetype`_, `libtiff`_, `jpeg`_, `fontconfig`_, `libtool`_, `libpng`_
+
+Description:
+  ImageMagick is a image processing library
+
+
+-----
+
+.. _isl:
+
+isl
+---
+Links:
+  * `http://isl.gforge.inria.fr <http://isl.gforge.inria.fr>`__
+  * `isl/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/isl/package.py>`__
+
+Versions:
+  0.14
+Dependencies
+  `gmp`_
+
+Description:
+  isl is a thread-safe C library for manipulating sets and relations of
+  integer points bounded by affine constraints.
+
+
+-----
+
+.. _jdk:
+
+jdk
+---
+Links:
+  * `http://www.oracle.com/technetwork/java/javase/downloads/index.html <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`__
+  * `jdk/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/jdk/package.py>`__
+
+Versions:
+  8u25-linux-x64
+Description:
+  The Java Development Kit (JDK) released by Oracle Corporation in the
+  form of a binary product aimed at Java developers.
+
+
+-----
+
+.. _jpeg:
+
+jpeg
+----
+Links:
+  * `http://www.ijg.org <http://www.ijg.org>`__
+  * `jpeg/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/jpeg/package.py>`__
+
+Versions:
+  9a
+Description:
+  jpeg library
+
+
+-----
+
+.. _launchmon:
+
+launchmon
+---------
+Links:
+  * `http://sourceforge.net/projects/launchmon <http://sourceforge.net/projects/launchmon>`__
+  * `launchmon/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/launchmon/package.py>`__
+
+Versions:
+  1.0.1-2, 1.0.1
+Dependencies
+  `autoconf`_, `libtool`_, `automake`_
+
+Description:
+  Software infrastructure that enables HPC run-time tools to co-locate
+  tool daemons with a parallel job.
+
+
+-----
+
+.. _lcms:
+
+lcms
+----
+Links:
+  * `http://www.littlecms.com <http://www.littlecms.com>`__
+  * `lcms/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lcms/package.py>`__
+
+Versions:
+  2.6
+Dependencies
+  `zlib`_, `libtiff`_, `jpeg`_
+
+Description:
+  Little cms is a color management library. Implements fast transforms
+  between ICC profiles. It is focused on speed, and is portable across
+  several platforms (MIT license).
+
+
+-----
+
+.. _leveldb:
+
+leveldb
+-------
+Links:
+  * `https://github.com/google/leveldb <https://github.com/google/leveldb>`__
+  * `leveldb/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/leveldb/package.py>`__
+
+Versions:
+  1.18
+Dependencies
+  `snappy`_
+
+Description:
+  LevelDB is a fast key-value storage library written at Google that
+  provides an ordered mapping from string keys to string values.
+
+
+-----
+
+.. _libarchive:
+
+libarchive
+----------
+Links:
+  * `http://www.libarchive.org <http://www.libarchive.org>`__
+  * `libarchive/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libarchive/package.py>`__
+
+Versions:
+  3.1.2, 3.1.1, 3.1.0
+Description:
+  libarchive: C library and command-line tools for reading and writing
+  tar, cpio, zip, ISO, and other archive formats.
+
+
+-----
+
+.. _libcircle:
+
+libcircle
+---------
+Links:
+  * `https://github.com/hpc/libcircle <https://github.com/hpc/libcircle>`__
+  * `libcircle/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libcircle/package.py>`__
+
+Versions:
+  0.2.1-rc.1
+Dependencies
+  mpi
+
+Description:
+  libcircle provides an efficient distributed queue on a cluster, using
+  self-stabilizing work stealing.
+
+
+-----
+
+.. _libdrm:
+
+libdrm
+------
+Links:
+  * `http://dri.freedesktop.org/libdrm/ <http://dri.freedesktop.org/libdrm/>`__
+  * `libdrm/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libdrm/package.py>`__
+
+Versions:
+  2.4.59, 2.4.33
+Description:
+  A userspace library for accessing the DRM, direct rendering manager, on
+  Linux, BSD and other operating systems that support the ioctl interface.
+
+
+-----
+
+.. _libdwarf:
+
+libdwarf
+--------
+Links:
+  * `http://www.prevanders.net/dwarf.html <http://www.prevanders.net/dwarf.html>`__
+  * `libdwarf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libdwarf/package.py>`__
+
+Versions:
+  20130729, 20130207, 20130126
+Dependencies
+  `libelf`_
+
+Description:
+  The DWARF Debugging Information Format is of interest to programmers
+  working on compilers and debuggers (and any one interested in reading or
+  writing DWARF information). It was developed by a committee (known as
+  the PLSIG at the time) starting around 1991. Starting around 1991 SGI
+  developed the libdwarf and dwarfdump tools for internal use and as part
+  of SGI IRIX developer tools. Since that time dwarfdump and libdwarf have
+  been shipped (as an executable and archive respectively, not source)
+  with every release of the SGI MIPS/IRIX C compiler.
+
+
+-----
+
+.. _libelf:
+
+libelf
+------
+Links:
+  * `http://www.mr511.de/software/english.html <http://www.mr511.de/software/english.html>`__
+  * `libelf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libelf/package.py>`__
+
+Versions:
+  0.8.13, 0.8.12
+Description:
+  libelf lets you read, modify or create ELF object files in an
+  architecture-independent way. The library takes care of size and endian
+  issues, e.g. you can process a file for SPARC processors on an Intel-
+  based system.
+
+
+-----
+
+.. _libevent:
+
+libevent
+--------
+Links:
+  * `http://libevent.org <http://libevent.org>`__
+  * `libevent/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libevent/package.py>`__
+
+Versions:
+  2.0.21, 2.0.20, 2.0.19, 2.0.18, 2.0.17, 2.0.16, 2.0.15, 2.0.14, 2.0.13, 2.0.12
+Description:
+  The libevent API provides a mechanism to execute a callback function
+  when a specific event occurs on a file descriptor or after a timeout has
+  been reached. Furthermore, libevent also support callbacks due to
+  signals or regular timeouts.
+
+
+-----
+
+.. _libffi:
+
+libffi
+------
+Links:
+  * `https://sourceware.org/libffi/ <https://sourceware.org/libffi/>`__
+  * `libffi/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libffi/package.py>`__
+
+Versions:
+  3.1
+Description:
+  The libffi library provides a portable, high level programming interface
+  to various calling conventions. This allows a programmer to call any
+  function specified by a call interface description at run time.
+
+
+-----
+
+.. _libgcrypt:
+
+libgcrypt
+---------
+Links:
+  * `http://www.gnu.org/software/libgcrypt/ <http://www.gnu.org/software/libgcrypt/>`__
+  * `libgcrypt/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libgcrypt/package.py>`__
+
+Versions:
+  1.6.2
+Dependencies
+  `libgpg-error`_
+
+Description:
+  Libgcrypt is a general purpose cryptographic library based on the code
+  from GnuPG. It provides functions for all cryptographic building blocks:
+  symmetric ciphers, hash algorithms, MACs, public key algorithms, large
+  integer functions, random numbers and a lot of supporting functions.
+
+
+-----
+
+.. _libgpg-error:
+
+libgpg-error
+------------
+Links:
+  * `https://www.gnupg.org/related_software/libgpg-error <https://www.gnupg.org/related_software/libgpg-error>`__
+  * `libgpg-error/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libgpg-error/package.py>`__
+
+Versions:
+  1.18
+Description:
+  Libgpg-error is a small library that defines common error values for all
+  GnuPG components. Among these are GPG, GPGSM, GPGME, GPG-Agent,
+  libgcrypt, Libksba, DirMngr, Pinentry, SmartCard Daemon and possibly
+  more in the future.
+
+
+-----
+
+.. _libjpeg-turbo:
+
+libjpeg-turbo
+-------------
+Links:
+  * `http://libjpeg-turbo.virtualgl.org <http://libjpeg-turbo.virtualgl.org>`__
+  * `libjpeg-turbo/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libjpeg-turbo/package.py>`__
+
+Versions:
+  1.3.1
+Dependencies
+  `yasm`_, `nasm`_
+
+Description:
+  libjpeg-turbo is a fork of the original IJG libjpeg which uses SIMD to
+  accelerate baseline JPEG compression and decompression. libjpeg is a
+  library that implements JPEG image encoding, decoding and transcoding.
+
+
+-----
+
+.. _libjson-c:
+
+libjson-c
+---------
+Links:
+  * `https://github.com/json-c/json-c/wiki <https://github.com/json-c/json-c/wiki>`__
+  * `libjson-c/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libjson-c/package.py>`__
+
+Versions:
+  0.11
+Description:
+   A JSON implementation in C
+
+
+-----
+
+.. _libmng:
+
+libmng
+------
+Links:
+  * `http://sourceforge.net/projects/libmng/ <http://sourceforge.net/projects/libmng/>`__
+  * `libmng/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libmng/package.py>`__
+
+Versions:
+  2.0.2
+Dependencies
+  `zlib`_, `jpeg`_, `lcms`_
+
+Description:
+  libmng -THE reference library for reading, displaying, writing and
+  examining Multiple-Image Network Graphics. MNG is the animation
+  extension to the popular PNG image-format.
+
+
+-----
+
+.. _libmonitor:
+
+libmonitor
+----------
+Links:
+  * `http://hpctoolkit.org <http://hpctoolkit.org>`__
+  * `libmonitor/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libmonitor/package.py>`__
+
+Versions:
+  20130218
+Description:
+  Libmonitor is a library for process and thread control.
+
+
+-----
+
+.. _libNBC:
+
+libNBC
+------
+Links:
+  * `http://unixer.de/research/nbcoll/libnbc/ <http://unixer.de/research/nbcoll/libnbc/>`__
+  * `libNBC/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libNBC/package.py>`__
+
+Versions:
+  1.1.1
+Dependencies
+  mpi
+
+Description:
+  LibNBC is a prototypic implementation of a nonblocking interface for MPI
+  collective operations. Based on ANSI C and MPI-1, it supports all MPI-1
+  collective operations in a nonblocking manner. LibNBC is distributed
+  under the BSD license.
+
+
+-----
+
+.. _libpciaccess:
+
+libpciaccess
+------------
+Links:
+  * `http://cgit.freedesktop.org/xorg/lib/libpciaccess/ <http://cgit.freedesktop.org/xorg/lib/libpciaccess/>`__
+  * `libpciaccess/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libpciaccess/package.py>`__
+
+Versions:
+  0.13.4
+Dependencies
+  `autoconf`_, `libtool`_
+
+Description:
+  Generic PCI access library.
+
+
+-----
+
+.. _libpng:
+
+libpng
+------
+Links:
+  * `http://www.libpng.org/pub/png/libpng.html <http://www.libpng.org/pub/png/libpng.html>`__
+  * `libpng/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libpng/package.py>`__
+
+Versions:
+  1.6.16, 1.6.15, 1.6.14
+Description:
+  libpng graphics file format
+
+
+-----
+
+.. _libsodium:
+
+libsodium
+---------
+Links:
+  * `https://download.libsodium.org/doc/ <https://download.libsodium.org/doc/>`__
+  * `libsodium/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libsodium/package.py>`__
+
+Versions:
+  1.0.3, 1.0.2, 1.0.1, 1.0.0, 0.7.1
+Description:
+  Sodium is a modern, easy-to-use software library for encryption,
+  decryption, signatures, password hashing and more.
+
+
+-----
+
+.. _libtiff:
+
+libtiff
+-------
+Links:
+  * `http://www.remotesensing.org/libtiff/ <http://www.remotesensing.org/libtiff/>`__
+  * `libtiff/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libtiff/package.py>`__
+
+Versions:
+  4.0.3
+Dependencies
+  `xz`_, `zlib`_, `jpeg`_
+
+Description:
+  libtiff graphics format library
+
+
+-----
+
+.. _libtool:
+
+libtool
+-------
+Links:
+  * `https://www.gnu.org/software/libtool/ <https://www.gnu.org/software/libtool/>`__
+  * `libtool/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libtool/package.py>`__
+
+Versions:
+  2.4.2
+Description:
+  libtool -- library building part of autotools
+
+
+-----
+
+.. _libunwind:
+
+libunwind
+---------
+Links:
+  * `http://www.nongnu.org/libunwind/ <http://www.nongnu.org/libunwind/>`__
+  * `libunwind/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libunwind/package.py>`__
+
+Versions:
+  1.1
+Description:
+  A portable and efficient C programming interface (API) to determine the
+  call-chain of a program.
+
+
+-----
+
+.. _libuuid:
+
+libuuid
+-------
+Links:
+  * `http://sourceforge.net/projects/libuuid/ <http://sourceforge.net/projects/libuuid/>`__
+  * `libuuid/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libuuid/package.py>`__
+
+Versions:
+  1.0.3
+Description:
+  Portable uuid C library
+
+
+-----
+
+.. _libxcb:
+
+libxcb
+------
+Links:
+  * `http://xcb.freedesktop.org/ <http://xcb.freedesktop.org/>`__
+  * `libxcb/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libxcb/package.py>`__
+
+Versions:
+  1.11.1, 1.11
+Dependencies
+  `python`_, `xcb-proto`_
+
+Description:
+  The X protocol C-language Binding (XCB) is a replacement for Xlib
+  featuring a small footprint, latency hiding, direct access to the
+  protocol, improved threading support, and extensibility.
+
+
+-----
+
+.. _libxml2:
+
+libxml2
+-------
+Links:
+  * `http://xmlsoft.org <http://xmlsoft.org>`__
+  * `libxml2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libxml2/package.py>`__
+
+Versions:
+  2.9.2
+Dependencies
+  `python`_, `xz`_, `zlib`_
+
+Description:
+  Libxml2 is the XML C parser and toolkit developed for the Gnome project
+  (but usable outside of the Gnome platform), it is free software
+  available under the MIT License.
+
+
+-----
+
+.. _libxshmfence:
+
+libxshmfence
+------------
+Links:
+  * `http://keithp.com/blogs/dri3_extension/ <http://keithp.com/blogs/dri3_extension/>`__
+  * `libxshmfence/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libxshmfence/package.py>`__
+
+Versions:
+  1.2
+Description:
+  This is a tiny library that exposes a event API on top of Linux futexes.
+
+
+-----
+
+.. _libxslt:
+
+libxslt
+-------
+Links:
+  * `http://www.xmlsoft.org/XSLT/index.html <http://www.xmlsoft.org/XSLT/index.html>`__
+  * `libxslt/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/libxslt/package.py>`__
+
+Versions:
+  1.1.28
+Dependencies
+  `xz`_, `libxml2`_, `zlib`_, `libgcrypt`_
+
+Description:
+  Libxslt is the XSLT C library developed for the GNOME project. XSLT
+  itself is a an XML language to define transformation for XML. Libxslt is
+  based on libxml2 the XML C library developed for the GNOME project. It
+  also implements most of the EXSLT set of processor-portable extensions
+  functions and some of Saxon's evaluate and expressions extensions.
+
+
+-----
+
+.. _llvm:
+
+llvm
+----
+Links:
+  * `http://llvm.org/ <http://llvm.org/>`__
+  * `llvm/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/llvm/package.py>`__
+
+Versions:
+  3.5.1, 3.4.2, 3.0, 2.9, 2.8
+Description:
+  The LLVM Project is a collection of modular and reusable compiler and
+  toolchain technologies. Despite its name, LLVM has little to do with
+  traditional virtual machines, though it does provide helpful libraries
+  that can be used to build them. The name "LLVM" itself is not an
+  acronym; it is the full name of the project.
+
+
+-----
+
+.. _llvm-lld:
+
+llvm-lld
+--------
+Links:
+  * `http://lld.llvm.org <http://lld.llvm.org>`__
+  * `llvm-lld/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/llvm-lld/package.py>`__
+
+Versions:
+  3.4
+Dependencies
+  `llvm`_
+
+Description:
+  lld - The LLVM Linker lld is a new set of modular code for creating
+  linker tools.
+
+
+-----
+
+.. _lmdb:
+
+lmdb
+----
+Links:
+  * `http://www.openldap.org/software/repo.html <http://www.openldap.org/software/repo.html>`__
+  * `lmdb/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lmdb/package.py>`__
+
+Versions:
+  0.9.16
+Description:
+  Read-only mirror of official repo on openldap.org. Issues and pull
+  requests here are ignored. Use OpenLDAP ITS for issues.
+  http://www.openldap.org/software/repo.html
+
+
+-----
+
+.. _lua:
+
+lua
+---
+Links:
+  * `http://www.lua.org <http://www.lua.org>`__
+  * `lua/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lua/package.py>`__
+
+Versions:
+  5.3.1, 5.3.0, 5.2.4, 5.2.3, 5.2.2, 5.2.1, 5.2.0, 5.1.5, 5.1.4, 5.1.3
+Dependencies
+  `ncurses`_
+
+Description:
+   The Lua programming language interpreter and library
+
+
+-----
+
+.. _lwgrp:
+
+lwgrp
+-----
+Links:
+  * `https://github.com/hpc/lwgrp <https://github.com/hpc/lwgrp>`__
+  * `lwgrp/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lwgrp/package.py>`__
+
+Versions:
+  1.0.2
+Dependencies
+  mpi
+
+Description:
+  Thie light-weight group library provides process group representations
+  using O(log N) space and time.
+
+
+-----
+
+.. _lwm2:
+
+lwm2
+----
+Links:
+  * `https://jay.grs.rwth-aachen.de/redmine/projects/lwm2 <https://jay.grs.rwth-aachen.de/redmine/projects/lwm2>`__
+  * `lwm2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/lwm2/package.py>`__
+
+Versions:
+  torus
+Dependencies
+  `papi`_, mpi
+
+Description:
+  LWM2: Light Weight Measurement Module. This is a PMPI module that can
+  collect a number of time-sliced MPI and POSIX I/O measurements from a
+  program.
+
+
+-----
+
+.. _memaxes:
+
+memaxes
+-------
+Links:
+  * `https://github.com/scalability-llnl/MemAxes <https://github.com/scalability-llnl/MemAxes>`__
+  * `memaxes/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/memaxes/package.py>`__
+
+Versions:
+  0.5
+Dependencies
+  `cmake`_, `qt`_
+
+Description:
+  MemAxes is a visualizer for sampled memory trace data.
+
+
+-----
+
+.. _mesa:
+
+mesa
+----
+Links:
+  * `http://www.mesa3d.org <http://www.mesa3d.org>`__
+  * `mesa/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mesa/package.py>`__
+
+Versions:
+  8.0.5
+Dependencies
+  `libxml2`_, `libdrm`_, `llvm`_
+
+Description:
+  Mesa is an open-source implementation of the OpenGL specification - a
+  system for rendering interactive 3D graphics.
+
+
+-----
+
+.. _metis:
+
+metis
+-----
+Links:
+  * `http://glaros.dtc.umn.edu/gkhome/metis/metis/overview <http://glaros.dtc.umn.edu/gkhome/metis/metis/overview>`__
+  * `metis/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/metis/package.py>`__
+
+Versions:
+  5.1.0
+Dependencies
+  mpi
+
+Description:
+  METIS is a set of serial programs for partitioning graphs, partitioning
+  finite element meshes, and producing fill reducing orderings for sparse
+  matrices. The algorithms implemented in METIS are based on the
+  multilevel recursive-bisection, multilevel k-way, and multi-constraint
+  partitioning schemes.
+
+
+-----
+
+.. _Mitos:
+
+Mitos
+-----
+Links:
+  * `https://github.com/scalability-llnl/Mitos <https://github.com/scalability-llnl/Mitos>`__
+  * `Mitos/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/Mitos/package.py>`__
+
+Versions:
+  0.9.1
+Dependencies
+  `dyninst`_, `hwloc`_
+
+Description:
+  Mitos is a library and a tool for collecting sampled memory performance
+  data to view with MemAxes
+
+
+-----
+
+.. _mpc:
+
+mpc
+---
+Links:
+  * `http://www.multiprecision.org <http://www.multiprecision.org>`__
+  * `mpc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpc/package.py>`__
+
+Versions:
+  1.0.2
+Dependencies
+  `gmp`_, `mpfr`_
+
+Description:
+  Gnu Mpc is a C library for the arithmetic of complex numbers with
+  arbitrarily high precision and correct rounding of the result.
+
+
+-----
+
+.. _mpe2:
+
+mpe2
+----
+Links:
+  * `http://www.mcs.anl.gov/research/projects/perfvis/software/MPE/ <http://www.mcs.anl.gov/research/projects/perfvis/software/MPE/>`__
+  * `mpe2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpe2/package.py>`__
+
+Versions:
+  1.3.0
+Dependencies
+  mpi
+
+Description:
+  Message Passing Extensions (MPE) -- Parallel, shared X window graphics
+
+
+-----
+
+.. _mpfr:
+
+mpfr
+----
+Links:
+  * `http://www.mpfr.org <http://www.mpfr.org>`__
+  * `mpfr/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpfr/package.py>`__
+
+Versions:
+  3.1.3
+Dependencies
+  `gmp`_
+
+Description:
+  The MPFR library is a C library for multiple-precision floating-point
+  computations with correct rounding.
+
+
+-----
+
+.. _mpibash:
+
+mpibash
+-------
+Links:
+  * `http://www.ccs3.lanl.gov/~pakin/software/mpibash-4.3.html <http://www.ccs3.lanl.gov/~pakin/software/mpibash-4.3.html>`__
+  * `mpibash/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpibash/package.py>`__
+
+Versions:
+  4.3
+Dependencies
+  `autoconf`_, `libcircle`_, mpi
+
+Description:
+  Parallel scripting right from the Bourne-Again Shell (Bash)
+
+
+-----
+
+.. _mpich:
+
+mpich
+-----
+Links:
+  * `http://www.mpich.org <http://www.mpich.org>`__
+  * `mpich/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpich/package.py>`__
+
+Versions:
+  3.0.4
+Description:
+  MPICH is a high performance and widely portable implementation of the
+  Message Passing Interface (MPI) standard.
+
+
+-----
+
+.. _mpileaks:
+
+mpileaks
+--------
+Links:
+  * `https://github.com/hpc/mpileaks <https://github.com/hpc/mpileaks>`__
+  * `mpileaks/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mpileaks/package.py>`__
+
+Versions:
+  1.0
+Dependencies
+  `adept-utils`_, `callpath`_, mpi
+
+Description:
+  Tool to detect and report leaked MPI objects like MPI_Requests and
+  MPI_Datatypes.
+
+
+-----
+
+.. _mrnet:
+
+mrnet
+-----
+Links:
+  * `http://paradyn.org/mrnet <http://paradyn.org/mrnet>`__
+  * `mrnet/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mrnet/package.py>`__
+
+Versions:
+  4.1.0, 4.0.0
+Dependencies
+  `boost`_
+
+Description:
+  The MRNet Multi-Cast Reduction Network.
+
+
+-----
+
+.. _munge:
+
+munge
+-----
+Links:
+  * `https://code.google.com/p/munge/ <https://code.google.com/p/munge/>`__
+  * `munge/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/munge/package.py>`__
+
+Versions:
+  0.5.11
+Dependencies
+  `openssl`_, `libgcrypt`_
+
+Description:
+   MUNGE Uid 'N' Gid Emporium
+
+
+-----
+
+.. _muster:
+
+muster
+------
+Links:
+  * `https://github.com/scalability-llnl/muster <https://github.com/scalability-llnl/muster>`__
+  * `muster/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/muster/package.py>`__
+
+Versions:
+  1.0.1, 1.0
+Dependencies
+  `boost`_, mpi
+
+Description:
+  The Muster library provides implementations of sequential and parallel
+  K-Medoids clustering algorithms. It is intended as a general framework
+  for parallel cluster analysis, particularly for performance data
+  analysis on systems with very large numbers of processes.
+
+
+-----
+
+.. _mvapich2:
+
+mvapich2
+--------
+Links:
+  * `http://mvapich.cse.ohio-state.edu/ <http://mvapich.cse.ohio-state.edu/>`__
+  * `mvapich2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/mvapich2/package.py>`__
+
+Versions:
+  2.0, 1.9
+Description:
+  mvapich2 is an MPI implmenetation for infiniband networks.
+
+
+-----
+
+.. _nasm:
+
+nasm
+----
+Links:
+  * `http://www.nasm.us <http://www.nasm.us>`__
+  * `nasm/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/nasm/package.py>`__
+
+Versions:
+  2.11.06
+Description:
+  NASM (Netwide Assembler) is an 80x86 assembler designed for portability
+  and modularity. It includes a disassembler as well.
+
+
+-----
+
+.. _ncurses:
+
+ncurses
+-------
+Links:
+  * `http://invisible-island.net/ncurses/ncurses.html <http://invisible-island.net/ncurses/ncurses.html>`__
+  * `ncurses/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ncurses/package.py>`__
+
+Versions:
+  5.9
+Description:
+  The ncurses (new curses) library is a free software emulation of curses
+  in System V Release 4.0, and more. It uses terminfo format, supports
+  pads and color and multiple highlights and forms characters and
+  function-key mapping, and has all the other SYSV-curses enhancements
+  over BSD curses.
+
+
+-----
+
+.. _netcdf:
+
+netcdf
+------
+Links:
+  * `http://www.unidata.ucar.edu/software/netcdf/ <http://www.unidata.ucar.edu/software/netcdf/>`__
+  * `netcdf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/netcdf/package.py>`__
+
+Versions:
+  4.3.3
+Dependencies
+  `hdf5`_
+
+Description:
+  NetCDF is a set of software libraries and self-describing, machine-
+  independent data formats that support the creation, access, and sharing
+  of array-oriented scientific data.
+
+
+-----
+
+.. _netgauge:
+
+netgauge
+--------
+Links:
+  * `http://unixer.de/research/netgauge/ <http://unixer.de/research/netgauge/>`__
+  * `netgauge/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/netgauge/package.py>`__
+
+Versions:
+  2.4.6
+Dependencies
+  mpi
+
+Description:
+  Netgauge is a high-precision network parameter measurement tool. It
+  supports benchmarking of many different network protocols and
+  communication patterns. The main focus lies on accuracy, statistical
+  analysis and easy extensibility.
+
+
+-----
+
+.. _netlib-blas:
+
+netlib-blas
+-----------
+Links:
+  * `http://www.netlib.org/lapack/ <http://www.netlib.org/lapack/>`__
+  * `netlib-blas/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/netlib-blas/package.py>`__
+
+Versions:
+  3.5.0
+Description:
+  Netlib reference BLAS
+
+
+-----
+
+.. _netlib-lapack:
+
+netlib-lapack
+-------------
+Links:
+  * `http://www.netlib.org/lapack/ <http://www.netlib.org/lapack/>`__
+  * `netlib-lapack/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/netlib-lapack/package.py>`__
+
+Versions:
+  3.5.0, 3.4.2, 3.4.1, 3.4.0, 3.3.1
+Dependencies
+  `blas`_, `cmake`_
+
+Description:
+   LAPACK version 3.X is a comprehensive FORTRAN library that does linear
+  algebra operations including matrix inversions, least squared solutions
+  to linear sets of equations, eigenvector analysis, singular value
+  decomposition, etc. It is a very comprehensive and reputable package
+  that has found extensive use in the scientific community.
+
+
+-----
+
+.. _nettle:
+
+nettle
+------
+Links:
+  * `http://www.example.com <http://www.example.com>`__
+  * `nettle/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/nettle/package.py>`__
+
+Versions:
+  2.7
+Dependencies
+  `gmp`_
+
+Description:
+  The Nettle package contains the low-level cryptographic library that is
+  designed to fit easily in many contexts.
+
+
+-----
+
+.. _ompss:
+
+ompss
+-----
+Links:
+  * `http://pm.bsc.es/ <http://pm.bsc.es/>`__
+  * `ompss/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ompss/package.py>`__
+
+Versions:
+  14.10
+Dependencies
+  `hwloc`_, `extrae`_, mpi
+
+Description:
+  OmpSs is an effort to integrate features from the StarSs programming
+  model developed by BSC into a single programming model. In particular,
+  our objective is to extend OpenMP with new directives to support
+  asynchronous parallelism and heterogeneity (devices like GPUs). However,
+  it can also be understood as new directives extending other accelerator
+  based APIs like CUDA or OpenCL. Our OmpSs environment is built on top of
+  our Mercurium compiler and Nanos++ runtime system.
+
+
+-----
+
+.. _opari2:
+
+opari2
+------
+Links:
+  * `http://www.vi-hps.org/projects/score-p <http://www.vi-hps.org/projects/score-p>`__
+  * `opari2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/opari2/package.py>`__
+
+Versions:
+  1.1.2
+Description:
+  OPARI2 is a source-to-source instrumentation tool for OpenMP and hybrid
+  codes. It surrounds OpenMP directives and runtime library calls with
+  calls to the POMP2 measurement interface. OPARI2 will provide you with a
+  new initialization method that allows for multi-directory and parallel
+  builds as well as the usage of pre-instrumented libraries. Furthermore,
+  an efficient way of tracking parent-child relationships was added.
+  Additionally, we extended OPARI2 to support instrumentation of OpenMP
+  3.0 tied tasks.
+
+
+-----
+
+.. _openmpi:
+
+openmpi
+-------
+Links:
+  * `http://www.open-mpi.org <http://www.open-mpi.org>`__
+  * `openmpi/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/openmpi/package.py>`__
+
+Versions:
+  1.8.2, 1.6.5
+Description:
+  Open MPI is a project combining technologies and resources from several
+  other projects (FT-MPI, LA-MPI, LAM/MPI, and PACX-MPI) in order to build
+  the best MPI library available. A completely new MPI-2 compliant
+  implementation, Open MPI offers advantages for system and software
+  vendors, application developers and computer science researchers.
+
+
+-----
+
+.. _openssl:
+
+openssl
+-------
+Links:
+  * `http://www.openssl.org <http://www.openssl.org>`__
+  * `openssl/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/openssl/package.py>`__
+
+Versions:
+  1.0.1h
+Dependencies
+  `zlib`_
+
+Description:
+  The OpenSSL Project is a collaborative effort to develop a robust,
+  commercial-grade, full-featured, and Open Source toolkit implementing
+  the Secure Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS
+  v1) protocols as well as a full-strength general purpose cryptography
+  library.
+
+
+-----
+
+.. _otf:
+
+otf
+---
+Links:
+  * `http://tu-dresden.de/die_tu_dresden/zentrale_einrichtungen/zih/forschung/projekte/otf/index_html/document_view?set_language=en <http://tu-dresden.de/die_tu_dresden/zentrale_einrichtungen/zih/forschung/projekte/otf/index_html/document_view?set_language=en>`__
+  * `otf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/otf/package.py>`__
+
+Versions:
+  1.12.5salmon
+Dependencies
+  `zlib`_
+
+Description:
+  To improve scalability for very large and massively parallel traces the
+  Open Trace Format (OTF) is developed at ZIH as a successor format to the
+  Vampir Trace Format (VTF3).
+
+
+-----
+
+.. _otf2:
+
+otf2
+----
+Links:
+  * `http://www.vi-hps.org/score-p <http://www.vi-hps.org/score-p>`__
+  * `otf2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/otf2/package.py>`__
+
+Versions:
+  1.4, 1.3.1, 1.2.1
+Description:
+  The Open Trace Format 2 is a highly scalable, memory efficient event
+  trace data format plus support library.
+
+
+-----
+
+.. _pango:
+
+pango
+-----
+Links:
+  * `http://www.pango.org <http://www.pango.org>`__
+  * `pango/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pango/package.py>`__
+
+Versions:
+  1.36.8
+Dependencies
+  `cairo`_, `harfbuzz`_
+
+Description:
+  Pango is a library for laying out and rendering of text, with an
+  emphasis on internationalization. It can be used anywhere that text
+  layout is needed, though most of the work on Pango so far has been done
+  in the context of the GTK+ widget toolkit.
+
+
+-----
+
+.. _papi:
+
+papi
+----
+Links:
+  * `http://icl.cs.utk.edu/papi/index.html <http://icl.cs.utk.edu/papi/index.html>`__
+  * `papi/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/papi/package.py>`__
+
+Versions:
+  5.3.0
+Description:
+  PAPI provides the tool designer and application engineer with a
+  consistent interface and methodology for use of the performance counter
+  hardware found in most major microprocessors. PAPI enables software
+  engineers to see, in near real time, the relation between software
+  performance and processor events. In addition Component PAPI provides
+  access to a collection of components that expose performance measurement
+  opportunites across the hardware and software stack.
+
+
+-----
+
+.. _paraver:
+
+paraver
+-------
+Links:
+  * `http://www.bsc.es/computer-sciences/performance-tools/paraver <http://www.bsc.es/computer-sciences/performance-tools/paraver>`__
+  * `paraver/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/paraver/package.py>`__
+
+Versions:
+  4.5.3
+Dependencies
+  `wxpropgrid`_, `boost`_, `wx`_
+
+Description:
+  "A very powerful performance visualization and analysis tool based on
+  traces that can be used to analyse any information that is expressed on
+  its input trace format. Traces for parallel MPI, OpenMP and other
+  programs can be genereated with Extrae.
+
+
+-----
+
+.. _parmetis:
+
+parmetis
+--------
+Links:
+  * `http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview <http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview>`__
+  * `parmetis/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/parmetis/package.py>`__
+
+Versions:
+  4.0.3
+Dependencies
+  mpi
+
+Description:
+  ParMETIS is an MPI-based parallel library that implements a variety of
+  algorithms for partitioning unstructured graphs, meshes, and for
+  computing fill-reducing orderings of sparse matrices.
+
+
+-----
+
+.. _parpack:
+
+parpack
+-------
+Links:
+  * `http://www.caam.rice.edu/software/ARPACK/download.html <http://www.caam.rice.edu/software/ARPACK/download.html>`__
+  * `parpack/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/parpack/package.py>`__
+
+Versions:
+  96
+Dependencies
+  `lapack`_, `blas`_, mpi
+
+Description:
+  ARPACK is a collection of Fortran77 subroutines designed to solve large
+  scale eigenvalue problems.
+
+
+-----
+
+.. _pcre:
+
+pcre
+----
+Links:
+  * `http://www.pcre.org <http://www.pcre.org>`__
+  * `pcre/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pcre/package.py>`__
+
+Versions:
+  8.36
+Description:
+  The PCRE package contains Perl Compatible Regular Expression libraries.
+  These are useful for implementing regular expression pattern matching
+  using the same syntax and semantics as Perl 5.
+
+
+-----
+
+.. _petsc:
+
+petsc
+-----
+Links:
+  * `http://www.mcs.anl.gov/petsc/index.html <http://www.mcs.anl.gov/petsc/index.html>`__
+  * `petsc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/petsc/package.py>`__
+
+Versions:
+  3.5.3, 3.5.2, 3.5.1
+Dependencies
+  `hypre`_, `hdf5`_, `lapack`_, `blas`_, `metis`_, mpi, `boost`_, `parmetis`_
+
+Description:
+  PETSc is a suite of data structures and routines for the scalable
+  (parallel) solution of scientific applications modeled by partial
+  differential equations.
+
+
+-----
+
+.. _pidx:
+
+pidx
+----
+Links:
+  * `http://www.cedmav.com/pidx <http://www.cedmav.com/pidx>`__
+  * `pidx/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pidx/package.py>`__
+
+Versions:
+  1.0
+Dependencies
+  mpi
+
+Description:
+  PIDX Parallel I/O Library. PIDX is an efficient parallel I/O library
+  that reads and writes multiresolution IDX data files.
+
+
+-----
+
+.. _pixman:
+
+pixman
+------
+Links:
+  * `http://www.pixman.org <http://www.pixman.org>`__
+  * `pixman/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pixman/package.py>`__
+
+Versions:
+  0.32.6
+Dependencies
+  `libpng`_
+
+Description:
+  The Pixman package contains a library that provides low-level pixel
+  manipulation features such as image compositing and trapezoid
+  rasterization.
+
+
+-----
+
+.. _pkg-config:
+
+pkg-config
+----------
+Links:
+  * `http://www.freedesktop.org/wiki/Software/pkg-config/ <http://www.freedesktop.org/wiki/Software/pkg-config/>`__
+  * `pkg-config/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pkg-config/package.py>`__
+
+Versions:
+  0.28
+Description:
+  pkg-config is a helper tool used when compiling applications and
+  libraries
+
+
+-----
+
+.. _pmgr_collective:
+
+pmgr_collective
+---------------
+Links:
+  * `http://www.sourceforge.net/projects/pmgrcollective <http://www.sourceforge.net/projects/pmgrcollective>`__
+  * `pmgr_collective/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/pmgr_collective/package.py>`__
+
+Versions:
+  1.0
+Description:
+  PMGR_COLLECTIVE provides a scalable network for bootstrapping MPI jobs.
+
+
+-----
+
+.. _postgresql:
+
+postgresql
+----------
+Links:
+  * `http://www.postgresql.org/ <http://www.postgresql.org/>`__
+  * `postgresql/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/postgresql/package.py>`__
+
+Versions:
+  9.3.4
+Dependencies
+  `openssl`_
+
+Description:
+  PostgreSQL is a powerful, open source object-relational database system.
+  It has more than 15 years of active development and a proven
+  architecture that has earned it a strong reputation for reliability,
+  data integrity, and correctness.
+
+
+-----
+
+.. _ppl:
+
+ppl
+---
+Links:
+  * `http://bugseng.com/products/ppl/ <http://bugseng.com/products/ppl/>`__
+  * `ppl/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ppl/package.py>`__
+
+Versions:
+  1.1
+Dependencies
+  `gmp`_
+
+Description:
+  The Parma Polyhedra Library (PPL) provides numerical abstractions
+  especially targeted at applications in the field of analysis and
+  verification of complex systems. These abstractions include convex
+  polyhedra, some special classes of polyhedra shapes that offer
+  interesting complexity/precision tradeoffs, and grids which represent
+  regularly spaced points that satisfy a set of linear congruence
+  relations. The library also supports finite powersets and products of
+  polyhedra and grids, a mixed integer linear programming problem solver
+  using an exact-arithmetic version of the simplex algorithm, a parametric
+  integer programming solver, and primitives for termination analysis via
+  the automatic synthesis of linear ranking functions.
+
+
+-----
+
+.. _protobuf:
+
+protobuf
+--------
+Links:
+  * `https://developers.google.com/protocol-buffers <https://developers.google.com/protocol-buffers>`__
+  * `protobuf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/protobuf/package.py>`__
+
+Versions:
+  2.5.0
+Description:
+  Google's data interchange format.
+
+
+-----
+
+.. _py-basemap:
+
+py-basemap
+----------
+Links:
+  * `http://matplotlib.org/basemap/ <http://matplotlib.org/basemap/>`__
+  * `py-basemap/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-basemap/package.py>`__
+
+Versions:
+  1.0.7
+Dependencies
+  `python`_, `geos`_, `py-setuptools`_, `py-numpy`_, `py-pil`_, `py-matplotlib`_
+
+Description:
+  The matplotlib basemap toolkit is a library for plotting 2D data on maps
+  in Python.
+
+
+-----
+
+.. _py-biopython:
+
+py-biopython
+------------
+Links:
+  * `http://biopython.org/wiki/Main_Page <http://biopython.org/wiki/Main_Page>`__
+  * `py-biopython/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-biopython/package.py>`__
+
+Versions:
+  1.65
+Dependencies
+  `python`_, `py-mx`_, `py-numpy`_
+
+Description:
+  It is a distributed collaborative effort to develop Python libraries and
+  applications which address the needs of current and future work in
+  bioinformatics.
+
+
+-----
+
+.. _py-cffi:
+
+py-cffi
+-------
+Links:
+  * `http://cffi.readthedocs.org/en/latest/ <http://cffi.readthedocs.org/en/latest/>`__
+  * `py-cffi/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-cffi/package.py>`__
+
+Versions:
+  1.1.2
+Dependencies
+  `python`_, `libffi`_, `py-pycparser`_, `py-setuptools`_
+
+Description:
+  Foreign Function Interface for Python calling C code
+
+
+-----
+
+.. _py-cython:
+
+py-cython
+---------
+Links:
+  * `https://pypi.python.org/pypi/cython <https://pypi.python.org/pypi/cython>`__
+  * `py-cython/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-cython/package.py>`__
+
+Versions:
+  0.22, 0.21.2
+Dependencies
+  `python`_
+
+Description:
+  The Cython compiler for writing C extensions for the Python language.
+
+
+-----
+
+.. _py-dateutil:
+
+py-dateutil
+-----------
+Links:
+  * `https://pypi.python.org/pypi/dateutil <https://pypi.python.org/pypi/dateutil>`__
+  * `py-dateutil/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-dateutil/package.py>`__
+
+Versions:
+  2.4.2, 2.4.0
+Dependencies
+  `python`_, `py-six`_, `py-setuptools`_
+
+Description:
+  Extensions to the standard Python datetime module.
+
+
+-----
+
+.. _py-epydoc:
+
+py-epydoc
+---------
+Links:
+  * `https://pypi.python.org/pypi/epydoc <https://pypi.python.org/pypi/epydoc>`__
+  * `py-epydoc/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-epydoc/package.py>`__
+
+Versions:
+  3.0.1
+Dependencies
+  `python`_
+
+Description:
+  Epydoc is a tool for generating API documentation documentation for
+  Python modules, based on their docstrings.
+
+
+-----
+
+.. _py-genders:
+
+py-genders
+----------
+Links:
+  * `https://github.com/chaos/genders <https://github.com/chaos/genders>`__
+  * `py-genders/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-genders/package.py>`__
+
+Versions:
+  1.22
+Dependencies
+  `python`_
+
+Description:
+  Genders is a static cluster configuration database used for cluster
+  configuration management. It is used by a variety of tools and scripts
+  for management of large clusters.
+
+
+-----
+
+.. _py-gnuplot:
+
+py-gnuplot
+----------
+Links:
+  * `http://gnuplot-py.sourceforge.net/ <http://gnuplot-py.sourceforge.net/>`__
+  * `py-gnuplot/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-gnuplot/package.py>`__
+
+Versions:
+  1.8
+Dependencies
+  `python`_, `py-numpy`_
+
+Description:
+  Gnuplot.py is a Python package that allows you to create graphs from
+  within Python using the gnuplot plotting program.
+
+
+-----
+
+.. _py-h5py:
+
+py-h5py
+-------
+Links:
+  * `https://pypi.python.org/pypi/h5py <https://pypi.python.org/pypi/h5py>`__
+  * `py-h5py/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-h5py/package.py>`__
+
+Versions:
+  2.5.0, 2.4.0
+Dependencies
+  `python`_, `py-cython`_, `py-numpy`_, `hdf5`_
+
+Description:
+  The h5py package provides both a high- and low-level interface to the
+  HDF5 library from Python.
+
+
+-----
+
+.. _py-ipython:
+
+py-ipython
+----------
+Links:
+  * `https://pypi.python.org/pypi/ipython <https://pypi.python.org/pypi/ipython>`__
+  * `py-ipython/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-ipython/package.py>`__
+
+Versions:
+  3.1.0, 2.3.1
+Dependencies
+  `python`_, `py-pygments`_, `py-setuptools`_
+
+Description:
+  IPython provides a rich toolkit to help you make the most out of using
+  Python interactively.
+
+
+-----
+
+.. _py-libxml2:
+
+py-libxml2
+----------
+Links:
+  * `https://xmlsoft.org/python.html <https://xmlsoft.org/python.html>`__
+  * `py-libxml2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-libxml2/package.py>`__
+
+Versions:
+  2.6.21
+Dependencies
+  `python`_, `libxml2`_, `libxslt`_
+
+Description:
+  A Python wrapper around libxml2.
+
+
+-----
+
+.. _py-lockfile:
+
+py-lockfile
+-----------
+Links:
+  * `https://pypi.python.org/pypi/lockfile <https://pypi.python.org/pypi/lockfile>`__
+  * `py-lockfile/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-lockfile/package.py>`__
+
+Versions:
+  0.10.2
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  The lockfile package exports a LockFile class which provides a simple
+  API for locking files. Unlike the Windows msvcrt.locking function, the
+  fcntl.lockf and flock functions, and the deprecated posixfile module,
+  the API is identical across both Unix (including Linux and Mac) and
+  Windows platforms. The lock mechanism relies on the atomic nature of the
+  link (on Unix) and mkdir (on Windows) system calls. An implementation
+  based on SQLite is also provided, more as a demonstration of the
+  possibilities it provides than as production-quality code.
+
+
+-----
+
+.. _py-mako:
+
+py-mako
+-------
+Links:
+  * `https://pypi.python.org/pypi/mako <https://pypi.python.org/pypi/mako>`__
+  * `py-mako/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-mako/package.py>`__
+
+Versions:
+  1.0.1
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  A super-fast templating language that borrows the best ideas from the
+  existing templating languages.
+
+
+-----
+
+.. _py-matplotlib:
+
+py-matplotlib
+-------------
+Links:
+  * `https://pypi.python.org/pypi/matplotlib <https://pypi.python.org/pypi/matplotlib>`__
+  * `py-matplotlib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-matplotlib/package.py>`__
+
+Versions:
+  1.4.3, 1.4.2
+Dependencies
+  `py-pyparsing`_, `bzip2`_, `py-ipython`_, `qt`_, `python`_, `qhull`_, `py-dateutil`_, `py-numpy`_, `py-six`_, `tcl`_, `py-nose`_, `tk`_, `py-pytz`_, `py-pyside`_
+
+Description:
+  Python plotting package.
+
+
+-----
+
+.. _py-mock:
+
+py-mock
+-------
+Links:
+  * `https://github.com/testing-cabal/mock <https://github.com/testing-cabal/mock>`__
+  * `py-mock/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-mock/package.py>`__
+
+Versions:
+  1.3.0
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  mock is a library for testing in Python. It allows you to replace parts
+  of your system under test with mock objects and make assertions about
+  how they have been used.
+
+
+-----
+
+.. _py-mpi4py:
+
+py-mpi4py
+---------
+Links:
+  * `https://pypi.python.org/pypi/mpi4py <https://pypi.python.org/pypi/mpi4py>`__
+  * `py-mpi4py/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-mpi4py/package.py>`__
+
+Versions:
+  1.3.1
+Dependencies
+  `python`_, mpi, `py-setuptools`_
+
+Description:
+  This package provides Python bindings for the Message Passing Interface
+  (MPI) standard. It is implemented on top of the MPI-1/MPI-2
+  specification and exposes an API which grounds on the standard MPI-2 C++
+  bindings.
+
+
+-----
+
+.. _py-mx:
+
+py-mx
+-----
+Links:
+  * `http://www.egenix.com/products/python/mxBase/ <http://www.egenix.com/products/python/mxBase/>`__
+  * `py-mx/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-mx/package.py>`__
+
+Versions:
+  3.2.8
+Dependencies
+  `python`_
+
+Description:
+  The eGenix.com mx Base Distribution for Python is a collection of
+  professional quality software tools which enhance Python's usability in
+  many important areas such as fast text searching, date/time processing
+  and high speed data types.
+
+
+-----
+
+.. _py-nose:
+
+py-nose
+-------
+Links:
+  * `https://pypi.python.org/pypi/nose <https://pypi.python.org/pypi/nose>`__
+  * `py-nose/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-nose/package.py>`__
+
+Versions:
+  1.3.6, 1.3.4
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  nose extends the test loading and running features of unittest, making
+  it easier to write, find and run tests.
+
+
+-----
+
+.. _py-numpy:
+
+py-numpy
+--------
+Links:
+  * `https://pypi.python.org/pypi/numpy <https://pypi.python.org/pypi/numpy>`__
+  * `py-numpy/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-numpy/package.py>`__
+
+Versions:
+  1.9.2, 1.9.1
+Dependencies
+  `python`_, `netlib-lapack`_, `py-nose`_, `netlib-blas`_
+
+Description:
+  array processing for numbers, strings, records, and objects.
+
+
+-----
+
+.. _py-pandas:
+
+py-pandas
+---------
+Links:
+  * `http://pandas.pydata.org/ <http://pandas.pydata.org/>`__
+  * `py-pandas/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pandas/package.py>`__
+
+Versions:
+  0.16.1, 0.16.0
+Dependencies
+  `py-scipy`_, `llvm`_, `python`_, `py-dateutil`_, `py-numpy`_, `libpciaccess`_, `libdrm`_, `py-pytz`_, `py-setuptools`_, `mesa`_, `py-matplotlib`_
+
+Description:
+  pandas is a Python package providing fast, flexible, and expressive data
+  structures designed to make working with relational or labeled data both
+  easy and intuitive. It aims to be the fundamental high-level building
+  block for doing practical, real world data analysis in Python.
+  Additionally, it has the broader goal of becoming the most powerful and
+  flexible open source data analysis / manipulation tool available in any
+  language.
+
+
+-----
+
+.. _py-pexpect:
+
+py-pexpect
+----------
+Links:
+  * `https://pypi.python.org/pypi/pexpect <https://pypi.python.org/pypi/pexpect>`__
+  * `py-pexpect/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pexpect/package.py>`__
+
+Versions:
+  3.3
+Dependencies
+  `python`_
+
+Description:
+  Pexpect allows easy control of interactive console applications.
+
+
+-----
+
+.. _py-pil:
+
+py-pil
+------
+Links:
+  * `http://www.pythonware.com/products/pil/ <http://www.pythonware.com/products/pil/>`__
+  * `py-pil/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pil/package.py>`__
+
+Versions:
+  1.1.7
+Dependencies
+  `python`_
+
+Description:
+  The Python Imaging Library (PIL) adds image processing capabilities to
+  your Python interpreter. This library supports many file formats, and
+  provides powerful image processing and graphics capabilities.
+
+
+-----
+
+.. _py-pmw:
+
+py-pmw
+------
+Links:
+  * `https://pypi.python.org/pypi/Pmw <https://pypi.python.org/pypi/Pmw>`__
+  * `py-pmw/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pmw/package.py>`__
+
+Versions:
+  2.0.0
+Dependencies
+  `python`_
+
+Description:
+  Pmw is a toolkit for building high-level compound widgets, or
+  megawidgets, constructed using other widgets as component parts.
+
+
+-----
+
+.. _py-pychecker:
+
+py-pychecker
+------------
+Links:
+  * `http://pychecker.sourceforge.net/ <http://pychecker.sourceforge.net/>`__
+  * `py-pychecker/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pychecker/package.py>`__
+
+Versions:
+  0.8.19
+Dependencies
+  `python`_
+
+Description:
+
+
+-----
+
+.. _py-pycparser:
+
+py-pycparser
+------------
+Links:
+  * `https://github.com/eliben/pycparser <https://github.com/eliben/pycparser>`__
+  * `py-pycparser/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pycparser/package.py>`__
+
+Versions:
+  2.13
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  pycparser is a complete parser of the C language, written in pure python
+
+
+-----
+
+.. _py-pyelftools:
+
+py-pyelftools
+-------------
+Links:
+  * `https://pypi.python.org/pypi/pyelftools <https://pypi.python.org/pypi/pyelftools>`__
+  * `py-pyelftools/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pyelftools/package.py>`__
+
+Versions:
+  0.23
+Dependencies
+  `python`_
+
+Description:
+  A pure-Python library for parsing and analyzing ELF files and DWARF
+  debugging information
+
+
+-----
+
+.. _py-pygments:
+
+py-pygments
+-----------
+Links:
+  * `https://pypi.python.org/pypi/pygments <https://pypi.python.org/pypi/pygments>`__
+  * `py-pygments/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pygments/package.py>`__
+
+Versions:
+  2.0.2, 2.0.1
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  Pygments is a syntax highlighting package written in Python.
+
+
+-----
+
+.. _py-pylint:
+
+py-pylint
+---------
+Links:
+  * `https://pypi.python.org/pypi/pylint <https://pypi.python.org/pypi/pylint>`__
+  * `py-pylint/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pylint/package.py>`__
+
+Versions:
+  1.4.3, 1.4.1
+Dependencies
+  `python`_, `py-nose`_, `py-setuptools`_
+
+Description:
+  array processing for numbers, strings, records, and objects.
+
+
+-----
+
+.. _py-pypar:
+
+py-pypar
+--------
+Links:
+  * `http://code.google.com/p/pypar/ <http://code.google.com/p/pypar/>`__
+  * `py-pypar/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pypar/package.py>`__
+
+Versions:
+  2.1.5_108
+Dependencies
+  `python`_, mpi
+
+Description:
+  Pypar is an efficient but easy-to-use module that allows programs
+  written in Python to run in parallel on multiple processors and
+  communicate using MPI.
+
+
+-----
+
+.. _py-pyparsing:
+
+py-pyparsing
+------------
+Links:
+  * `https://pypi.python.org/pypi/pyparsing <https://pypi.python.org/pypi/pyparsing>`__
+  * `py-pyparsing/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pyparsing/package.py>`__
+
+Versions:
+  2.0.3
+Dependencies
+  `python`_
+
+Description:
+  A Python Parsing Module.
+
+
+-----
+
+.. _py-pyqt:
+
+py-pyqt
+-------
+Links:
+  * `http://www.riverbankcomputing.com/software/pyqt/intro <http://www.riverbankcomputing.com/software/pyqt/intro>`__
+  * `py-pyqt/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pyqt/package.py>`__
+
+Versions:
+  4.11.3
+Dependencies
+  `python`_, `py-sip`_, `qt`_
+
+Description:
+  PyQt is a set of Python v2 and v3 bindings for Digia's Qt application
+  framework and runs on all platforms supported by Qt including Windows,
+  MacOS/X and Linux.
+
+
+-----
+
+.. _py-pyside:
+
+py-pyside
+---------
+Links:
+  * `https://pypi.python.org/pypi/pyside <https://pypi.python.org/pypi/pyside>`__
+  * `py-pyside/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pyside/package.py>`__
+
+Versions:
+  1.2.2
+Dependencies
+  `python`_, `qt`_, `py-setuptools`_
+
+Description:
+  array processing for numbers, strings, records, and objects.
+
+
+-----
+
+.. _py-python-daemon:
+
+py-python-daemon
+----------------
+Links:
+  * `https://pypi.python.org/pypi/python-daemon/ <https://pypi.python.org/pypi/python-daemon/>`__
+  * `py-python-daemon/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-python-daemon/package.py>`__
+
+Versions:
+  2.0.5
+Dependencies
+  `python`_, `py-lockfile`_, `py-setuptools`_
+
+Description:
+  Library to implement a well-behaved Unix daemon process. This library
+  implements the well-behaved daemon specification of PEP Standard daemon
+  process. A well-behaved Unix daemon process is tricky to get right, but
+  the required steps are much the same for every daemon program. A
+  DaemonContext instance holds the behaviour and configured process
+  environment for the program; use the instance as a context manager to
+  enter a daemon state.
+
+
+-----
+
+.. _py-pytz:
+
+py-pytz
+-------
+Links:
+  * `https://pypi.python.org/pypi/pytz <https://pypi.python.org/pypi/pytz>`__
+  * `py-pytz/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-pytz/package.py>`__
+
+Versions:
+  2015.4, 2014.10
+Dependencies
+  `python`_
+
+Description:
+  World timezone definitions, modern and historical.
+
+
+-----
+
+.. _py-rpy2:
+
+py-rpy2
+-------
+Links:
+  * `https://pypi.python.org/pypi/rpy2 <https://pypi.python.org/pypi/rpy2>`__
+  * `py-rpy2/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-rpy2/package.py>`__
+
+Versions:
+  2.5.6, 2.5.4
+Dependencies
+  `python`_, `R`_, `py-setuptools`_
+
+Description:
+  rpy2 is a redesign and rewrite of rpy. It is providing a low-level
+  interface to R from Python, a proposed high-level interface, including
+  wrappers to graphical libraries, as well as R-like structures and
+  functions.
+
+
+-----
+
+.. _py-scientificpython:
+
+py-scientificpython
+-------------------
+Links:
+  * `https://sourcesup.renater.fr/projects/scientific-py/ <https://sourcesup.renater.fr/projects/scientific-py/>`__
+  * `py-scientificpython/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-scientificpython/package.py>`__
+
+Versions:
+  2.8.1
+Dependencies
+  `python`_
+
+Description:
+  ScientificPython is a collection of Python modules for scientific
+  computing. It contains support for geometry, mathematical functions,
+  statistics, physical units, IO, visualization, and parallelization.
+
+
+-----
+
+.. _py-scikit-learn:
+
+py-scikit-learn
+---------------
+Links:
+  * `https://pypi.python.org/pypi/scikit-learn <https://pypi.python.org/pypi/scikit-learn>`__
+  * `py-scikit-learn/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-scikit-learn/package.py>`__
+
+Versions:
+  0.16.1, 0.15.2
+Dependencies
+  `python`_
+
+Description:
+
+
+-----
+
+.. _py-scipy:
+
+py-scipy
+--------
+Links:
+  * `https://pypi.python.org/pypi/scipy <https://pypi.python.org/pypi/scipy>`__
+  * `py-scipy/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-scipy/package.py>`__
+
+Versions:
+  0.15.1, 0.15.0
+Dependencies
+  `python`_, `lapack`_, `blas`_, `py-nose`_, `py-numpy`_
+
+Description:
+  Scientific Library for Python.
+
+
+-----
+
+.. _py-setuptools:
+
+py-setuptools
+-------------
+Links:
+  * `https://pypi.python.org/pypi/setuptools <https://pypi.python.org/pypi/setuptools>`__
+  * `py-setuptools/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-setuptools/package.py>`__
+
+Versions:
+  18.1, 16.0, 11.3.1
+Dependencies
+  `python`_
+
+Description:
+  Easily download, build, install, upgrade, and uninstall Python packages.
+
+
+-----
+
+.. _py-shiboken:
+
+py-shiboken
+-----------
+Links:
+  * `https://shiboken.readthedocs.org/ <https://shiboken.readthedocs.org/>`__
+  * `py-shiboken/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-shiboken/package.py>`__
+
+Versions:
+  1.2.2
+Dependencies
+  `python`_, `libxml2`_, `qt`_, `py-setuptools`_
+
+Description:
+  Shiboken generates bindings for C++ libraries using CPython source code.
+
+
+-----
+
+.. _py-sip:
+
+py-sip
+------
+Links:
+  * `http://www.riverbankcomputing.com/software/sip/intro <http://www.riverbankcomputing.com/software/sip/intro>`__
+  * `py-sip/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-sip/package.py>`__
+
+Versions:
+  4.16.7, 4.16.5
+Dependencies
+  `python`_
+
+Description:
+  SIP is a tool that makes it very easy to create Python bindings for C
+  and C++ libraries.
+
+
+-----
+
+.. _py-six:
+
+py-six
+------
+Links:
+  * `https://pypi.python.org/pypi/six <https://pypi.python.org/pypi/six>`__
+  * `py-six/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-six/package.py>`__
+
+Versions:
+  1.9.0
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  Python 2 and 3 compatibility utilities.
+
+
+-----
+
+.. _py-sympy:
+
+py-sympy
+--------
+Links:
+  * `https://pypi.python.org/pypi/sympy <https://pypi.python.org/pypi/sympy>`__
+  * `py-sympy/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-sympy/package.py>`__
+
+Versions:
+  0.7.6
+Dependencies
+  `python`_
+
+Description:
+  SymPy is a Python library for symbolic mathematics.
+
+
+-----
+
+.. _py-virtualenv:
+
+py-virtualenv
+-------------
+Links:
+  * `http://virtualenv.readthedocs.org/projects/virtualenv/ <http://virtualenv.readthedocs.org/projects/virtualenv/>`__
+  * `py-virtualenv/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-virtualenv/package.py>`__
+
+Versions:
+  13.0.1, 1.11.6
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+  virtualenv is a tool to create isolated Python environments.
+
+
+-----
+
+.. _py-yapf:
+
+py-yapf
+-------
+Links:
+  * `https://github.com/google/yapf <https://github.com/google/yapf>`__
+  * `py-yapf/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/py-yapf/package.py>`__
+
+Versions:
+  0.2.1
+Dependencies
+  `python`_, `py-setuptools`_
+
+Description:
+   Yet Another Python Formatter
+
+
+-----
+
+.. _python:
+
+python
+------
+Links:
+  * `http://www.python.org <http://www.python.org>`__
+  * `python/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/python/package.py>`__
+
+Versions:
+  2.7.10, 2.7.8
+Dependencies
+  `readline`_, `ncurses`_, `bzip2`_, `openssl`_, `sqlite`_
+
+Description:
+  The Python programming language.
+
+
+-----
+
+.. _qhull:
+
+qhull
+-----
+Links:
+  * `http://www.qhull.org <http://www.qhull.org>`__
+  * `qhull/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/qhull/package.py>`__
+
+Versions:
+  1.0
+Description:
+  Qhull computes the convex hull, Delaunay triangulation, Voronoi diagram,
+  halfspace intersection about a point, furt hest-site Delaunay
+  triangulation, and furthest-site Voronoi diagram. The source code runs
+  in 2-d, 3-d, 4-d, and higher dimensions. Qhull implements the Quickhull
+  algorithm for computing the convex hull. It handles roundoff errors from
+  floating point arithmetic. It computes volumes, surface areas, and
+  approximations to the convex hull. Qhull does not support triangulation
+  of non-convex surfaces, mesh generation of non-convex objects, medium-
+  sized inputs in 9-D and higher, alpha shapes, weighted Voronoi diagrams,
+  Voronoi volumes, or constrained Delaunay triangulations.
+
+
+-----
+
+.. _qt:
+
+qt
+--
+Links:
+  * `http://qt.io <http://qt.io>`__
+  * `qt/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/qt/package.py>`__
+
+Versions:
+  5.4.0, 5.3.2, 5.2.1, 4.8.6
+Dependencies
+  `glib`_, `libtiff`_, `libxml2`_, `dbus`_, `zlib`_, `jpeg`_, `gtkplus`_, `libxcb`_, `libpng`_, `libmng`_, `mesa`_
+
+Description:
+  Qt is a comprehensive cross-platform C++ application framework.
+
+
+-----
+
+.. _qthreads:
+
+qthreads
+--------
+Links:
+  * `http://www.cs.sandia.gov/qthreads/ <http://www.cs.sandia.gov/qthreads/>`__
+  * `qthreads/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/qthreads/package.py>`__
+
+Versions:
+  1.10
+Description:
+  The qthreads API is designed to make using large numbers of threads
+  convenient and easy, and to allow portable access to threading
+  constructs used in massively parallel shared memory environments. The
+  API maps well to both MTA-style threading and PIM-style threading, and
+  we provide an implementation of this interface in both a standard SMP
+  context as well as the SST context. The qthreads API provides access to
+  full/empty-bit (FEB) semantics, where every word of memory can be marked
+  either full or empty, and a thread can wait for any word to attain
+  either state.
+
+
+-----
+
+.. _R:
+
+R
+-
+Links:
+  * `http://www.example.com <http://www.example.com>`__
+  * `R/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/R/package.py>`__
+
+Versions:
+  3.1.2
+Dependencies
+  `glib`_, `freetype`_, `libtiff`_, `ncurses`_, `cairo`_, `zlib`_, `jpeg`_, `tcl`_, `tk`_, `readline`_, `pango`_, `icu`_
+
+Description:
+  R is 'GNU S', a freely available language and environment for
+  statistical computing and graphics which provides a wide va riety of
+  statistical and graphical techniques: linear and nonlinear modelling,
+  statistical tests, time series analysis, classification, clustering,
+  etc. Please consult the R project homepage for further information.
+
+
+-----
+
+.. _ravel:
+
+ravel
+-----
+Links:
+  * `https://github.com/scalability-llnl/ravel <https://github.com/scalability-llnl/ravel>`__
+  * `ravel/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ravel/package.py>`__
+
+Versions:
+  1.0.0
+Dependencies
+  `muster`_, `otf2`_, `cmake`_, `qt`_, `otf`_
+
+Description:
+  Ravel is a parallel communication trace visualization tool that orders
+  events according to logical time.
+
+
+-----
+
+.. _readline:
+
+readline
+--------
+Links:
+  * `http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html <http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html>`__
+  * `readline/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/readline/package.py>`__
+
+Versions:
+  6.3
+Dependencies
+  `ncurses`_
+
+Description:
+  The GNU Readline library provides a set of functions for use by
+  applications that allow users to edit command li nes as they are typed
+  in. Both Emacs and vi editing modes are available. The Readline library
+  includes additional functions to maintain a list of previously-entered
+  command lines, to recall and perhaps reedit those lines, and perform
+  csh-like history expansion on previous commands.
+
+
+-----
+
+.. _rose:
+
+rose
+----
+Links:
+  * `http://rosecompiler.org/ <http://rosecompiler.org/>`__
+  * `rose/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/rose/package.py>`__
+
+Versions:
+  master
+Dependencies
+  `boost`_, `autoconf`_, `libtool`_, `jdk`_, `automake`_
+
+Description:
+  A compiler infrastructure to build source-to-source program
+  transformation and analysis tools. (Developed at Lawrence Livermore
+  National Lab)
+
+
+-----
+
+.. _ruby:
+
+ruby
+----
+Links:
+  * `https://www.ruby-lang.org/ <https://www.ruby-lang.org/>`__
+  * `ruby/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/ruby/package.py>`__
+
+Versions:
+  2.2.0
+Description:
+  A dynamic, open source programming language with a focus on simplicity
+  and productivity.
+
+
+-----
+
+.. _SAMRAI:
+
+SAMRAI
+------
+Links:
+  * `https://computation.llnl.gov/project/SAMRAI/ <https://computation.llnl.gov/project/SAMRAI/>`__
+  * `SAMRAI/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/SAMRAI/package.py>`__
+
+Versions:
+  3.9.1, 3.7.3, 3.7.2, 3.6.3-beta, 3.5.2-beta, 3.5.0-beta, 3.4.1-beta, 3.3.3-beta, 3.3.2-beta, 2.4.4
+Dependencies
+  `zlib`_, `boost`_, `hdf5`_, mpi
+
+Description:
+  SAMRAI (Structured Adaptive Mesh Refinement Application Infrastructure)
+  is an object-oriented C++ software library enables exploration of
+  numerical, algorithmic, parallel computing, and software issues
+  associated with applying structured adaptive mesh refinement (SAMR)
+  technology in large-scale parallel application development.
+
+
+-----
+
+.. _samtools:
+
+samtools
+--------
+Links:
+  * `www.htslib.org <www.htslib.org>`__
+  * `samtools/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/samtools/package.py>`__
+
+Versions:
+  1.2
+Dependencies
+  `zlib`_, `mpc`_
+
+Description:
+  SAM Tools provide various utilities for manipulating alignments in the
+  SAM format, including sorting, merging, indexing and generating
+  alignments in a per-position format
+
+
+-----
+
+.. _scalasca:
+
+scalasca
+--------
+Links:
+  * `http://www.scalasca.org <http://www.scalasca.org>`__
+  * `scalasca/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scalasca/package.py>`__
+
+Versions:
+  2.1
+Dependencies
+  `otf2`_, `cube`_, mpi
+
+Description:
+  Scalasca is a software tool that supports the performance optimization
+  of parallel programs by measuring and analyzing their runtime behavior.
+  The analysis identifies potential performance bottlenecks - in
+  particular those concerning communication and synchronization - and
+  offers guidance in exploring their causes.
+
+
+-----
+
+.. _scorep:
+
+scorep
+------
+Links:
+  * `http://www.vi-hps.org/projects/score-p <http://www.vi-hps.org/projects/score-p>`__
+  * `scorep/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scorep/package.py>`__
+
+Versions:
+  1.3, 1.2.3
+Dependencies
+  `otf2`_, `cube`_, `opari2`_, `papi`_, mpi
+
+Description:
+  The Score-P measurement infrastructure is a highly scalable and easy-to-
+  use tool suite for profiling, event tracing, and online analysis of HPC
+  applications.
+
+
+-----
+
+.. _scotch:
+
+scotch
+------
+Links:
+  * `http://www.labri.fr/perso/pelegrin/scotch/ <http://www.labri.fr/perso/pelegrin/scotch/>`__
+  * `scotch/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scotch/package.py>`__
+
+Versions:
+  6.0.3
+Dependencies
+  mpi
+
+Description:
+  Scotch is a software package for graph and mesh/hypergraph partitioning,
+  graph clustering, and sparse matrix ordering.
+
+
+-----
+
+.. _scr:
+
+scr
+---
+Links:
+  * `https://computation.llnl.gov/project/scr/ <https://computation.llnl.gov/project/scr/>`__
+  * `scr/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/scr/package.py>`__
+
+Versions:
+  1.1.8, 1.1-7
+Dependencies
+  mpi
+
+Description:
+  SCR caches checkpoint data in storage on the compute nodes of a Linux
+  cluster to provide a fast, scalable checkpoint/restart capability for
+  MPI codes
+
+
+-----
+
+.. _silo:
+
+silo
+----
+Links:
+  * `http://wci.llnl.gov/simulation/computer-codes/silo <http://wci.llnl.gov/simulation/computer-codes/silo>`__
+  * `silo/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/silo/package.py>`__
+
+Versions:
+  4.8
+Dependencies
+  `hdf5`_
+
+Description:
+  Silo is a library for reading and writing a wide variety of scientific
+  data to binary, disk files.
+
+
+-----
+
+.. _snappy:
+
+snappy
+------
+Links:
+  * `https://code.google.com/p/snappy <https://code.google.com/p/snappy>`__
+  * `snappy/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/snappy/package.py>`__
+
+Versions:
+  1.1.3
+Description:
+  A fast compressor/decompressor: https://code.google.com/p/snappy
+
+
+-----
+
+.. _spindle:
+
+spindle
+-------
+Links:
+  * `https://computation.llnl.gov/project/spindle/ <https://computation.llnl.gov/project/spindle/>`__
+  * `spindle/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/spindle/package.py>`__
+
+Versions:
+  0.8.1
+Dependencies
+  `launchmon`_
+
+Description:
+  Spindle improves the library-loading performance of dynamically linked
+  HPC applications. Without Spindle large MPI jobs can overload on a
+  shared file system when loading dynamically linked libraries, causing
+  site-wide performance problems.
+
+
+-----
+
+.. _sqlite:
+
+sqlite
+------
+Links:
+  * `www.sqlite.org <www.sqlite.org>`__
+  * `sqlite/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/sqlite/package.py>`__
+
+Versions:
+  3.8.5
+Description:
+  SQLite3 is an SQL database engine in a C library. Programs that link the
+  SQLite3 library can have SQL database access without running a separate
+  RDBMS process.
+
+
+-----
+
+.. _stat:
+
+stat
+----
+Links:
+  * `http://paradyn.org/STAT/STAT.html <http://paradyn.org/STAT/STAT.html>`__
+  * `stat/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/stat/package.py>`__
+
+Versions:
+  2.2.0, 2.1.0, 2.0.0
+Dependencies
+  `launchmon`_, `dyninst`_, `graphviz`_, `mrnet`_, `libelf`_, `graphlib`_, `libdwarf`_
+
+Description:
+  Library to create, manipulate, and export graphs Graphlib.
+
+
+-----
+
+.. _sundials:
+
+sundials
+--------
+Links:
+  * `http://computation.llnl.gov/casc/sundials/ <http://computation.llnl.gov/casc/sundials/>`__
+  * `sundials/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/sundials/package.py>`__
+
+Versions:
+  2.5.0
+Dependencies
+  mpi
+
+Description:
+  SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation
+  Solvers)
+
+
+-----
+
+.. _swig:
+
+swig
+----
+Links:
+  * `http://www.swig.org <http://www.swig.org>`__
+  * `swig/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/swig/package.py>`__
+
+Versions:
+  3.0.2
+Description:
+  SWIG is an interface compiler that connects programs written in C and
+  C++ with scripting languages such as Perl, Python, Ruby, and Tcl. It
+  works by taking the declarations found in C/C++ header files and using
+  them to generate the wrapper code that scripting languages need to
+  access the underlying C/C++ code. In addition, SWIG provides a variety
+  of customization features that let you tailor the wrapping process to
+  suit your application.
+
+
+-----
+
+.. _task:
+
+task
+----
+Links:
+  * `http://www.taskwarrior.org <http://www.taskwarrior.org>`__
+  * `task/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/task/package.py>`__
+
+Versions:
+  2.4.4
+Dependencies
+  `gnutls`_, `libuuid`_
+
+Description:
+  Feature-rich console based todo list manager
+
+
+-----
+
+.. _taskd:
+
+taskd
+-----
+Links:
+  * `http://www.taskwarrior.org <http://www.taskwarrior.org>`__
+  * `taskd/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/taskd/package.py>`__
+
+Versions:
+  1.1.0
+Dependencies
+  `gnutls`_, `libuuid`_
+
+Description:
+  TaskWarrior task synchronization daemon
+
+
+-----
+
+.. _tau:
+
+tau
+---
+Links:
+  * `http://www.cs.uoregon.edu/research/tau <http://www.cs.uoregon.edu/research/tau>`__
+  * `tau/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tau/package.py>`__
+
+Versions:
+  2.23.1
+Description:
+  A portable profiling and tracing toolkit for performance analysis of
+  parallel programs written in Fortran, C, C++, UPC, Java, Python.
+
+
+-----
+
+.. _tcl:
+
+tcl
+---
+Links:
+  * `http://www.tcl.tk <http://www.tcl.tk>`__
+  * `tcl/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tcl/package.py>`__
+
+Versions:
+  8.6.3
+Dependencies
+  `zlib`_
+
+Description:
+  Tcl (Tool Command Language) is a very powerful but easy to learn dynamic
+  programming language, suitable for a very wide range of uses, including
+  web and desktop applications, networking, administration, testing and
+  many more. Open source and business-friendly, Tcl is a mature yet
+  evolving language that is truly cross platform, easily deployed and
+  highly extensible.
+
+
+-----
+
+.. _the_silver_searcher:
+
+the_silver_searcher
+-------------------
+Links:
+  * `http://geoff.greer.fm/ag/ <http://geoff.greer.fm/ag/>`__
+  * `the_silver_searcher/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/the_silver_searcher/package.py>`__
+
+Versions:
+  0.30.0
+Dependencies
+  `pcre`_, `xz`_
+
+Description:
+  Fast recursive grep alternative
+
+
+-----
+
+.. _thrift:
+
+thrift
+------
+Links:
+  * `http://thrift.apache.org <http://thrift.apache.org>`__
+  * `thrift/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/thrift/package.py>`__
+
+Versions:
+  0.9.2
+Dependencies
+  `flex`_, `jdk`_, `python`_, `openssl`_, `automake`_, `bison`_, `libtool`_, `autoconf`_, `boost`_
+
+Description:
+  The Apache Thrift software framework, for scalable cross-language
+  services development, combines a software stack with a code generation
+  engine to build services that work efficiently and seamlessly between
+  C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa,
+  JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.
+
+
+-----
+
+.. _tk:
+
+tk
+--
+Links:
+  * `http://www.tcl.tk <http://www.tcl.tk>`__
+  * `tk/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tk/package.py>`__
+
+Versions:
+  src
+Dependencies
+  `tcl`_
+
+Description:
+  Tk is a graphical user interface toolkit that takes developing desktop
+  applications to a higher level than conventional approaches. Tk is the
+  standard GUI not only for Tcl, but for many other dynamic languages, and
+  can produce rich, native applications that run unchanged across Windows,
+  Mac OS X, Linux and more.
+
+
+-----
+
+.. _tmux:
+
+tmux
+----
+Links:
+  * `http://tmux.sourceforge.net <http://tmux.sourceforge.net>`__
+  * `tmux/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tmux/package.py>`__
+
+Versions:
+  1.9a
+Dependencies
+  `ncurses`_, `libevent`_
+
+Description:
+  tmux is a terminal multiplexer. What is a terminal multiplexer? It lets
+  you switch easily between several programs in one terminal, detach them
+  (they keep running in the background) and reattach them to a different
+  terminal. And do a lot more.
+
+
+-----
+
+.. _tmuxinator:
+
+tmuxinator
+----------
+Links:
+  * `https://github.com/tmuxinator/tmuxinator <https://github.com/tmuxinator/tmuxinator>`__
+  * `tmuxinator/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/tmuxinator/package.py>`__
+
+Versions:
+  0.6.11
+Dependencies
+  `ruby`_
+
+Description:
+  A session configuration creator and manager for tmux
+
+
+-----
+
+.. _uncrustify:
+
+uncrustify
+----------
+Links:
+  * `http://uncrustify.sourceforge.net/ <http://uncrustify.sourceforge.net/>`__
+  * `uncrustify/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/uncrustify/package.py>`__
+
+Versions:
+  0.61
+Description:
+  Source Code Beautifier for C, C++, C#, ObjectiveC, D, Java, Pawn and
+  VALA
+
+
+-----
+
+.. _util-linux:
+
+util-linux
+----------
+Links:
+  * `http://freecode.com/projects/util-linux <http://freecode.com/projects/util-linux>`__
+  * `util-linux/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/util-linux/package.py>`__
+
+Versions:
+  2.25
+Dependencies
+  `python`_
+
+Description:
+  Util-linux is a suite of essential utilities for any Linux system.
+
+
+-----
+
+.. _vim:
+
+vim
+---
+Links:
+  * `http://www.vim.org <http://www.vim.org>`__
+  * `vim/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/vim/package.py>`__
+
+Versions:
+  7.4, 7.3, 7.2, 7.1, 7.0, 6.4, 6.3, 6.2, 6.1.405, 6.1, 6.0
+Dependencies
+  `python`_, `cscope`_, `ruby`_
+
+Description:
+  Vim is a highly configurable text editor built to enable efficient text
+  editing. It is an improved version of the vi editor distributed with
+  most UNIX systems. Vim is often called a "programmer's editor," and so
+  useful for programming that many consider it an entire IDE. It's not
+  just for programmers, though. Vim is perfect for all kinds of text
+  editing, from composing email to editing configuration files.
+
+
+-----
+
+.. _vtk:
+
+vtk
+---
+Links:
+  * `http://www.vtk.org <http://www.vtk.org>`__
+  * `vtk/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/vtk/package.py>`__
+
+Versions:
+  6.1.0
+Dependencies
+  `qt`_
+
+Description:
+  The Visualization Toolkit (VTK) is an open-source, freely available
+  software system for 3D computer graphics, image processing and
+  visualization.
+
+
+-----
+
+.. _wget:
+
+wget
+----
+Links:
+  * `http://www.gnu.org/software/wget/ <http://www.gnu.org/software/wget/>`__
+  * `wget/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wget/package.py>`__
+
+Versions:
+  1.16
+Dependencies
+  `openssl`_
+
+Description:
+  GNU Wget is a free software package for retrieving files using HTTP,
+  HTTPS and FTP, the most widely-used Internet protocols. It is a non-
+  interactive commandline tool, so it may easily be called from scripts,
+  cron jobs, terminals without X-Windows support, etc.
+
+
+-----
+
+.. _wx:
+
+wx
+--
+Links:
+  * `http://www.wxwidgets.org/ <http://www.wxwidgets.org/>`__
+  * `wx/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wx/package.py>`__
+
+Versions:
+  3.0.1, 2.8.12
+Description:
+  wxWidgets is a C++ library that lets developers create applications for
+  Windows, Mac OS X, Linux and other platforms with a single code base. It
+  has popular language bindings for Python, Perl, Ruby and many other
+  languages, and unlike other cross-platform toolkits, wxWidgets gives
+  applications a truly native look and feel because it uses the platform's
+  native API rather than emulating the GUI. It's also extensive, free,
+  open-source and mature.
+
+
+-----
+
+.. _wxpropgrid:
+
+wxpropgrid
+----------
+Links:
+  * `http://wxpropgrid.sourceforge.net/ <http://wxpropgrid.sourceforge.net/>`__
+  * `wxpropgrid/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/wxpropgrid/package.py>`__
+
+Versions:
+  1.4.15
+Dependencies
+  `wx`_
+
+Description:
+  wxPropertyGrid is a property sheet control for wxWidgets. In other
+  words, it is a specialized two-column grid for editing properties such
+  as strings, numbers, flagsets, string arrays, and colours.
+
+
+-----
+
+.. _xcb-proto:
+
+xcb-proto
+---------
+Links:
+  * `http://xcb.freedesktop.org/ <http://xcb.freedesktop.org/>`__
+  * `xcb-proto/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/xcb-proto/package.py>`__
+
+Versions:
+  1.11
+Description:
+  Protocol for libxcb
+
+
+-----
+
+.. _xz:
+
+xz
+--
+Links:
+  * `http://tukaani.org/xz/ <http://tukaani.org/xz/>`__
+  * `xz/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/xz/package.py>`__
+
+Versions:
+  5.2.0
+Description:
+  XZ Utils is free general-purpose data compression software with high
+  compression ratio. XZ Utils were written for POSIX-like systems, but
+  also work on some not-so-POSIX systems. XZ Utils are the successor to
+  LZMA Utils.
+
+
+-----
+
+.. _yasm:
+
+yasm
+----
+Links:
+  * `http://yasm.tortall.net <http://yasm.tortall.net>`__
+  * `yasm/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/yasm/package.py>`__
+
+Versions:
+  1.3.0
+Description:
+  Yasm is a complete rewrite of the NASM-2.11.06 assembler. It supports
+  the x86 and AMD64 instruction sets, accepts NASM and GAS assembler
+  syntaxes and outputs binary, ELF32 and ELF64 object formats.
+
+
+-----
+
+.. _zeromq:
+
+zeromq
+------
+Links:
+  * `http://zguide.zeromq.org/ <http://zguide.zeromq.org/>`__
+  * `zeromq/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/zeromq/package.py>`__
+
+Versions:
+  4.1.2, 4.1.1, 4.0.7, 4.0.6, 4.0.5
+Dependencies
+  `libsodium`_
+
+Description:
+   The ZMQ networking/concurrency library and core API
+
+
+-----
+
+.. _zlib:
+
+zlib
+----
+Links:
+  * `http://zlib.net <http://zlib.net>`__
+  * `zlib/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/zlib/package.py>`__
+
+Versions:
+  1.2.8
+Description:
+  zlib is designed to be a free, general-purpose, legally unencumbered --
+  that is, not covered by any patents -- lossless data-compression library
+  for use on virtually any computer hardware and operating system.
+
+
+-----
+
+.. _zsh:
+
+zsh
+---
+Links:
+  * `http://www.zsh.org <http://www.zsh.org>`__
+  * `zsh/package.py <https://github.com/scalability-llnl/spack/blob/master/var/spack/packages/zsh/package.py>`__
+
+Versions:
+  5.0.8
+Dependencies
+  `pcre`_
+
+Description:
+   The ZSH shell
+
+
+-----

@@ -1,0 +1,201 @@
+spack package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+
+    spack.cmd
+    spack.compilers
+    spack.hooks
+    spack.test
+    spack.util
+
+Submodules
+----------
+
+spack.architecture module
+-------------------------
+
+.. automodule:: spack.architecture
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.build_environment module
+------------------------------
+
+.. automodule:: spack.build_environment
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.compiler module
+---------------------
+
+.. automodule:: spack.compiler
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.concretize module
+-----------------------
+
+.. automodule:: spack.concretize
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.config module
+-------------------
+
+.. automodule:: spack.config
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.directory_layout module
+-----------------------------
+
+.. automodule:: spack.directory_layout
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.error module
+------------------
+
+.. automodule:: spack.error
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.fetch_strategy module
+---------------------------
+
+.. automodule:: spack.fetch_strategy
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.graph module
+------------------
+
+.. automodule:: spack.graph
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.mirror module
+-------------------
+
+.. automodule:: spack.mirror
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.modules module
+--------------------
+
+.. automodule:: spack.modules
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.multimethod module
+------------------------
+
+.. automodule:: spack.multimethod
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.package module
+--------------------
+
+.. automodule:: spack.package
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.packages module
+---------------------
+
+.. automodule:: spack.packages
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.parse module
+------------------
+
+.. automodule:: spack.parse
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.patch module
+------------------
+
+.. automodule:: spack.patch
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.relations module
+----------------------
+
+.. automodule:: spack.relations
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.spec module
+-----------------
+
+.. automodule:: spack.spec
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.stage module
+------------------
+
+.. automodule:: spack.stage
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.url module
+----------------
+
+.. automodule:: spack.url
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.version module
+--------------------
+
+.. automodule:: spack.version
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.virtual module
+--------------------
+
+.. automodule:: spack.virtual
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: spack
+    :members:
+    :undoc-members:
+    :show-inheritance:

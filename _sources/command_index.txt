@@ -1,0 +1,47 @@
+.. _command_index:
+
+Command index
+=================
+
+This is an alphabetical list of commands with links to the places they
+appear in the documentation.
+
+.. hlist::
+   :columns: 3
+
+   * :ref:`spack-activate`
+   * :ref:`spack-cd`
+   * :ref:`spack-checksum`
+   * :ref:`spack-clean`
+   * :ref:`spack-compiler-add`
+   * :ref:`spack-compiler-info`
+   * :ref:`spack-compilers`
+   * :ref:`spack-create`
+   * :ref:`spack-deactivate`
+   * :ref:`spack-edit-f`
+   * :ref:`spack-edit`
+   * :ref:`spack-env`
+   * :ref:`spack-extensions`
+   * :ref:`spack-fetch`
+   * :ref:`spack-find`
+   * :ref:`spack-graph`
+   * :ref:`spack-help`
+   * :ref:`spack-info`
+   * :ref:`spack-install`
+   * :ref:`spack-list`
+   * :ref:`spack-location`
+   * :ref:`spack-mirror-add`
+   * :ref:`spack-mirror-create`
+   * :ref:`spack-mirror-list`
+   * :ref:`spack-mirror-remove`
+   * :ref:`spack-mirror`
+   * :ref:`spack-module`
+   * :ref:`spack-p`
+   * :ref:`spack-patch`
+   * :ref:`spack-providers`
+   * :ref:`spack-purge`
+   * :ref:`spack-restage`
+   * :ref:`spack-spec`
+   * :ref:`spack-stage`
+   * :ref:`spack-uninstall`
+   * :ref:`spack-versions`

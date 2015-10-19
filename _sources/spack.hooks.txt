@@ -1,0 +1,38 @@
+spack.hooks package
+===================
+
+Submodules
+----------
+
+spack.hooks.dotkit module
+-------------------------
+
+.. automodule:: spack.hooks.dotkit
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.hooks.extensions module
+-----------------------------
+
+.. automodule:: spack.hooks.extensions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.hooks.tclmodule module
+----------------------------
+
+.. automodule:: spack.hooks.tclmodule
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: spack.hooks
+    :members:
+    :undoc-members:
+    :show-inheritance:

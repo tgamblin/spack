@@ -1,0 +1,86 @@
+spack.util package
+==================
+
+Submodules
+----------
+
+spack.util.compression module
+-----------------------------
+
+.. automodule:: spack.util.compression
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.crypto module
+------------------------
+
+.. automodule:: spack.util.crypto
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.environment module
+-----------------------------
+
+.. automodule:: spack.util.environment
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.executable module
+----------------------------
+
+.. automodule:: spack.util.executable
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.multiproc module
+---------------------------
+
+.. automodule:: spack.util.multiproc
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.naming module
+------------------------
+
+.. automodule:: spack.util.naming
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.prefix module
+------------------------
+
+.. automodule:: spack.util.prefix
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.string module
+------------------------
+
+.. automodule:: spack.util.string
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+spack.util.web module
+---------------------
+
+.. automodule:: spack.util.web
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: spack.util
+    :members:
+    :undoc-members:
+    :show-inheritance:
