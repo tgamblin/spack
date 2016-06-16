@@ -25,15 +25,25 @@
 from spack import *
 
 class Sundials(Package):
-    """SUNDIALS (SUite of Nonlinear and DIfferential/ALgebraic equation Solvers)"""
-    homepage = "http://computation.llnl.gov/casc/sundials/"
-    url      = "http://computation.llnl.gov/casc/sundials/download/code/sundials-2.5.0.tar.gz"
+    """SUNDIALS: SUite of Nonlinear and DIfferential/ALgebraic
+       Equation Solvers."""
+    homepage = "http://computation.llnl.gov/projects/sundials-suite-nonlinear-differential-algebraic-equation-solvers"
+    url      = "http://computation.llnl.gov/projects/sundials-suite-nonlinear-differential-algebraic-equation-solvers/download/sundials-2.6.2.tar.gz"
 
-    version('2.5.0', 'aba8b56eec600de3109cfb967aa3ba0f')
+    version('2.6.2', '3deeb0ede9f514184c6bd83ecab77d95')
 
-    depends_on("mpi")
+    variant('mpi', default=False, description='Build with MPI support')
+
+    depends_on('mpi', when='+mpi')
+    depends_on('superlu@4.5:', when='@5:')
+
+
 
     def install(self, spec, prefix):
-        configure("--prefix=%s" % prefix)
+        cmake('.',
+              '-DSUPERLU_DIR=%s' % spec['superlu'].prefix
+              *std_cmake_args)
+
+        # FIXME: Add logic to build and install here
         make()
         make("install")
