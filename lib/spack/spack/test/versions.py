@@ -61,6 +61,11 @@ class VersionsTest(unittest.TestCase):
         self.assertFalse(a < b)
         self.assertTrue(a <= b)
 
+    def assert_ver_ne(self, a, b):
+        a, b = ver(a), ver(b)
+        self.assertTrue(a != b)
+        self.assertFalse(a == b)
+
     def assert_in(self, needle, haystack):
         self.assertTrue(ver(needle) in ver(haystack))
 
@@ -82,11 +87,35 @@ class VersionsTest(unittest.TestCase):
     def assert_does_not_satisfy(self, v1, v2):
         self.assertFalse(ver(v1).satisfies(ver(v2)))
 
+    def assert_could_satisfy(self, v1, v2):
+        self.assertTrue(ver(v1).could_satisfy(ver(v2)))
+
+    def assert_could_not_satisfy(self, v1, v2):
+        self.assertFalse(ver(v1).could_satisfy(ver(v2)))
+
     def check_intersection(self, expected, a, b):
         self.assertEqual(ver(expected), ver(a).intersection(ver(b)))
 
     def check_union(self, expected, a, b):
         self.assertEqual(ver(expected), ver(a).union(ver(b)))
+
+    def test_one_segment(self):
+        self.assert_ver_eq('1', '1')
+        self.assert_ver_lt('1', '2')
+        self.assert_ver_gt('2', '1')
+        self.assert_ver_lt('1', 'develop')
+        self.assert_ver_gt('develop', '1')
+
+    def test_one_segment_exact(self):
+        self.assert_ver_ne('1.', '1')
+        self.assert_ver_eq('1.', '1.')
+        self.assert_ver_lt('1.', '1')
+        self.assert_ver_lt('1.', '2')
+        self.assert_ver_gt('2.', '1')
+        self.assert_ver_gt('2.', '1.')
+        self.assert_ver_gt('2.', '1')
+        self.assert_ver_lt('1.', 'develop')
+        self.assert_ver_gt('develop', '1.')
 
     def test_two_segments(self):
         self.assert_ver_eq('1.0', '1.0')
@@ -98,8 +127,18 @@ class VersionsTest(unittest.TestCase):
 
     def test_three_segments(self):
         self.assert_ver_eq('2.0.1', '2.0.1')
-        self.assert_ver_lt('2.0',   '2.0.1')
+        self.assert_ver_lt('2.0', '2.0.1')
         self.assert_ver_gt('2.0.1', '2.0')
+
+    def test_three_segments_exact(self):
+        self.assert_ver_ne('2.0.1.', '2.0.1')
+        self.assert_ver_ne('2.0.1', '2.0.1.')
+        self.assert_ver_eq('2.0.1.', '2.0.1.')
+        self.assert_ver_lt('2.0.', '2.0.1')
+        self.assert_ver_lt('2.0.1.', '2.0.1')
+        self.assert_ver_gt('2.0.1.', '2.0')
+        self.assert_ver_gt('2.0.1.', '2.0.')
+        self.assert_ver_gt('2.0.1', '2.0.')
 
     def test_alpha(self):
         # TODO: not sure whether I like this.  2.0.1a is *usually*
@@ -179,14 +218,39 @@ class VersionsTest(unittest.TestCase):
         self.assert_ver_gt('1g.fc17', '1.fc17')
         self.assert_ver_lt('1.fc17',  '1g.fc17')
 
-    # Stuff below here is not taken from RPM's tests and is
-    # unique to spack
     def test_version_ranges(self):
         self.assert_ver_lt('1.2:1.4', '1.6')
         self.assert_ver_gt('1.6', '1.2:1.4')
         self.assert_ver_eq('1.2:1.4', '1.2:1.4')
-        self.assertNotEqual(ver('1.2:1.4'), ver('1.2:1.6'))
+        self.assert_ver_ne('1.2:1.4', '1.2:1.6')
 
+        self.assert_ver_lt('1.2:1.4', '1.5:1.6')
+        self.assert_ver_gt('1.5:1.6', '1.2:1.4')
+
+    def test_version_ranges_exact(self):
+        self.assert_ver_lt('1.2.:1.4.', '1.6')
+        self.assert_ver_lt('1.2.:1.6.', '1.6')
+
+        self.assert_ver_gt('1.6', '1.2.:1.4.')
+        self.assert_ver_gt('1.6', '1.2.:1.6.')
+
+        self.assert_ver_eq('1.2.:1.4.', '1.2.:1.4.')
+
+        # handle special case: when lower bound is exact, it's the same
+        # range as when lower bound is inexact.
+        self.assertFalse(ver('1.2.:1.4') < ver('1.2:1.4'))
+        self.assertTrue(ver('1.2.:1.4') <= ver('1.2:1.4'))
+        self.assertTrue(ver('1.2.:1.4') == ver('1.2:1.4'))
+        self.assertTrue(ver('1.2.:1.4') >= ver('1.2:1.4'))
+        self.assertFalse(ver('1.2.:1.4') > ver('1.2:1.4'))
+
+        self.assertFalse(ver('1.2:1.4') < ver('1.2.:1.4'))
+        self.assertTrue(ver('1.2:1.4') <= ver('1.2.:1.4'))
+        self.assertTrue(ver('1.2:1.4') == ver('1.2.:1.4'))
+        self.assertTrue(ver('1.2:1.4') >= ver('1.2.:1.4'))
+        self.assertFalse(ver('1.2:1.4') > ver('1.2.:1.4'))
+
+        self.assert_ver_ne('1.2:1.4', '1.2:1.6')
         self.assert_ver_lt('1.2:1.4', '1.5:1.6')
         self.assert_ver_gt('1.5:1.6', '1.2:1.4')
 
@@ -207,6 +271,26 @@ class VersionsTest(unittest.TestCase):
 
         self.assert_in('1.4.1', '1.2.7:1.4')
         self.assert_not_in('1.4.1', '1.2.7:1.4.0')
+
+    def test_contains_exact(self):
+        self.assert_in('1.3.', '1.2:1.4')
+        self.assert_in('1.2.5.', '1.2:1.4')
+        self.assert_in('1.3.5.', '1.2:1.4')
+        self.assert_in('1.3.5-7.', '1.2:1.4')
+        self.assert_not_in('1.1.', '1.2:1.4')
+        self.assert_not_in('1.5.', '1.2:1.4')
+
+        self.assert_in('1.4.2.', '1.2:1.4')
+        self.assert_in('1.2.', '1.2:1.4')
+        self.assert_not_in('1.4.2.', '1.2:1.4.')
+
+        self.assert_in('1.2.8.', '1.2.7:1.4')
+        self.assert_in('1.2.7.', '1.2.7:1.4')
+        self.assert_in('1.2.7.', '1.2.7.:1.4')
+        self.assert_in('1.4.', '1.2.7:1.4')
+        self.assert_in('1.4.', '1.2.7:1.4.')
+
+        self.assert_in('1.2.7.:1.4.', ':')
 
     def test_in_list(self):
         self.assert_in('1.2', ['1.5', '1.2', '1.3'])
@@ -299,12 +383,36 @@ class VersionsTest(unittest.TestCase):
                                 ['1.1:2.7'], ['2.5:3.0', '1.0'])
         self.check_intersection(['0:1'], [':'], ['0:1'])
 
+    def test_intersection_exact(self):
+        # these only overlap at a single exact version.
+        self.check_intersection('2.5.',
+                                '1.0:2.5.', '2.5:3.0')
+        self.check_intersection('2.5.',
+                                '1.0:2.5', '2.5.:3.0')
+
+        # some other cases for good measure
+        self.check_intersection('2.5.:2.7',
+                                '1.0:2.7', '2.5.:3.0')
+        self.check_intersection('0.:1.', ':', '0.:1.')
+
+        self.check_intersection(['1.0.', '2.5:2.7.'],
+                                ['1.0:2.7.'], ['2.5:3.0', '1.0.'])
+        self.check_intersection(['2.5.:2.7.'],
+                                ['1.1:2.7.'], ['2.5.:3.0', '1.0.'])
+
     def test_intersect_with_containment(self):
         self.check_intersection('1.6.5', '1.6.5', ':1.6')
         self.check_intersection('1.6.5', ':1.6', '1.6.5')
 
         self.check_intersection('1.6:1.6.5', ':1.6.5', '1.6')
         self.check_intersection('1.6:1.6.5', '1.6', ':1.6.5')
+
+    def test_intersect_with_containment_exact(self):
+        self.check_intersection('1.6.5.', '1.6.5.', ':1.6')
+        self.check_intersection('1.6.5.', ':1.6', '1.6.5.')
+
+        self.check_intersection('1.6:1.6.5.', ':1.6.5.', '1.6')
+        self.check_intersection('1.6.', ':1.6.5', '1.6.')
 
     def test_union_with_containment(self):
         self.check_union(':1.6', '1.6.5', ':1.6')
@@ -321,6 +429,26 @@ class VersionsTest(unittest.TestCase):
         # Tests successor/predecessor case.
         self.check_union('1:4', '1:2', '3:4')
 
+    def test_union_with_containment_exact(self):
+        self.check_union([':1.6.', '1.6.5'], '1.6.5', ':1.6.')
+        self.check_union([':1.6.', '1.6.5'], ':1.6.', '1.6.5')
+
+        self.check_union(':1.6', ':1.6.5.', '1.6')
+        self.check_union(':1.6', '1.6', ':1.6.5.')
+
+        self.check_union(':1.6.5.', ':1.6.5.', '1.6.')
+        self.check_union(':1.6.5.', '1.6.', ':1.6.5.')
+
+        self.check_union(':', '1.0.:', ':2.0.')
+
+        self.check_union('1.:4.', '1.:3', '2:4.')
+        self.check_union('1:4', '2.:4', '1:3.')
+
+        # Tests successor/predecessor case.
+        self.check_union('1:4', '1:2', '3.:4')
+        self.check_union(['1:2.', '3:4'], '1:2.', '3:4')
+        self.check_union(['1:2.', '3:4'], '1:2.', '3.:4')
+
     def test_basic_version_satisfaction(self):
         self.assert_satisfies('4.7.3',   '4.7.3')
 
@@ -336,16 +464,51 @@ class VersionsTest(unittest.TestCase):
         self.assert_does_not_satisfy('4.8',   '4.9')
         self.assert_does_not_satisfy('4',     '4.9')
 
-    def test_basic_version_satisfaction_in_lists(self):
-        self.assert_satisfies(['4.7.3'],   ['4.7.3'])
+    def test_exact_version_satisfaction(self):
+        self.assert_satisfies('4.7.3.',   '4.7.3')
+        self.assert_satisfies('4.7.3.',   '4.7.3.')
 
-        self.assert_satisfies(['4.7.3'],   ['4.7'])
+        self.assert_satisfies('4.7.3.',   '4.7')
+        self.assert_satisfies('4.7.3b2.', '4.7')
+        self.assert_satisfies('4.7b6.',   '4.7')
+
+        self.assert_satisfies('4.7.3.',   '4')
+        self.assert_satisfies('4.7.3b2.', '4')
+        self.assert_satisfies('4.7b6.',   '4')
+
+        self.assert_does_not_satisfy('4.7.3',   '4.7.3.')
+        self.assert_does_not_satisfy('4.7',   '4.7.')
+        self.assert_does_not_satisfy('4.7.3.',   '4.7.')
+        self.assert_does_not_satisfy('4.7.3b2.', '4.7.')
+        self.assert_does_not_satisfy('4.7b6.',   '4.7.')
+
+        self.assert_does_not_satisfy('4.7.3.',   '4.')
+        self.assert_does_not_satisfy('4.7.3b2.', '4.')
+        self.assert_does_not_satisfy('4.7b6.',   '4.')
+
+    def test_could_satisfy_versions_and_ranges(self):
+        self.assert_could_satisfy('2.3.', '2.3.')
+        self.assert_could_satisfy('2.3', '2.3.')
+        self.assert_could_satisfy('2.3', '2.3.:2.4')
+        self.assert_could_satisfy('2.4.:', '2.3.:2.5')
+        self.assert_could_satisfy('2.4.:2.4', '2.3.:2.5')
+
+        self.assert_could_not_satisfy('2.3.4', '2.3.')
+        self.assert_could_not_satisfy('2.3.4.', '2.3.')
+
+    def test_basic_version_satisfaction_in_lists(self):
+        self.assert_satisfies(['4.7.3'], ['4.7.3'])
+        self.assert_satisfies(['4.7.3.'], ['4.7.3'])
+        self.assert_does_not_satisfy(['4.7.3'], ['4.7.3.'])
+
+        self.assert_satisfies(['4.7.3'], ['4.7'])
         self.assert_satisfies(['4.7.3b2'], ['4.7'])
-        self.assert_satisfies(['4.7b6'],   ['4.7'])
+        self.assert_satisfies(['4.7b6'], ['4.7'])
 
         self.assert_satisfies(['4.7.3'],   ['4'])
         self.assert_satisfies(['4.7.3b2'], ['4'])
         self.assert_satisfies(['4.7b6'],   ['4'])
+        self.assert_does_not_satisfy(['4.7.3'],   ['4.'])
 
         self.assert_does_not_satisfy(['4.8.0'], ['4.9'])
         self.assert_does_not_satisfy(['4.8'],   ['4.9'])
@@ -362,18 +525,42 @@ class VersionsTest(unittest.TestCase):
         self.assert_satisfies('4.7b6',        '4.3:4.7')
         self.assert_does_not_satisfy('4.8.0', '4.3:4.7')
 
+    def test_version_range_could_satisfy(self):
+        self.assert_could_satisfy('4.7:4.9', '4.8:4.10')
+        self.assert_does_not_satisfy('4.7:4.9', '4.8:4.10')
+
+        self.assert_could_satisfy('4.8:4.9', '4.8:4.10')
+        self.assert_satisfies('4.8:4.9', '4.8:4.10')
+
+        self.assert_could_satisfy('4.8.:4.9', '4.8:4.10')
+        self.assert_satisfies('4.8.:4.9', '4.8:4.10')
+
+        self.assert_could_satisfy('4.8:4.9', '4.8.:4.10')
+        self.assert_satisfies('4.8:4.9', '4.8.:4.10')
+
+        self.assert_could_satisfy('4.8:', ':4.8')
+        self.assert_could_satisfy('4.8:', ':4.8.')
+        self.assert_could_not_satisfy('4.8:', ':4.7')
+
+        self.assert_could_satisfy(':4.7', '4.7:')
+        self.assert_could_satisfy(':4.7.', '4.7.:')
+
     def test_version_range_satisfaction_in_lists(self):
         self.assert_satisfies(['4.7b6'], ['4.3:4.7'])
+
         self.assert_satisfies(['4.3.0'], ['4.3:4.7'])
         self.assert_satisfies(['4.3.2'], ['4.3:4.7'])
 
+        self.assert_does_not_satisfy(['4.7b6'], ['4.3:4.7.'])
+        self.assert_does_not_satisfy(['4.7b6.'], ['4.3:4.7.'])
         self.assert_does_not_satisfy(['4.8.0'], ['4.3:4.7'])
         self.assert_does_not_satisfy(['4.3'],   ['4.4:4.7'])
+        self.assert_does_not_satisfy(['4.3.'],   ['4.4.:4.7'])
 
         self.assert_satisfies(['4.7b6'],        ['4.3:4.7'])
         self.assert_does_not_satisfy(['4.8.0'], ['4.3:4.7'])
 
-    def test_satisfaction_with_lists(self):
+    def test_satisfies_with_lists(self):
         self.assert_satisfies('4.7',     '4.3, 4.6, 4.7')
         self.assert_satisfies('4.7.3',   '4.3, 4.6, 4.7')
         self.assert_satisfies('4.6.5',   '4.3, 4.6, 4.7')
@@ -385,6 +572,39 @@ class VersionsTest(unittest.TestCase):
         self.assert_satisfies('4.8.0', '4.2, 4.3:4.8')
         self.assert_satisfies('4.8.2', '4.2, 4.3:4.8')
 
+    def test_lists_satisfy_lists(self):
+        self.assert_satisfies('4.3, 4.6, 4.7', '4.3, 4.6, 4.7')
+        self.assert_satisfies('4.3, 4.6', '4.3, 4.6, 4.7')
+
+        self.assert_satisfies('4.3:4.4, 4.5:4.6', '4.3:4.6, 4.7')
+        self.assert_satisfies('4.3, 4.5:4.6', '4.3:4.6, 4.7')
+        self.assert_satisfies('4.3, 4.5:4.6, 4.7.', '4.3:4.6, 4.7')
+
+        self.assert_does_not_satisfy('4.3, 4.5:4.6, 4.7', '4.3:4.6, 4.7.')
+        self.assert_does_not_satisfy('4.3, 4.6, 4.8', '4.3, 4.6, 4.7')
+        self.assert_does_not_satisfy('4.3, 4.6:4.8', '4.3, 4.6, 4.7')
+
+    def test_lists_could_satisfy_lists(self):
+        self.assert_could_satisfy('4.3, 4.6, 4.7', '4.3, 4.6, 4.7')
+        self.assert_could_satisfy('4.3, 4.6', '4.3, 4.6, 4.7')
+
+        self.assert_could_satisfy('4.3:4.4, 4.5:4.6', '4.3:4.6, 4.7')
+        self.assert_could_satisfy('4.3, 4.5:4.6', '4.3:4.6, 4.7')
+        self.assert_could_satisfy('4.3, 4.5:4.6, 4.7.', '4.3:4.6, 4.7')
+
+        self.assert_could_satisfy('4.3, 4.5:4.6, 4.7', '4.3:4.6, 4.7.')
+        self.assert_could_satisfy('4.3, 4.6, 4.8', '4.3, 4.6, 4.7')
+        self.assert_could_satisfy('4.3, 4.6:4.8', '4.3, 4.6, 4.7')
+        self.assert_could_satisfy('4.7.', '4.3, 4.6, 4.7')
+
+        self.assert_could_not_satisfy('4.8.', '4.3, 4.6, 4.7')
+        self.assert_could_not_satisfy('4.4, 4.5', '4.3, 4.6, 4.7')
+
+        self.assert_could_satisfy('4', '4.3, 4.6, 4.7')
+        self.assert_could_satisfy('3:5', '4.3, 4.6, 4.7')
+
+        self.assert_could_not_satisfy('5', '4.3, 4.6, 4.7')
+
     def test_formatted_strings(self):
         versions = '1.2.3', '1_2_3', '1-2-3'
         for item in versions:
@@ -395,7 +615,6 @@ class VersionsTest(unittest.TestCase):
             self.assertEqual(v.joined, '123')
 
     def test_repr_and_str(self):
-
         def check_repr_and_str(vrs):
             a = Version(vrs)
             self.assertEqual(repr(a), 'Version(\'' + vrs + '\')')
@@ -408,27 +627,99 @@ class VersionsTest(unittest.TestCase):
         check_repr_and_str('R2016a')
         check_repr_and_str('R2016a.2-3_4')
 
+    def test_exact_repr_and_str(self):
+        # Make sure versions constructed with exact=True show a final
+        # period too.
+        v = Version('1.2.3', exact=True)
+        self.assertEqual(str(v), '1.2.3')
+        self.assertEqual(repr(v), "Version('1.2.3.')")
+        self.assertEqual(v.yaml_str, "1.2.3.")
+
+    def test_exactly(self):
+        v = Version('1.2.3', exact=True)
+        w = Version('1.2.3')
+        self.assertTrue(w != v)
+        self.assertTrue(w.exactly == v)
+        self.assertTrue(w.exactly == v.exactly)
+        self.assertTrue(w.exactly is not w)
+        self.assertTrue(v.exactly is v)
+
+        expected_version = Version('4.5.')
+        self.assertEqual(ver('4.5').exactly, expected_version)
+        self.assertEqual(ver('4.5.').exactly, expected_version)
+        self.assertEqual(type(ver('4.5').exactly), Version)
+        self.assertEqual(type(ver('4.5.').exactly), Version)
+
+        expected_range = VersionRange('4.5.', '4.5.')
+        self.assertEqual(ver('4.5:4.5').exactly, expected_range)
+        self.assertEqual(ver('4.5.:4.5').exactly, expected_range)
+        self.assertEqual(type(ver('4.5:4.5').exactly), VersionRange)
+        self.assertEqual(type(ver('4.5.:4.5').exactly), VersionRange)
+
+        self.assertEqual(ver('4.5.:4.6').exactly, None)
+        self.assertEqual(ver('4.5, 4.6').exactly, None)
+
+        expected_list = VersionList(['4.5.'])
+        self.assertEqual(ver(['4.5.:4.5', '4.5']).exactly, expected_list)
+        self.assertEqual(ver(['4.5.:4.5']).exactly, expected_list)
+        self.assertEqual(ver(['4.5.:4.5.']).exactly, expected_list)
+        self.assertEqual(ver(['4.5.']).exactly, expected_list)
+
+        self.assertEqual(type(ver(['4.5.:4.5', '4.5']).exactly), VersionList)
+        self.assertEqual(type(ver(['4.5.:4.5']).exactly), VersionList)
+        self.assertEqual(type(ver(['4.5.:4.5.']).exactly), VersionList)
+        self.assertEqual(type(ver(['4.5.']).exactly), VersionList)
+
+    def test_inexactly(self):
+        self.assertEqual(ver('4.5').inexactly, ver('4.5'))
+        self.assertEqual(ver('4.5.').inexactly, ver('4.5'))
+        self.assertEqual(type(ver('4.5').inexactly), Version)
+        self.assertEqual(type(ver('4.5.').inexactly), Version)
+
+        self.assertEqual(ver('4.5.:4.5.').inexactly, ver('4.5:4.5'))
+        self.assertEqual(ver('4.5.:4.5').inexactly, ver('4.5.:4.5'))
+        self.assertEqual(type(ver('4.5:4.5').inexactly), VersionRange)
+        self.assertEqual(type(ver('4.5.:4.5').inexactly), VersionRange)
+
+        self.assertEqual(ver('4.5.:4.6').inexactly, ver('4.5.:4.6'))
+        self.assertEqual(ver('4.5, 4.6').inexactly, ver('4.5, 4.6'))
+
+        expected_list = VersionList(['4.5'])
+        self.assertEqual(ver(['4.5.:4.5', '4.5']).inexactly, ver('4.5'))
+
+        self.assertEqual(ver(['4.5.:4.5']).inexactly, ver(['4.5.:4.5']))
+        self.assertEqual(ver(['4.5.:4.5.']).inexactly, ver('4.5'))
+        self.assertEqual(ver(['4.5.']).inexactly, ver('4.5'))
+
+        self.assertEqual(ver(['4.5.', '4.6', '4.7']).inexactly,
+                         ver(['4.5.', '4.6', '4.7']))
+
+        self.assertEqual(type(ver(['4.5.:4.5', '4.5']).inexactly), VersionList)
+        self.assertEqual(type(ver(['4.5.:4.5']).inexactly), VersionList)
+        self.assertEqual(type(ver(['4.5.:4.5.']).inexactly), VersionList)
+        self.assertEqual(type(ver(['4.5.']).inexactly), VersionList)
+
     def test_get_item(self):
         a = Version('0.1_2-3')
         self.assertTrue(isinstance(a[1], int))
+
         # Test slicing
         b = a[0:2]
         self.assertTrue(isinstance(b, Version))
         self.assertEqual(b, Version('0.1'))
-        self.assertEqual(repr(b), 'Version(\'0.1\')')
+        self.assertEqual(repr(b), "Version('0.1')")
         self.assertEqual(str(b), '0.1')
+
         b = a[0:3]
         self.assertTrue(isinstance(b, Version))
         self.assertEqual(b, Version('0.1_2'))
-        self.assertEqual(repr(b), 'Version(\'0.1_2\')')
+        self.assertEqual(repr(b), "Version('0.1_2')")
         self.assertEqual(str(b), '0.1_2')
+
         b = a[1:]
         self.assertTrue(isinstance(b, Version))
         self.assertEqual(b, Version('1_2-3'))
-        self.assertEqual(repr(b), 'Version(\'1_2-3\')')
+        self.assertEqual(repr(b), "Version('1_2-3')")
         self.assertEqual(str(b), '1_2-3')
         # Raise TypeError on tuples
         self.assertRaises(TypeError, b.__getitem__, 1, 2)
-
-if __name__ == '__main__':
-    unittest.main()

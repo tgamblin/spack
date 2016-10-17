@@ -38,10 +38,12 @@ be called on any of the types::
   __eq__, __ne__, __lt__, __gt__, __ge__, __le__, __hash__
   __contains__
   satisfies
+  could_satisfy
   overlaps
   union
   intersection
-  concrete
+  exact
+
 """
 import re
 import numbers
@@ -111,11 +113,24 @@ def _numeric_lt(self0, other):
     """Compares two versions, knowing they're both numeric"""
 
 
+def eq_ignore_exact(v1, v2):
+    return (v1 is None and v2 is None) or (
+        v1 is not None and v2 is not None and v1.version == v2.version)
+
+
 @total_ordering
 class Version(object):
     """Class to represent versions"""
 
-    def __init__(self, string):
+    def __init__(self, string, exact=False):
+        # Support copying other versions.
+        if isinstance(string, Version):
+            self.string = string.string
+            self.version = string.version
+            self.separators = string.separators
+            self._exact = exact
+            return
+
         string = str(string)
 
         if not re.match(VALID_VERSION, string):
@@ -132,7 +147,14 @@ class Version(object):
 
         # Store the separators from the original version string as well.
         # last element of separators is ''
-        self.separators = tuple(re.split(segment_regex, string)[1:-1])
+        separators = re.split(segment_regex, string)
+        self.separators = tuple(separators[1:-1])
+
+        # Support exact versions literals. Exact versions have a final period.
+        self._exact = exact or (separators[-1] == '.')
+        if self._exact:
+            # strip period from exact version literal
+            self.string = self.string.rstrip('.')
 
     @property
     def dotted(self):
@@ -189,11 +211,20 @@ class Version(object):
         a common prefix.  e.g., we want gcc@4.7.3 to satisfy a request for
         gcc@4.7 so that when a user asks to build with gcc@4.7, we can find
         a suitable compiler.
-        """
 
-        nself = len(self.version)
-        nother = len(other.version)
-        return nother <= nself and self.version[:nother] == other.version
+        An *exact* version will ONLY be satisfied with
+        """
+        if other.exact:
+            return self._exact and self.version == other.version
+        else:
+            nself = len(self.version)
+            nother = len(other.version)
+            return nother <= nself and self.version[:nother] == other.version
+
+    @coerced
+    def could_satisfy(self, other):
+        """This version *could* satisfy another if it becomes more specific."""
+        return other.satisfies(self)
 
     def wildcard(self):
         """Create a regex that will match variants of this version string."""
@@ -244,15 +275,48 @@ class Version(object):
         message = '{cls.__name__} indices must be integers'
         raise TypeError(message.format(cls=cls))
 
+    @property
+    def yaml_str(self):
+        """In YAML, we keep the final '.' for exact versions."""
+        rstring = self.string
+        if self._exact:
+            rstring += '.'
+        return rstring
+
     def __repr__(self):
-        return 'Version(' + repr(self.string) + ')'
+        """Representation for the interpreter."""
+        return 'Version(%r)' % self.yaml_str
 
     def __str__(self):
+        """String to display to the user."""
         return self.string
 
     @property
-    def concrete(self):
-        return self
+    def exact(self):
+        """A Version is exact if it could represent only one version.
+
+        Examples:
+          - 2.7 could mean 2.7.12, 2.7.11, 2.7.2.1, etc., so it's not exact.
+          - 2.7. means *exactly* 2.7, NOT 2.7.*, so it is exact.
+
+        If this version is exact, this returns it.  Otherwise it returns None.
+        """
+        return self if self._exact else None
+
+    @property
+    def exactly(self):
+        """Return a copy of this Version with ``exact`` set to True."""
+        if self._exact:
+            return self
+        else:
+            return Version(self, exact=True)
+
+    @property
+    def inexactly(self):
+        if not self._exact:
+            return self
+        else:
+            return Version(self, exact=False)
 
     def _numeric_lt(self, other):
         """Compares two versions, knowing they're both numeric"""
@@ -281,23 +345,24 @@ class Version(object):
            does things.  If you need more complicated versions in installed
            packages, you should override your package's version string to
            express it more sensibly.
+
+           An exact version is treated as less than the identical inexact
+           version. i.e.: ``2.7.3.`` < ``2.7.3``
         """
         if other is None:
             return False
 
-        # Coerce if other is not a Version
         # simple equality test first.
         if self.version == other.version:
-            return False
+            return self._exact and not other._exact
 
+        # TODO: revisit this develop stuff.
         # First priority: anything < develop
-        sdev = self.isdevelop()
-        if sdev:
+        if self.isdevelop():
             return False    # source = develop, it can't be < anything
 
         # Now we know !sdev
-        odev = other.isdevelop()
-        if odev:
+        if other.isdevelop():
             return True    # src < dst
 
         # now we know neither self nor other isdevelop().
@@ -321,7 +386,9 @@ class Version(object):
     @coerced
     def __eq__(self, other):
         return (other is not None and
-                type(other) == Version and self.version == other.version)
+                type(other) == Version and
+                self._exact == other._exact and
+                self.version == other.version)
 
     def __ne__(self, other):
         return not (self == other)
@@ -333,7 +400,11 @@ class Version(object):
     def __contains__(self, other):
         if other is None:
             return False
-        return other.version[:len(self.version)] == self.version
+
+        if self._exact:
+            return other and other.exact and self.version == other.version
+        else:
+            return other.version[:len(self.version)] == self.version
 
     def is_predecessor(self, other):
         """True if the other version is the immediate predecessor of this one.
@@ -341,6 +412,11 @@ class Version(object):
            (self < v < other and v not in self).
         """
         if len(self.version) != len(other.version):
+            return False
+
+        # exact versions always have more specific versions between them
+        # and any other version.
+        if self.exact:
             return False
 
         sl = self.version[-1]
@@ -402,7 +478,9 @@ class VersionRange(object):
             return False
 
         s, o = self, other
-        if s.start != o.start:
+        # as with __eq__, compare tuples here to ignore cases where the
+        # lower bound is exact (as it's the same as inexact lower bound)
+        if not eq_ignore_exact(s.start, o.start):
             return s.start is None or (
                 o.start is not None and s.start < o.start)
         return (s.end != o.end and
@@ -412,14 +490,44 @@ class VersionRange(object):
     def __eq__(self, other):
         return (other is not None and
                 type(other) == VersionRange and
-                self.start == other.start and self.end == other.end)
+                # Note that (2.7.3.:2.8) == (2.7.3:2.8)
+                # b/c 2.7.3. is the smallest possible version in 2.7.3
+                eq_ignore_exact(self.start, other.start) and
+                # but, (2.7.3:2.8.) is NOT the same as (2.7.3:2.8)
+                self.end == other.end)
 
     def __ne__(self, other):
         return not (self == other)
 
     @property
-    def concrete(self):
-        return self.start if self.start == self.end else None
+    def exact(self):
+        """Whether this VersionRange represents an exact version, or could
+           potentially represent many versions."""
+        if (self.start == self.end) and self.start and self.start.exact:
+            return self.start
+        else:
+            return None
+
+    @property
+    def exactly(self):
+        """If this VersionRange can represent an exact version, return it."""
+        if not eq_ignore_exact(self.start, self.end):
+            return None
+
+        if self.start.exact and self.end.exact:
+            return self
+        else:
+            return VersionRange(self.start.exactly, self.end.exactly)
+
+    @property
+    def inexactly(self):
+        """Return self for inexact ranges. Convert exact ranges to inexact."""
+        if (not self.start or not self.start.exact) or (
+                not self.end or not self.end.exact):
+            return self
+
+        return VersionRange(Version(self.start, exact=False),
+                            Version(self.end, exact=False))
 
     @coerced
     def __contains__(self, other):
@@ -442,36 +550,27 @@ class VersionRange(object):
         return in_upper
 
     @coerced
-    def satisfies(self, other):
-        """A VersionRange satisfies another if some version in this range
-        would satisfy some version in the other range.  To do this it must
-        either:
+    def could_satisfy(self, other):
+        """A VersionRange could satisfy another if some version in this range
+        could satisfy some version in other's range.
 
-        a) Overlap with the other range
+        So, either:
+
+        a) It overlaps with the other range
         b) The start of this range satisfies the end of the other range.
 
-        This is essentially the same as overlaps(), but overlaps assumes
-        that its arguments are specific.  That is, 4.7 is interpreted as
-        4.7.0.0.0.0... .  This funciton assumes that 4.7 woudl be satisfied
-        by 4.7.3.5, etc.
-
-        Rationale:
-
-        If a user asks for gcc@4.5:4.7, and a package is only compatible with
-        gcc@4.7.3:4.8, then that package should be able to build under the
-        constraints.  Just using overlaps() would not work here.
-
-        Note that we don't need to check whether the end of this range
-        would satisfy the start of the other range, because overlaps()
-        already covers that case.
-
-        Note further that overlaps() is a symmetric operation, while
-        satisfies() is not.
+        This is the same as ``overlaps()``.
         """
-        return (self.overlaps(other) or
-                # if either self.start or other.end are None, then this can't
-                # satisfy, or overlaps() would've taken care of it.
-                self.start and other.end and self.start.satisfies(other.end))
+        return self.overlaps(other)
+
+    @coerced
+    def satisfies(self, other):
+        """A VersionRange satisfies another if all versions in the range are in
+           the other range.
+
+           This is equivalent to ``self in other``.
+        """
+        return self in other
 
     @coerced
     def overlaps(self, other):
@@ -530,15 +629,22 @@ class VersionRange(object):
                 end = other.end
             else:
                 end = self.end
-                # TODO: does this make sense?
-                # This is tricky:
-                #     1.6.5 in 1.6 = True  (1.6.5 is more specific)
-                #     1.6 < 1.6.5  = True  (lexicographic)
-                # Should 1.6 NOT be less than 1.6.5?  Hm.
-                # Here we test (not end in other.end) first to avoid paradox.
+                # Handling end case is tricky:
+                #
+                #  1. 1.6.5 in 1.6 = True  (1.6.5 is more specific)
+                #  2. 1.6 < 1.6.5  = True  (lexicographic)
+                #  3. 1.6. < 1.6           (exact less than inexact)
+                #
+                # Here we test (not end in other.end) to handle #2
                 if other.end is not None and end not in other.end:
                     if other.end < end or other.end in end:
                         end = other.end
+
+                # Handle #3: if the ranges only overlap at an exact
+                # version, we need to constrain more.
+                if eq_ignore_exact(end, start):
+                    if start.exact or end.exact:
+                        start = end = start.exactly
 
             return VersionRange(start, end)
 
@@ -548,14 +654,24 @@ class VersionRange(object):
     def __hash__(self):
         return hash((self.start, self.end))
 
+    @property
+    def yaml_str(self):
+        out = ''
+        if self.start:
+            out += self.start.yaml_str
+        out += ':'
+        if self.end:
+            out += self.end.yaml_str
+        return out
+
     def __repr__(self):
-        return self.__str__()
+        return 'VersionRange(%r)' % self.yaml_str
 
     def __str__(self):
-        out = ""
+        out = ''
         if self.start:
             out += str(self.start)
-        out += ":"
+        out += ':'
         if self.end:
             out += str(self.end)
         return out
@@ -582,8 +698,8 @@ class VersionList(object):
     def add(self, version):
         if type(version) in (Version, VersionRange):
             # This normalizes single-value version ranges.
-            if version.concrete:
-                version = version.concrete
+            if version.exact:
+                version = version.exact
 
             i = bisect_left(self, version)
 
@@ -607,10 +723,26 @@ class VersionList(object):
 
     @property
     def concrete(self):
+        return self.exact
+
+    @property
+    def exact(self):
+        """A VersionList is exact if it can represent exactly ONE version."""
+        return self[0].exact if len(self) == 1 else None
+
+    @property
+    def exactly(self):
+        """A VersionList is exact if it can represent exactly ONE version."""
         if len(self) == 1:
-            return self[0].concrete
-        else:
-            return None
+            return self if self[0].exact else VersionList([self[0].exactly])
+        return None
+
+    @property
+    def inexactly(self):
+        """Return self for inexact lists. Convert exact lists to inexact."""
+        if any(not v.exact for v in self):
+            return self
+        return VersionList([v.inexactly for v in self])
 
     def copy(self):
         return VersionList(self)
@@ -646,13 +778,13 @@ class VersionList(object):
 
     def to_dict(self):
         """Generate human-readable dict for YAML."""
-        if self.concrete:
+        if self.exact:
             return syaml_dict([
-                ('version', str(self[0]))
+                ('version', self[0].yaml_str)
             ])
         else:
             return syaml_dict([
-                ('versions', [str(v) for v in self])
+                ('versions', self.yaml_str)
             ])
 
     @staticmethod
@@ -666,31 +798,26 @@ class VersionList(object):
             raise ValueError("Dict must have 'version' or 'versions' in it.")
 
     @coerced
-    def satisfies(self, other, strict=False):
-        """A VersionList satisfies another if some version in the list
-           would satisfy some version in the other list.  This uses
-           essentially the same algorithm as overlaps() does for
-           VersionList, but it calls satisfies() on member Versions
-           and VersionRanges.
+    def satisfies(self, other, strict=True):
+        """A VersionList satisfies another if all versions in the list are
+           in the other.
 
-           If strict is specified, this version list must lie entirely
-           *within* the other in order to satisfy it.
+           This is equivalent to ``self in other``.
         """
-        if not other or not self:
-            return False
+        # TODO: consider factoring out `strict` parameter.
+        if not strict:
+            return self.could_satisfy(other)
 
-        if strict:
-            return self in other
+        return self in other
 
-        s = o = 0
-        while s < len(self) and o < len(other):
-            if self[s].satisfies(other[o]):
-                return True
-            elif self[s] < other[o]:
-                s += 1
-            else:
-                o += 1
-        return False
+    @coerced
+    def could_satisfy(self, other):
+        """A VersionList could satisfy another if any version in this
+           list is in the other.
+
+           This is equivalent to ``self.overlaps(other)``.
+        """
+        return self.overlaps(other)
 
     @coerced
     def update(self, other):
@@ -729,7 +856,7 @@ class VersionList(object):
             return False
 
         for version in other:
-            i = bisect_left(self, other)
+            i = bisect_left(self, version)
             if i == 0:
                 if version not in self[0]:
                     return False
@@ -767,8 +894,12 @@ class VersionList(object):
     def __str__(self):
         return ",".join(str(v) for v in self.versions)
 
+    @property
+    def yaml_str(self):
+        return ",".join(v.yaml_str for v in self.versions)
+
     def __repr__(self):
-        return str(self.versions)
+        return 'VersionList(%r)' % self.yaml_str
 
 
 def _string_to_version(string):
