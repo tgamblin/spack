@@ -164,9 +164,15 @@ def all_compilers_config(scope=None, init_config=True):
 
 
 def all_compilers(scope=None, init_config=True):
-    # Return compiler specs from the merged config.
-    return [spack.spec.CompilerSpec(s['compiler']['spec'])
-            for s in all_compilers_config(scope, init_config)]
+    """Return compiler specs from the merged config."""
+    cspecs = []
+    for s in all_compilers_config(scope, init_config):
+        cspec = spack.spec.CompilerSpec(s['compiler']['spec'])
+
+        # ensure versions read from config are exact
+        cspec.versions = cspec.versions.exactly
+        cspecs.append(cspec)
+    return cspecs
 
 
 def default_compiler():

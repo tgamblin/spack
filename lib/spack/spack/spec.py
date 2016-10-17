@@ -321,7 +321,7 @@ class CompilerSpec(object):
     def concrete(self):
         """A CompilerSpec is concrete if its versions are concrete and there
            is an available compiler with the right version."""
-        return self.versions.concrete
+        return self.versions.exact
 
     @property
     def version(self):
@@ -823,7 +823,7 @@ class Spec(object):
 
         self._concrete = bool(not self.virtual and
                               self.namespace is not None and
-                              self.versions.concrete and
+                              self.versions.exact and
                               self.variants.concrete and
                               self.architecture and
                               self.architecture.concrete and
@@ -1365,6 +1365,12 @@ class Spec(object):
         for s in self.traverse(deptype_query=alldeps):
             s._normal = value
             s._concrete = value
+
+            # Make sure version in concrete specs is exact.
+            # But don't unmark already exact versions.
+            if value:
+                assert(s.versions.exactly)
+                s.versions = s.versions.exactly
 
     def concretized(self):
         """This is a non-destructive version of concretize().  First clones,
@@ -2052,7 +2058,7 @@ class Spec(object):
 
     @property
     def version(self):
-        if not self.versions.concrete:
+        if not self.versions.exact:
             raise SpecError("Spec version is not concrete: " + str(self))
         return self.versions[0]
 

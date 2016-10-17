@@ -550,7 +550,7 @@ class PackageBase(object):
 
         # Fix up self.url if this package fetches with a URLFetchStrategy.
         # This makes self.url behave sanely.
-        if self.spec.versions.concrete:
+        if self.spec.versions.exact:
             # TODO: this is a really roundabout way of determining the type
             # TODO: of fetch to do. figure out a more sane fetch
             # TODO: strategy/package init order (right now it's conflated with

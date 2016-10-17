@@ -160,7 +160,7 @@ class DefaultConcretizer(object):
                  between these two extremes.
         """
         # return if already concrete.
-        if spec.versions.concrete:
+        if spec.versions.exact:
             return False
 
         # If there are known available versions, return the most recent
@@ -218,7 +218,7 @@ class DefaultConcretizer(object):
         # --------------------------
 
         if valid_versions:
-            spec.versions = ver([valid_versions[0]])
+            spec.versions = ver([valid_versions[0]]).exactly
         else:
             # We don't know of any SAFE versions that match the given
             # spec.  Grab the spec's versions and grab the highest
@@ -232,11 +232,11 @@ class DefaultConcretizer(object):
                 last = spec.versions[-1]
                 if isinstance(last, VersionRange):
                     if last.end:
-                        spec.versions = ver([last.end])
+                        spec.versions = ver([last.end]).exactly
                     else:
-                        spec.versions = ver([last.start])
+                        spec.versions = ver([last.start]).exactly
                 else:
-                    spec.versions = ver([last])
+                    spec.versions = ver([last]).exactly
 
         return True   # Things changed
 
@@ -370,6 +370,7 @@ class DefaultConcretizer(object):
         # Check if the compiler is already fully specified
         if other_compiler in all_compilers:
             spec.compiler = other_compiler.copy()
+            spec.compiler.versions = spec.compiler.versions.exactly
             return True
 
         # Filter the compilers into a sorted list based on the compiler_order
