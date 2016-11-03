@@ -26,7 +26,9 @@ import os
 import sys
 import code
 import argparse
-import platform
+
+# avoid conflict with spack platform command.
+platform = __import__('platform')
 
 import spack
 
