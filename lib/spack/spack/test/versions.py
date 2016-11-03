@@ -99,6 +99,28 @@ class VersionsTest(unittest.TestCase):
     def check_union(self, expected, a, b):
         self.assertEqual(ver(expected), ver(a).union(ver(b)))
 
+    def test_copy_inexact(self):
+        v = Version('1')
+        self.assertFalse(Version(v).exact)
+        self.assertFalse(v.copy().exact)
+
+        self.assertTrue(Version(v, True).exact)
+        self.assertTrue(v.exactly.exact)
+
+        self.assertFalse(Version(v, False).exact)
+        self.assertFalse(v.inexactly.exact)
+
+    def test_copy_exact(self):
+        v = Version('1.')
+        self.assertTrue(Version(v).exact)
+        self.assertTrue(v.copy().exact)
+
+        self.assertTrue(Version(v, True).exact)
+        self.assertTrue(v.exactly.exact)
+
+        self.assertFalse(Version(v, False).exact)
+        self.assertFalse(v.inexactly.exact)
+
     def test_one_segment(self):
         self.assert_ver_eq('1', '1')
         self.assert_ver_lt('1', '2')
@@ -384,6 +406,8 @@ class VersionsTest(unittest.TestCase):
         self.check_intersection(['0:1'], [':'], ['0:1'])
 
     def test_intersection_exact(self):
+        self.check_intersection('2.5.', '2.5', '2.5.')
+
         # these only overlap at a single exact version.
         self.check_intersection('2.5.',
                                 '1.0:2.5.', '2.5:3.0')

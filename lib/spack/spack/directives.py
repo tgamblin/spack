@@ -168,7 +168,8 @@ def version(pkg, ver, checksum=None, **kwargs):
         kwargs['md5'] = checksum
 
     # Store kwargs for the package to later with a fetch_strategy.
-    pkg.versions[Version(ver)] = kwargs
+    # Versions in version() directives are assumed to be exact.
+    pkg.versions[Version(ver, exact=True)] = kwargs
 
 
 def _depends_on(pkg, spec, when=None, type=None):

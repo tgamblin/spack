@@ -46,8 +46,8 @@ from spack.util.compression import allowed_archive
 
 def mirror_archive_filename(spec, fetcher):
     """Get the name of the spec's archive in the mirror."""
-    if not spec.version.concrete:
-        raise ValueError("mirror.path requires spec with concrete version.")
+    if not spec.version.exact:
+        raise ValueError("mirror.path requires spec with exact version.")
 
     if isinstance(fetcher, fs.URLFetchStrategy):
         if fetcher.expand_archive:

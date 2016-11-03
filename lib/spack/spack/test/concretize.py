@@ -90,10 +90,10 @@ class ConcretizeTest(MockPackagesTest):
 
     def test_concretize_preferred_version(self):
         spec = self.check_concretize('python')
-        self.assertEqual(spec.versions, ver('2.7.11'))
+        self.assertEqual(spec.versions, ver('2.7.11.'))
 
         spec = self.check_concretize('python@3.5.1')
-        self.assertEqual(spec.versions, ver('3.5.1'))
+        self.assertEqual(spec.versions, ver('3.5.1.'))
 
     def test_concretize_with_virtual(self):
         self.check_concretize('mpileaks ^mpi')

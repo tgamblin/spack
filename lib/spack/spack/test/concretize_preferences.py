@@ -22,10 +22,13 @@
 # License along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##############################################################################
+from tempfile import mkdtemp
+
 import spack
 import spack.architecture
+from spack.version import ver
 from spack.test.mock_packages_test import *
-from tempfile import mkdtemp
+
 
 
 class ConcretizePreferencesTest(MockPackagesTest):
@@ -77,22 +80,25 @@ class ConcretizePreferencesTest(MockPackagesTest):
         """
         self.update_packages('mpileaks', 'compiler', ['clang@3.3'])
         spec = self.concretize('mpileaks')
-        self.assertEqual(spec.compiler, spack.spec.CompilerSpec('clang@3.3'))
+        self.assertEqual(spec.compiler, spack.spec.CompilerSpec('clang@3.3.'))
 
         self.update_packages('mpileaks', 'compiler', ['gcc@4.5.0'])
         spec = self.concretize('mpileaks')
-        self.assertEqual(spec.compiler, spack.spec.CompilerSpec('gcc@4.5.0'))
+        self.assertEqual(spec.compiler, spack.spec.CompilerSpec('gcc@4.5.0.'))
 
     def test_preferred_versions(self):
         """Test preferred package versions are applied correctly
         """
         self.update_packages('mpileaks', 'version', ['2.3'])
         spec = self.concretize('mpileaks')
-        self.assertEqual(spec.version, spack.spec.Version('2.3'))
+        self.assertEqual(spec.version, ver('2.3.'))
 
         self.update_packages('mpileaks', 'version', ['2.2'])
+        from pprint import pprint
+        pprint(spack.config.get_config('packages'))
+        pprint(spack.repo.get('mpileaks').versions)
         spec = self.concretize('mpileaks')
-        self.assertEqual(spec.version, spack.spec.Version('2.2'))
+        self.assertEqual(spec.version, ver('2.2.'))
 
     def test_preferred_providers(self):
         """Test preferred providers of virtual packages are applied correctly
@@ -110,4 +116,4 @@ class ConcretizePreferencesTest(MockPackagesTest):
         """
         spec = Spec('builtin.mock.develop-test')
         spec.concretize()
-        self.assertEqual(spec.version, spack.spec.Version('0.2.15'))
+        self.assertEqual(spec.version, ver('0.2.15.'))

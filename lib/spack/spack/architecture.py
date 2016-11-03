@@ -83,6 +83,7 @@ from llnl.util.filesystem import join_path
 import llnl.util.tty as tty
 
 import spack
+from spack.version import Version
 from spack.util.naming import mod_to_class
 from spack.util.environment import get_path
 from spack.util.multiproc import parmap
@@ -318,7 +319,9 @@ class OperatingSystem(object):
                 continue
 
             paths = tuple(pn[k] if k in pn else None for pn in dicts)
-            spec = spack.spec.CompilerSpec(cmp_cls.name, ver)
+            spec = spack.spec.CompilerSpec(
+                cmp_cls.name,
+                Version(ver, exact=True))  # detected versions are exact.
 
             if ver in compilers:
                 prev = compilers[ver]

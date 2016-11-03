@@ -43,6 +43,8 @@ be called on any of the types::
   union
   intersection
   exact
+  exactly
+  copy
 
 """
 import re
@@ -122,13 +124,13 @@ def eq_ignore_exact(v1, v2):
 class Version(object):
     """Class to represent versions"""
 
-    def __init__(self, string, exact=False):
+    def __init__(self, string, exact=None):
         # Support copying other versions.
         if isinstance(string, Version):
             self.string = string.string
             self.version = string.version
             self.separators = string.separators
-            self._exact = exact
+            self._exact = string._exact if exact is None else bool(exact)
             return
 
         string = str(string)
@@ -137,7 +139,7 @@ class Version(object):
             raise ValueError("Bad characters in version string: %s" % string)
 
         # preserve the original string, but trimmed.
-        string = string.strip()
+        string = re.sub(r'[^a-zA-Z0-9.]*$', '', string.strip())
         self.string = string
 
         # Split version into alphabetical and numeric segments
@@ -318,6 +320,9 @@ class Version(object):
         else:
             return Version(self, exact=False)
 
+    def copy(self):
+        return Version(self)
+
     def _numeric_lt(self, other):
         """Compares two versions, knowing they're both numeric"""
         # Standard comparison of two numeric versions
@@ -441,8 +446,13 @@ class Version(object):
 
     @coerced
     def intersection(self, other):
-        if self == other:
-            return self
+        if eq_ignore_exact(self, other):
+            if self is other or self == other:
+                return self
+            elif self.exact:
+                return self
+            else:  # other.exact
+                return other
         else:
             return VersionList()
 
@@ -646,6 +656,11 @@ class VersionRange(object):
                     if start.exact or end.exact:
                         start = end = start.exactly
 
+            # Return a Version if start and end are equal
+            if start and end and start == end:
+                return start
+
+            # Now we've got a VersionRange.
             return VersionRange(start, end)
 
         else:
@@ -653,6 +668,9 @@ class VersionRange(object):
 
     def __hash__(self):
         return hash((self.start, self.end))
+
+    def copy(self):
+        return VersionRange(self)
 
     @property
     def yaml_str(self):
