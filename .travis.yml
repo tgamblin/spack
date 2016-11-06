@@ -35,7 +35,7 @@ addons:
 
 # Install various dependencies
 install:
-  - pip install coveralls
+  - pip install codecov
   - pip install flake8
   - pip install sphinx
   - pip install mercurial
@@ -52,7 +52,7 @@ before_script:
 script: share/spack/qa/run-$TEST_SUITE-tests
 
 after_success:
-  - if [[ $TEST_SUITE == unit && $CYAML == false && $TRAVIS_PYTHON_VERSION == 2.7 ]]; then coveralls; fi
+  - if [[ $TEST_SUITE == unit && $CYAML == false && $TRAVIS_PYTHON_VERSION == 2.7 ]]; then bash <(curl -s https://codecov.io/bash); fi
 
 notifications:
   email:
