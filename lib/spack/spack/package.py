@@ -1581,7 +1581,8 @@ class PackageBase(with_metaclass(PackageMeta, object)):
                 raise InstallError(str(spec) + " is not installed.")
 
         if not force:
-            dependents = spack.store.db.installed_dependents(spec)
+            dependents = spack.store.db.installed_relatives(
+                spec, 'parents', True)
             if dependents:
                 raise PackageStillNeededError(spec, dependents)
 
