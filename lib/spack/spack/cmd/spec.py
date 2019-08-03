@@ -33,7 +33,6 @@ def setup_parser(subparser):
     subparser.add_argument(
         '-N', '--namespaces', action='store_true', default=False,
         help='show fully qualified package names')
-
     subparser.add_argument(
         '-t', '--types', action='store_true', default=False,
         help='show dependency types')
