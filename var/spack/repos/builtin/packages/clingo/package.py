@@ -52,6 +52,7 @@ class Clingo(CMakePackage):
             InstallError('clingo requires a C++14-compliant C++ compiler')
 
         return [
+            '-DTESTING_FOR_ADAM=ON',
             '-DCLINGO_REQUIRE_PYTHON=ON',
             '-DCLINGO_BUILD_WITH_PYTHON=ON',
             '-DCLINGO_BUILD_PY_SHARED=ON',
