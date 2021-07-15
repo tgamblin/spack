@@ -36,10 +36,10 @@ jobs:
         fetch-depth: 0
     - uses: actions/setup-python@v2
       with:
-        python-version: 3.9
+        python-version: 3.8
     - name: Install Python packages
       run: |
-        pip install --upgrade pip six setuptools types-six
+        pip install --upgrade pip six setuptools types-six clingo
     - name: Setup git configuration
       run: |
         # Need this for the git tests to succeed.
@@ -47,6 +47,9 @@ jobs:
         . .github/workflows/setup_git.sh
     - name: Run style tests
       run: |
+          mkdir -p ~/.spack
+          echo "config:"                  > ~/.spack/config.yaml
+          echo "    concretizer: clingo" >> ~/.spack/config.yaml
           share/spack/qa/run-style-tests
   # Build the documentation
   documentation:
