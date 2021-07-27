@@ -1,5 +1,5 @@
 cff-version: 1.1.0
-message: "If you use this software, please cite it as below."
+message: "If you are referencing Spack in a publication, please cite the paper below."
 abstract: |
   Large HPC centers spend considerable time supporting software for thousands of users, but the
   complexity of HPC software is quickly outpacing the capabilities of existing software
@@ -17,19 +17,31 @@ abstract: |
 authors:
   - family-names: "Gamblin"
     given-names: "Todd"
-  - family-names: "LeGendre"
-    given-names: "Matthew"
-  - family-names: "Collette"
-    given-names: "Michael R."
-  - family-names: "Lee"
-    given-names: "Gregory L."
-  - family-names: "Moody"
-    given-names: "Adam"
-  - family-names: "de Supinski"
-    given-names: "Bronis R."
-  - family-names: "Futral"
-    given-names: "Scott"
 title: "The Spack package manager: bringing order to HPC software chaos"
-version: 0.1.0
+version: develop
 date-released: 2015-11-15
 doi: "https://doi.org/10.1145/2807591.2807623"
+references:
+  - type: proceedings
+    authors:
+      - family-names: "Gamblin"
+        given-names: "Todd"
+      - family-names: "LeGendre"
+        given-names: "Matthew"
+      - family-names: "Collette"
+        given-names: "Michael R."
+      - family-names: "Lee"
+        given-names: "Gregory L."
+      - family-names: "Moody"
+        given-names: "Adam"
+      - family-names: "de Supinski"
+        given-names: "Bronis R."
+      - family-names: "Futral"
+        given-names: "Scott"
+    title: "The Spack package manager: bringing order to HPC software chaos"
+    city: "Austin"
+    region: "Texas"
+    date-start: 2015-11-15
+    date-end: 2015-11-20
+    number: LLNL-CONF-669890
+    journal: "Supercomputing 2015 (SC’15)"
