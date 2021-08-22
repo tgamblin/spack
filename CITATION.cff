@@ -1,4 +1,4 @@
-cff-version: 1.1.0
+cff-version: 1.2.0
 message: "If you are referencing Spack in a publication, please cite the paper below."
 abstract: |
   Large HPC centers spend considerable time supporting software for thousands of users, but the
@@ -15,8 +15,22 @@ abstract: |
   We show through real-world use cases that Spack supports diverse and demanding applications,
   bringing order to HPC software chaos.
 authors:
-  - family-names: "Gamblin"
-    given-names: "Todd"
+  - type: proceedings
+    authors:
+      - family-names: "Gamblin"
+        given-names: "Todd"
+      - family-names: "LeGendre"
+        given-names: "Matthew"
+      - family-names: "Collette"
+        given-names: "Michael R."
+      - family-names: "Lee"
+        given-names: "Gregory L."
+      - family-names: "Moody"
+        given-names: "Adam"
+      - family-names: "de Supinski"
+        given-names: "Bronis R."
+      - family-names: "Futral"
+        given-names: "Scott"
 title: "The Spack package manager: bringing order to HPC software chaos"
 version: develop
 date-released: 2015-11-15
