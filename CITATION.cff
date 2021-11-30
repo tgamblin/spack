@@ -1,28 +1,8 @@
 cff-version: 1.2.0
+cff-version: 1.2.0
 message: "If you are referencing Spack in a publication, please cite the paper below."
-authors:
-- family-names: "Gamblin"
-  given-names: "Todd"
-- family-names: "LeGendre"
-  given-names: "Matthew"
-- family-names: "Collette"
-  given-names: "Michael R."
-- family-names: "Lee"
-  given-names: "Gregory L."
-- family-names: "Moody"
-  given-names: "Adam"
-- family-names: "de Supinski"
-  given-names: "Bronis R."
-- family-names: "Futral"
-  given-names: "Scott"
-title: "The Spack Package Manager: Bringing Order to HPC Software Chaos"
-version: "develop"
-license: "Apache-2.0 OR MIT"
-doi: "10.1145/2807591.2807623"
-date-released: 2015-11-15
-url: "https://spack.io"
 preferred-citation:
-  type: conference-paper
+  type: inproceedings
   authors:
   - family-names: "Gamblin"
     given-names: "Todd"
@@ -38,14 +18,13 @@ preferred-citation:
     given-names: "Bronis R."
   - family-names: "Futral"
     given-names: "Scott"
-  title: "The Spack Package Manager: Bringing Order to HPC Software Chaos"
-  conference:
-    name: "Supercomputing 2015 (SC’15)"
-    city: "Austin"
-    region: "Texas"
-    country: "USA"
-    date-start: 2015-11-15
-    date-end: 2015-11-20
-  month: 11
+  booktitle: "SC15: International Conference for High-Performance Computing, Networking, Storage and Analysis"
+  doi: 10.1145/2807591.2807623
+  end: 12
+  month: November
+  publisher: "IEEE Computer Society"
+  start: 1
+  title: "The Spack package manager: bringing order to HPC software chaos"
+  url: "https://github.com/spack/spack"
   year: 2015
   notes: LLNL-CONF-669890
