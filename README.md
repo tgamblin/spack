@@ -8,6 +8,9 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Slack](https://slack.spack.io/badge.svg)](https://slack.spack.io)
 
+TESTING PR EDITS
+
+
 Spack is a multi-platform package manager that builds and installs
 multiple versions and configurations of software. It works on Linux,
 macOS, and many supercomputers. Spack is non-destructive: installing a
