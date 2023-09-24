@@ -138,8 +138,7 @@ class PythonExtension(spack.package_base.PackageBase):
                     )
             else:
                 orig_link_target = os.path.realpath(src)
-                new_link_target = os.path.abspath(merge_map[orig_link_target])
-                view.link(new_link_target, dst)
+                view.link(orig_link_target, dst)
 
     def remove_files_from_view(self, view, merge_map):
         ignore_namespace = False
